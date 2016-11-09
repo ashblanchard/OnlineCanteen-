@@ -1,0 +1,50 @@
+/*
+
+
+
+*/
+.container{
+    margin: 20px;
+    font-family: Arial;
+    text-align: center;
+}
+
+
+
+/*Login Page----------------------------*/
+#passwordBox{
+    font-size: 18px;
+}
+
+/*Home Page----------------------------*/
+#homeBanner{
+    height: 200px;
+    width: 400px;
+    display: inline-block;
+}
+
+#homeBannerText{
+    display: inline-block;
+    color: #555555;
+    margin: 0px;
+}
+
+#homeSettingsButton{
+    height: 40px;
+    width: 100%;
+}
+
+#homeSettingsButton img{
+    float: right;
+}
+
+#homeSearchDiv{
+    width: 100%;
+}
+
+hr{
+    margin: 2px;
+}
+
+
+/*--------------------------------------*/
