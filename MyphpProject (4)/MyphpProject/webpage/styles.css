@@ -1,0 +1,43 @@
+/*
+
+
+
+*/
+/*Home Page----------------------------*/
+.container{
+    margin: 20px;
+    font-family: Arial;
+    text-align: center;
+}
+
+#homeBanner{
+    height: 200px;
+    width: 400px;
+    display: inline-block;
+}
+
+#homeBannerText{
+    display: inline-block;
+    color: #555555;
+    margin: 0px;
+}
+#homeSettingsButton{
+    height: 40px;
+    width: 100%;
+}
+#homeSettingsButton img{
+    float: right;
+}
+#homeSearchDiv{
+    width: 100%;
+}
+/*Doesnt do anything right now*/
+#homeSearhBar{
+    width: 500px;
+    background-color: black;
+}
+hr{
+    margin: 2px;
+}
+
+/*--------------------------------------*/
