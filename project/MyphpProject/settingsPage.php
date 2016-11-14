@@ -13,7 +13,7 @@ and open the template in the editor.
     </head>
     <body>
         <div class = "container">
-            <div id ="homePageLink">
+            <div  class="homePageLink">
                 <a href ="home.php">
                     <img alt ="" src ="images/backBack.png" title="Back to Home">
                 </a>
@@ -47,7 +47,8 @@ and open the template in the editor.
 </html>
 
 <?php
-$con = mysqli_connect("localhost", "phpuser", "phpuserpw", "seggiecampers");
+$x = 1;
+$con = mysqli_connect("localhost:3308", "root", "root", "camp seggie");
 if (isset($_POST["submitCamper"])) {
     if ($_FILES['file']['name']) {
         $filename = explode(".", $_FILES['file']['name']);
@@ -57,29 +58,9 @@ if (isset($_POST["submitCamper"])) {
                 $item1 = mysqli_real_escape_string($con, $data[0]);
                 $item2 = mysqli_real_escape_string($con, $data[1]);
                 $item3 = mysqli_real_escape_string($con, $data[2]);
-                $sql = "INSERT into campers(name,cabin,storeDeposit) values('$item1','$item2','$item3')";
+                $sql = "INSERT into camper(camper_id, name,cabin,balance) values('$x','$item1','$item2','$item3')";
                 mysqli_query($con, $sql);
-            }
-            fclose($handle);
-        }
-        mysqli_close($con);
-        header('Location: settingsPage.php');
-    }
-}
-?>
-<?php
-$con = mysqli_connect("localhost", "phpuser", "phpuserpw", "seggiecampers");
-if (isset($_POST["submitStaff"])) {
-    if ($_FILES['staffFile']['name']) {
-        $filename = explode(".", $_FILES['staffFile']['name']);
-        if ($filename[1] == 'csv') {
-            $handle = fopen($_FILES['staffFile']['tmp_name'], "r");
-            while ($data = fgetcsv($handle)) {
-                $item1 = mysqli_real_escape_string($con, $data[0]);
-                $item2 = mysqli_real_escape_string($con, $data[1]);
-                $staffName = "" . $item1 . " " . $item2 . "";
-                $sql = "INSERT into campers(name, cabin, storeDeposit) values('$staffName', 'STAFF', 'null')";
-                mysqli_query($con, $sql);
+                $x++;
             }
             fclose($handle);
         }

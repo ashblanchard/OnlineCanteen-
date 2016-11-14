@@ -12,10 +12,11 @@ Login page for users
         <script src ="scripts.js"></script>
     </head>
     <body>
-        <div class = "container">            
-            
-
-                <div id ="passwordDiv">
+        <div class = "container">  
+            <div id ="loginBanner">
+                <img src = "images/bannerImageNoTitle.png">
+            </div>
+            <div id ="passwordDiv">
                 <form name="frm" method="post" action="home.php">
                     <h3>Enter Password</h3><br>
                     <input id = "passwordBox" type ="password" name="userpass">

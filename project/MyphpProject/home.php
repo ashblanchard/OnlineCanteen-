@@ -14,32 +14,44 @@ the various functions.
     </head>
     <body>
         <div class = "container">
-            <div id ="settingsPageLink">
+            <!----------------------------------------------------------------------->
+            <div class ="navigationBar">
+                
+                <a href="index.php">
+                    <img class="backButton" alt ="" src ="images/backBack.png" title="Previous Page">
+                </a>
+                
+                <a href ="home.php">
+                    <img class="homeButton" alt ="" src ="images/homeButton.png" title="Home">
+                </a>
+                
                 <a href ="settingsPage.php">
-                    <img alt ="" src ="images/settingsButton.png" title="Settings">
+                    <img class = "settingsButton" alt ="" src ="images/settingsButton.png" title="Settings">
                 </a>
             </div>
+            <!----------------------------------------------------------------------->
             <div id ="homeBannerDiv">
-                <img alt = " " id = "homeBanner" src = "images/homeBanner.jpg">
-                <h1 id = "homeBannerText">Camp Seggie's Online Canteen</h1>
+                <img alt = " " id = "homeBanner" src = "images/campStore.png">
+                <h1 id = "homeBannerText">Online Canteen</h1>
             </div>
             <hr>
-            <br><br><br><br>
+
             <!--Fix this to be a bigger search bar-->
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">
-                    Search Directory:
-                    <input type="text" name="camper"  style = "width: 500px; height: 20px;"/>
-                    <input type="submit" value="Search" />
+                    <h3>Search Directory:</h3>
+                    <input id = "homeSearchBox" type="text" name="camper" />
+                    <input id = "homeSearchButton" type="submit" value="Search" />
                 </form>  
             </div>
-            <br><br><br><br>
-            <br><br><br><br>
-            <center>
+
+            <div id ="homeImageBottom">
                 <img alt="" src="images/kidsPool.jpg">
-            </center>
-            <br></br>
-            <a href ="index.php">Back to login</a>
+            </div>
+
+            <div id ="linkToLogin">
+                <a href ="index.php">Back to login</a>
+            </div>
         </div>
     </body>
 </html>

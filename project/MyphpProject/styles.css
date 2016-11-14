@@ -8,9 +8,42 @@ Styles page for the website
     font-family: Arial;
     text-align: center;
 }
+.homePageLink{
+    width: 100%;
+    height: 30px;;
+}
+
+.homePageLink img{
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+.navigationBar{
+    width: 100%;
+}
+.settingsButton{
+    float: right;
+    width: 3.5%;
+    height: 3.5%;
+    vertical-align: bottom;
+    margin-top: 5px;
+}
+.backButton{
+    float: left;
+    width: 4%;
+    height: 4%;
+    vertical-align: bottom;
+}
+.homeButton{
+    margin-top: 5px;
+    width: 4%;
+    height: 4%;
+    vertical-align: bottom;
+}
+
 /*Login Page----------------------------*/
 #passwordDiv{
-    margin-top: 15%;
+    margin-top: 1%;
 }
 #passwordBox{
     vertical-align: bottom;
@@ -30,24 +63,17 @@ Styles page for the website
     vertical-align: bottom;
 }
 /*Home Page----------------------------*/
-#settingsPageLink img{
-    margin-top: 10px;
-    margin-right: 50px;
-    float: right;
-}
 #homeBanner{
     height: 200px;
     width: 400px;
     display: inline-block;
+    vertical-align: bottom;
 }
 #homeBannerText{
+    vertical-align: bottom;
     display: inline-block;
     color: #555555;
-    margin: 0px;
-}
-#settingsPageLink{
-    height: 40px;
-    width: 100%;
+    margin-bottom: 27px;
 }
 #homeSearchDiv{
     width: 100%;
@@ -55,18 +81,29 @@ Styles page for the website
 hr{
     margin: 2px;
 }
-/*Setting Page--------------------------*/
-#homePageLink{
-    width: 100%;
-    border: 1px solid #ccc;
-    height: auto;
-}
-#homePageLink img{
-    float: left;
-    margin-left: 50px;
-    margin-top: 10px;
+#homeSearchBox{
+    vertical-align: bottom;
+    width: 500px; 
+    height: 29px; 
+    font-size: 20px;
 }
 
+#homeSearchButton{
+    width: 100px; 
+    height: 35px;
+    vertical-align: bottom;
+}
+#homeImageBottom{
+    margin-top: 45px;
+    display: block;
+}
+#linkToLogin{
+    margin-top: 20px;
+}
+
+
+
+/*Setting Page--------------------------*/
 
 
 
