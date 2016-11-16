@@ -4,7 +4,7 @@ Settings page
 
 -----TODO-----
 
-Add CSS for the individual camper adding
+Add CSS for the individual camper/staff adding
 
 add comfirmation for upload
 

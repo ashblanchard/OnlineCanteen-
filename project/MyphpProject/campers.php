@@ -21,7 +21,7 @@ and open the template in the editor.
         <script src ="scripts.js"></script>
     </head>
     <body>
-        <div class="container">
+        <div class = "container">
             <!--Navigation Bar------------------------------------------------------->
             <div class ="navigationBar">
                 <span class="backButton">
@@ -36,7 +36,7 @@ and open the template in the editor.
                 </span>
                 <span class = "settingsButton">
                     <a href ="settingsPage.php">
-                        <i class="fa fa-cogs fa-2x" title="Settings">Settings</i>
+                        <i class="fa fa-cogs fa-2x" title="Settings"style="margin-right: 16px;">Settings</i>
                     </a>
                 </span>
                 <div class ="navBannerDiv">
@@ -47,8 +47,13 @@ and open the template in the editor.
             </div>
             <!----------------------------------------------------------------------->
 
+            <form name="seggiecampers" action="campers.php">
+                Search:
+                <input type="text" name="camper"  style = "width: 500px; height: 20px;"/>
+                <input type="submit" value="Search" />
+            </form>  
 
-            Search Results: <?php echo $_GET["camper"]; ?>
+            Search Results: <?php echo $_GET["camper"] . "<br/>"; ?>
 
 
             <?php
@@ -63,7 +68,7 @@ and open the template in the editor.
 
             $camper = mysqli_real_escape_string($con, htmlentities($_GET["camper"]));
 
-            $camperdb = mysqli_query($con, "SELECT camper_id FROM camper WHERE name LIKE '%$camper%'");
+            $camperdb = mysqli_query($con, "SELECT id FROM campers WHERE name LIKE '%$camper%'");
 
             if (mysqli_num_rows($camperdb) < 1) {
                 exit("The person " . htmlentities($_GET["camper"]) . " is not found. Please check the spelling and try again");
@@ -71,32 +76,25 @@ and open the template in the editor.
             $row = mysqli_fetch_row($camperdb);
             mysqli_free_result($camperdb);
             ?>
-            <form name="singleCamper" action="camperProfile.php">
-                <table border="black">
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Cabin</th>
-                        <th>Store Deposit</th>
-                    </tr>
-                    <?php
-                    $result = mysqli_query($con, "SELECT camper_id, name, cabin, balance FROM camper  WHERE name LIKE '%$camper%'");
-                    while ($row = mysqli_fetch_array($result)) {
-
-                        echo "<tr><td>" . htmlentities($row["camper_id"]) . "</td>";
-                        echo "<td> <a href='camperProfile.php?camperid='" . $row["camper_id"] . "'>" . htmlentities($row["name"]) . "</a></td>";
-                        echo "<td>" . htmlentities($row["cabin"]) . "</td>";
-                        echo "<td>" . htmlentities($row["balance"]) . "</td></tr>\n";
-                    }
-                    mysqli_free_result($result);
-                    mysqli_close($con);
-                    ?>
-                </table>
-            </form> 
-            
-            
-            
-            
+            <table border="black">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Cabin</th>
+                    <th>Store Deposit</th>
+                </tr>
+                <?php
+                $result = mysqli_query($con, "SELECT id, name, cabin, balance FROM campers  WHERE name LIKE '%$camper%'");
+                while ($row = mysqli_fetch_array($result)) {
+                    echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
+                    echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                    echo "<td>" . htmlentities($row["cabin"]) . "</td>";
+                    echo "<td>" . htmlentities($row["balance"]) . "</td></tr>\n";
+                }
+                mysqli_free_result($result);
+                mysqli_close($con);
+                ?>
+            </table>
         </div>
     </body>
 </html>

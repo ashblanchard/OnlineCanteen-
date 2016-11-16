@@ -111,8 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
             echo "<td>" . htmlentities($row["itemName"]) . "</td>";
-            echo "<td>" . htmlentities($row["itemPrice"]) . "</td>";
-            echo "<td>" . htmlentities($row["consumerPrice"]) . "</td>";
+            echo "<td>$" . number_format( htmlentities($row["itemPrice"]), 2).  "</td>";
+            echo "<td>$" . number_format( htmlentities($row["consumerPrice"]), 2).  "</td>";
             echo "<td>" . htmlentities($row["quantity"]) . "</td></tr>\n";
         }
         ?>

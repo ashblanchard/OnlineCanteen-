@@ -108,7 +108,7 @@ hr{
     width: 100px; 
     height: 35px;
     vertical-align: bottom;
-    font: normal normal normal 20px FontAwesome;
+    font: 20px FontAwesome;
 }
 #homeImageBottom{
     margin-top: 45px;
