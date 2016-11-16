@@ -7,47 +7,20 @@ Styles page for the website
     margin: 20px;
     font-family: Arial;
     text-align: center;
-}
-.homePageLink{
-    width: 100%;
-    height: 30px;;
-}
-
-.homePageLink img{
-    float: left;
-    margin-left: 50px;
-    margin-top: 10px;
-}
-.navigationBar{
-    width: 100%;
-}
-.settingsButton{
-    float: right;
-    width: 3.5%;
-    height: 3.5%;
-    vertical-align: bottom;
-    margin-top: 5px;
-}
-.backButton{
-    float: left;
-    width: 4%;
-    height: 4%;
-    vertical-align: bottom;
-}
-.homeButton{
-    margin-top: 5px;
-    width: 4%;
-    height: 4%;
-    vertical-align: bottom;
+    color: #222;
+    font-family: FontAwesome;
 }
 
 /*Login Page----------------------------*/
+#loginBanner img{
+    width: 75%;
+}
 #passwordDiv{
     margin-top: 1%;
 }
 #passwordBox{
     vertical-align: bottom;
-    width: 500px; 
+    width: 50%; 
     height: 29px; 
     font-size: 20px;
 }
@@ -55,6 +28,7 @@ Styles page for the website
     width: 100px; 
     height: 35px;
     vertical-align: bottom;
+    margin-left: 5px;
 }
 #loginReset{
     margin-top: 10px;
@@ -62,52 +36,139 @@ Styles page for the website
     height: 35px;
     vertical-align: bottom;
 }
-/*Home Page----------------------------*/
-#homeBanner{
-    height: 200px;
-    width: 400px;
+#loginBottomImage{
+    width: 40%;
+    height: 10%;
+    display: inline-block;
+}
+#loginBottomImage img{
+    width: 70%;
+    height: auto;
+    max-height: 200px;
+    max-width: 400px;
+    min-height: 50px;
+    min-width: 100px;
+}
+/*Navigation Bar------------------------*/
+.navigationBar{
+    width: 100%;
+}
+/*Settings button*/
+.settingsButton{
+    float: right;
+}
+.backButton{
+    float: left;
+}
+.navigationBar a:link{
+    color: #222;
+    text-decoration: none;
+}
+.navigationBar a:visited{
+    color: #222;
+    text-decoration: none;
+}
+.navigationBar a:hover{
+    color: #4d4d4d;
+    text-decoration: none;
+}
+.navigationBar a:active{
+    color: #808080;
+    text-decoration: none;
+}
+.navBanner{
+    height: auto;
+    width: 300px;
     display: inline-block;
     vertical-align: bottom;
 }
-#homeBannerText{
+.navBannerText{
     vertical-align: bottom;
     display: inline-block;
-    color: #555555;
+    color: #222;
     margin-bottom: 27px;
 }
+
+/*Home Page----------------------------*/
 #homeSearchDiv{
     width: 100%;
+    margin-top: 50px;
 }
 hr{
     margin: 2px;
 }
 #homeSearchBox{
     vertical-align: bottom;
-    width: 500px; 
+    width: 50%; 
     height: 29px; 
     font-size: 20px;
+    font-family: inherit;
 }
-
 #homeSearchButton{
     width: 100px; 
     height: 35px;
     vertical-align: bottom;
+    font: normal normal normal 20px FontAwesome;
 }
 #homeImageBottom{
     margin-top: 45px;
     display: block;
+    width: 100%;
 }
-#linkToLogin{
-    margin-top: 20px;
+/*Settings Page--------------------------*/
+#camperListUpload{
+    padding: 20px;
+}
+
+#staffListUpload{
+    padding: 20px;
+}
+
+#staffListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+
+#camperListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
 }
 
 
+#viewInventory{
+    margin-top: 100px;
+    width: auto;
+}
+#viewInventory i{
+    display: inline-block;
+}
+#viewInventory h2{
+    width: auto;
+    display: inline-block;
+}
 
-/*Setting Page--------------------------*/
-
-
-
-
+#viewInventory a:link{
+    color: #222;
+    text-decoration: none;
+}
+#viewInventory a:visited{
+    color: #222;
+    text-decoration: none;
+}
+#viewInventory a:hover{
+    color: #4d4d4d;
+    text-decoration: none;
+}
+#viewInventory a:active{
+    color: #808080;
+    text-decoration: none;
+}
+#inventoryButton{
+    height: auto;
+    width: auto;
+}
 
 /*--------------------------------------*/
 
