@@ -27,33 +27,27 @@ add comfirmation for upload
         <script src ="scripts.js"></script>
     </head>
     <body>
-        <div class = "container">
-            <!--Navigation Bar------------------------------------------------------->
-            <div class ="navigationBar">
-                <span class="backButton">
-                    <a href="index.php">
-                        <i class="fa fa-reply-all  fa-2x" title="Back to Login">Log Out</i>
-                    </a>
-                </span>
-                <span class="homeButton">
-                    <a href ="home.php">
-                        <i class="fa fa-home fa-2x" title="Home"style="margin-right: 16px;">Home</i>
-                    </a>
-                </span>
-                <span class = "settingsButton">
-                    <a href ="settingsPage.php">
-                        <i class="fa fa-cogs fa-2x" title="Settings">Settings</i>
-                        <i class="fa fa-caret-left fa-2x"></i>
-                    </a>
-                </span>
-                <div class ="navBannerDiv">
-                    <img alt = "" class = "navBanner" src = "images/campStore.png">
-                    <h1 class = "navBannerText"><!--Page Text here, If needed--></h1>
-                </div>
-                <hr>
-            </div>
-            <!----------------------------------------------------------------------->
+        <!--Navigation Bar------------------------------------------------------->
+        <div class ="navBarLeft">
+            <a href ="home.php">
+                <i class="fa fa-home fa-2x" title="Home"> Home</i>
+            </a>
+            <a href ="inventoryPage.php">
+                <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
+            </a>
+            <a href ="settingsPage.php" class="currentLink">
 
+                <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
+            </a>
+            <a href="index.php">
+                <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
+            </a>
+        </div>
+        <div class ="navBannerDiv">
+            <img alt = " " class = "navBanner" src = "images/campStore.png">
+        </div>
+        <!----------------------------------------------------------------------->
+        <div class = "container">
             <!--Uploading a list of the current campers-->
             <div id="camperListUpload">
                 <form method = 'POST' enctype ='multipart/form-data'>
@@ -63,7 +57,7 @@ add comfirmation for upload
                     <input type ='submit' name='submitCamper' value ='Upload'/>
                 </form>
             </div>
-            
+
             <!-- Uploading a list of the staff members-->
             <div id="staffListUpload">
                 <form method = 'POST' enctype ='multipart/form-data'>
@@ -79,25 +73,15 @@ add comfirmation for upload
                 New Camper:
                 <a href="createNewCamper.php">ADD</a> 
             </div>
-            
+
             <!--Adding a SINGLE staff member-->
             <div class="addStaff">
                 New Staff:
                 <a href="createNewStaff.php">ADD</a> 
             </div>
 
-            <!--Link to Inventory page----------------------------------------------->
-            <div id="viewInventory">
-                <a href="inventoryPage.php">
-                    <span id="inventoryButton">
-                        <i class="fa fa-database fa-5x"></i>                        
-                    </span>
-                    <br>
-                    <h2>Inventory</h2>
-                </a> 
-            </div>
-            <!----------------------------------------------------------------------->
-            
+
+
         </div>
     </body>
 </html>

@@ -2,16 +2,22 @@
 Styles page for the website
 */
 
-
+body{
+    margin: 0px;
+    color: #373a3c;
+    font-family: Arial, serif, Times;
+}
 .container{
     margin: 20px;
+    margin-left: 232px;
     font-family: Arial;
     text-align: center;
-    color: #222;
-    font-family: FontAwesome;
+    height: 100%;
 }
-
-/*Login Page----------------------------*/
+.container table{
+    text-align: center;
+}
+/*Login Page-------------------------------------*/
 #loginBanner img{
     width: 75%;
 }
@@ -49,47 +55,80 @@ Styles page for the website
     min-height: 50px;
     min-width: 100px;
 }
-/*Navigation Bar------------------------*/
-.navigationBar{
-    width: 100%;
+/*Navigation Bar---------------------------------*/
+/*The section containing the nav bar, and the logo*/
+.navBarLeft{
+    padding-top: 70px;
+    text-align: left;
+    background-color: #222;
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #303030;
 }
-/*Settings button*/
-.settingsButton{
-    float: right;
-}
-.backButton{
-    float: left;
-}
-.navigationBar a:link{
-    color: #222;
+/*The default for every link in the menu*/
+.navBarLeft a{
+    display: block;
+    transition: 0.2s;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 0px;
+    color: white;
     text-decoration: none;
+    border-bottom: 1px solid black; 
+    border-top: 1px solid #2b2b2b;   
 }
-.navigationBar a:visited{
-    color: #222;
-    text-decoration: none;
+/*Makes the link turn slightly darker when hovered over*/
+.navBarLeft a:hover{
+    color: white;
+    background-color: #166E47;
 }
-.navigationBar a:hover{
-    color: #4d4d4d;
-    text-decoration: none;
+/*Makes the link turn darker when clicked on*/
+.navBarLeft a:active{
+    transition: 0s;
+    background-color: #104A31;
 }
-.navigationBar a:active{
-    color: #808080;
-    text-decoration: none;
+/*Makes the link turn darker on the current page*/
+.currentLink{
+    background-color: #125E3D;
 }
+/*Contains the logo*/
+.navBannerDiv{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 210px;
+    background-color: white;
+    display: block; 
+    border-bottom: 1px solid #2b2b2b;
+}
+/*The logo itself*/
 .navBanner{
-    height: auto;
-    width: 300px;
+    text-align: left;
+    height: 70px;
+    width: 100%;
     display: inline-block;
     vertical-align: bottom;
 }
-.navBannerText{
-    vertical-align: bottom;
-    display: inline-block;
-    color: #222;
-    margin-bottom: 27px;
+/*Back to top button*/
+.backToTop{
+    position: fixed;
+    left: 90px;
+    bottom: 20px;
 }
-
-/*Home Page----------------------------*/
+.backToTop a{
+    color: white;
+}
+.backToTop a:hover{
+    color: darkgray;
+}
+.backToTop a:active{
+    color: grey;
+}
+/*Home Page-------------------------------------*/
 #homeSearchDiv{
     width: 100%;
     margin-top: 50px;
@@ -115,62 +154,94 @@ hr{
     display: block;
     width: 100%;
 }
-/*Settings Page--------------------------*/
+/*Settings Page----------------------------------*/
 #camperListUpload{
     padding: 20px;
 }
-
 #staffListUpload{
     padding: 20px;
 }
-
 #staffListUpload input{
     font-family: inherit;
     vertical-align: bottom;
     margin-bottom: 5px;
 }
-
 #camperListUpload input{
     font-family: inherit;
     vertical-align: bottom;
     margin-bottom: 5px;
 }
+/*Camper Search Results Page---------------------*/
+#camperSearch{
 
-
-#viewInventory{
-    margin-top: 100px;
-    width: auto;
 }
-#viewInventory i{
+#camperSearchBar{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 29px; 
+    font-size: 20px;
+    font-family: inherit;
+}
+#camperSearchButton{
+    width: 100px; 
+    height: 35px;
+    vertical-align: bottom;
+    font: 20px FontAwesome;
+}
+#camperSearchResults{
     display: inline-block;
+    width: 50%;
 }
-#viewInventory h2{
+#searchResultsTable{
+    border: 1px solid #ccc;
+    padding: 100px;
+    width: 100%;
+}
+/*Inventory Page---------------------------------*/
+#inventoryDiv{
+    display: block;
     width: auto;
-    display: inline-block;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+#inventoryTable{
+    padding: 100px;
+    padding-top: 50px;
+    width: 100%;
+    line-height: 1.5
+}
+#inventoryTable td{
+    padding: 12px;
+    padding
+}
+#newInventory{
+    padding: 100px;
+    border: 1px solid #222;
+    display: none;
 }
 
-#viewInventory a:link{
-    color: #222;
-    text-decoration: none;
-}
-#viewInventory a:visited{
-    color: #222;
-    text-decoration: none;
-}
-#viewInventory a:hover{
-    color: #4d4d4d;
-    text-decoration: none;
-}
-#viewInventory a:active{
-    color: #808080;
-    text-decoration: none;
-}
-#inventoryButton{
-    height: auto;
-    width: auto;
-}
 
-/*--------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -21,32 +21,27 @@ the various functions.
         <script src ="scripts.js"></script>
     </head>
     <body>
+        <!--Navigation Bar------------------------------------------------------->
+        <div class ="navBarLeft">
+            <a href ="home.php" class="currentLink">
+                <i class="fa fa-home fa-2x" title="Home"> Home</i>
+            </a>
+            <a href ="inventoryPage.php">
+                <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
+            </a>
+            <a href ="settingsPage.php">
+
+                <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
+            </a>
+            <a href="index.php">
+                <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
+            </a>
+        </div>
+        <div class ="navBannerDiv">
+            <img alt = " " class = "navBanner" src = "images/campStore.png">
+        </div>
+        <!----------------------------------------------------------------------->
         <div class = "container">
-            <!--Navigation Bar------------------------------------------------------->
-            <div class ="navigationBar">
-                <span class="backButton">
-                    <a href="index.php">
-                        <i class="fa fa-reply-all  fa-2x" title="Back to Login">Log Out</i>
-                    </a>
-                </span>
-                <span class="homeButton">
-                    <a href ="home.php">
-                        <i class="fa fa-home fa-2x" title="Home">Home</i>
-                        <i class="fa fa-caret-left fa-2x"></i> 
-                    </a>
-                </span>
-                <span class = "settingsButton">
-                    <a href ="settingsPage.php">
-                        <i class="fa fa-cogs fa-2x" title="Settings" style="margin-right: 16px;">Settings</i>
-                    </a>
-                </span>
-                <div class ="navBannerDiv">
-                    <img alt = " " class = "navBanner" src = "images/campStore.png">
-                    <h1 class = "navBannerText"><!--Page Text here, If needed--></h1>
-                </div>
-                <hr>
-            </div>
-            <!----------------------------------------------------------------------->
 
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">

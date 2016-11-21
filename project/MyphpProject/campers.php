@@ -21,39 +21,41 @@ and open the template in the editor.
         <script src ="scripts.js"></script>
     </head>
     <body>
+        <!--Navigation Bar------------------------------------------------------->
+        <div class ="navBarLeft">
+            <a href ="home.php">
+                <i class="fa fa-home fa-2x" title="Home"> Home</i>
+            </a>
+            <a href ="inventoryPage.php">
+                <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
+            </a>
+            <a href ="settingsPage.php">
+
+                <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
+            </a>
+            <a href="index.php">
+                <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
+            </a>
+        </div>
+        <div class ="navBannerDiv">
+            <img alt = " " class = "navBanner" src = "images/campStore.png">
+        </div>
+        <div class="backToTop">
+            <a href="#top">
+                <i class="fa fa-angle-double-up fa-2x"></i>
+            </a>
+        </div>
+        <!----------------------------------------------------------------------->
         <div class = "container">
-            <!--Navigation Bar------------------------------------------------------->
-            <div class ="navigationBar">
-                <span class="backButton">
-                    <a href="index.php">
-                        <i class="fa fa-reply-all  fa-2x" title="Back to Login">Log Out</i>
-                    </a>
-                </span>
-                <span class="homeButton">
-                    <a href ="home.php">
-                        <i class="fa fa-home fa-2x" title="Home"style="margin-right: 16px;">Home</i>
-                    </a>
-                </span>
-                <span class = "settingsButton">
-                    <a href ="settingsPage.php">
-                        <i class="fa fa-cogs fa-2x" title="Settings"style="margin-right: 16px;">Settings</i>
-                    </a>
-                </span>
-                <div class ="navBannerDiv">
-                    <img alt = "" class = "navBanner" src = "images/campStore.png">
-                    <h1 class = "navBannerText"><!--Page Text here, If needed--></h1>
-                </div>
-                <hr>
+
+            <div id="camperSearch">
+                <form name="seggiecampers" action="campers.php">
+                    <h3>Search:</h3>
+                    <input id="camperSearchBar" type="text" name="camper">
+                    <input id="camperSearchButton" type="submit" value="Search">
+                </form>  
             </div>
-            <!----------------------------------------------------------------------->
-
-            <form name="seggiecampers" action="campers.php">
-                Search:
-                <input type="text" name="camper"  style = "width: 500px; height: 20px;"/>
-                <input type="submit" value="Search" />
-            </form>  
-
-            Search Results: <?php echo $_GET["camper"] . "<br/>"; ?>
+            <h4>Search Results: <?php echo $_GET["camper"]; ?></h4>
 
 
             <?php
@@ -68,7 +70,7 @@ and open the template in the editor.
 
             $camper = mysqli_real_escape_string($con, htmlentities($_GET["camper"]));
 
-            $camperdb = mysqli_query($con, "SELECT id FROM campers WHERE name LIKE '%$camper%'");
+            $camperdb = mysqli_query($con, "SELECT camper_id FROM camper WHERE name LIKE '%$camper%'");
 
             if (mysqli_num_rows($camperdb) < 1) {
                 exit("The person " . htmlentities($_GET["camper"]) . " is not found. Please check the spelling and try again");
@@ -76,25 +78,28 @@ and open the template in the editor.
             $row = mysqli_fetch_row($camperdb);
             mysqli_free_result($camperdb);
             ?>
-            <table border="black">
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Cabin</th>
-                    <th>Store Deposit</th>
-                </tr>
-                <?php
-                $result = mysqli_query($con, "SELECT id, name, cabin, balance FROM campers  WHERE name LIKE '%$camper%'");
-                while ($row = mysqli_fetch_array($result)) {
-                    echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
-                    echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
-                    echo "<td>" . htmlentities($row["cabin"]) . "</td>";
-                    echo "<td>" . htmlentities($row["balance"]) . "</td></tr>\n";
-                }
-                mysqli_free_result($result);
-                mysqli_close($con);
-                ?>
-            </table>
+
+            <div id ="camperSearchResults">
+                <table id="searchResultsTable">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Cabin</th>
+                        <th>Store Deposit</th>
+                    </tr>
+                    <?php
+                    $result = mysqli_query($con, "SELECT camper_id, name, cabin, balance FROM camper  WHERE name LIKE '%$camper%'");
+                    while ($row = mysqli_fetch_array($result)) {
+                        echo "<tr><td>" . htmlentities($row["camper_id"]) . "</td>";
+                        echo "<td> <a href=\"camperProfile.php/?camper_id=" . $row["camper_id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                        echo "<td>" . htmlentities($row["cabin"]) . "</td>";
+                        echo "<td>" . htmlentities($row["balance"]) . "</td></tr>\n";
+                    }
+                    mysqli_free_result($result);
+                    mysqli_close($con);
+                    ?>
+                </table>
+            </div>
         </div>
     </body>
 </html>

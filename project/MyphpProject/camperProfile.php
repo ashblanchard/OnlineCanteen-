@@ -2,7 +2,7 @@
 <html>
     <body>
         <?php
-        $con = mysqli_connect("localhost", "phpuser", "phpuserpw");
+        $con = mysqli_connect("localhost:3308", "root", "root");
         if (!$con) {
             exit('Connect Error (' . mysqli_connect_errno() . ') '
                     . mysqli_connect_error());
@@ -11,8 +11,8 @@
         mysqli_set_charset($con, 'utf-8');
 
 
-        mysqli_select_db($con, "seggiecampers");
-        $selectedCamper = mysqli_query($con, "SELECT * FROM campers  WHERE id='" . $_GET['camperid'] . "'");
+        mysqli_select_db($con, "camp_seggie");
+        $selectedCamper = mysqli_query($con, "SELECT * FROM camper  WHERE id='" . $_GET['camperid'] . "'");
         while ($row = mysqli_fetch_assoc($selectedCamper)) {
             echo "<h1>" . htmlentities($row["name"]) . "<br/></h1></div>";
             echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "<br/><br></br><br></br></h2>";
@@ -40,7 +40,7 @@
                     <th> Purchse </th>
                 </tr>
 <?php
-$con = mysqli_connect("localhost", "phpuser", "phpuserpw", "seggiecampers");
+$con = mysqli_connect("localhost:3308", "root", "root", "camp_seggie");
 if (!$con) {
     exit('Connect Error (' . mysqli_connect_errno() . ')  '
             . mysqli_connect_error());
