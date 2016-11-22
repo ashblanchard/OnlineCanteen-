@@ -1,50 +1,50 @@
 <?php
 /** database connection credentials */
-$dbHost = "localhost"; //on MySql
-$dbUsername = "phpuser";
-$dbPassword = "phpuserpw";
-
-/** other variables */
-$itemNameIsEmpty = false;
-$originalPriceIsEmpty = false;
-$consumerPriceIsEmpty = false;
-$quantityIsEmpty = false;
-
-/** Check that the page was requested from itself via the POST method. */
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    /** Check whether the user has filled in the camper's name in the text field "user" */
-    if ($_POST["itemName"] == "") {
-        $itemNameIsEmpty = true;
-    }
-    if ($_POST["originalPrice"] == "") {
-        $originalPriceIsEmpty = true;
-    }
-    if ($_POST["consumerPrice"] == "") {
-        $consumerPriceIsEmpty = true;
-    }
-    if ($_POST["quantity"] == "") {
-        $quantityIsEmpty = true;
-    }
-    /** Create database connection */
-    $con = mysqli_connect("localhost", "phpuser", "phpuserpw");
-    if (!$con) {
-        exit('Connect Error (' . mysqli_connect_errno() . ') '
-                . mysqli_connect_error());
-    }
-//set the default client character set 
-    mysqli_set_charset($con, 'utf-8');
-
-    $itemName = mysqli_real_escape_string($con, $_POST['itemName']);
-    $originalPrice = mysqli_real_escape_string($con, $_POST['originalPrice']);
-    $consumerPrice = mysqli_real_escape_string($con, $_POST['consumerPrice']);
-    $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
-
-    mysqli_select_db($con, "seggiecampers");
-    mysqli_query($con, "INSERT inventory (itemName, itemPrice, consumerPrice, quantity) VALUES ('" . $itemName . "', '" . $originalPrice . "', '" . $consumerPrice . "','" . $quantity . "')");
-    mysqli_close($con);
-    header('Location:inventoryPage.php');
-    exit;
-}
+//$dbHost = "localhost"; //on MySql
+//$dbUsername = "phpuser";
+//$dbPassword = "phpuserpw";
+//
+///** other variables */
+//$itemNameIsEmpty = false;
+//$originalPriceIsEmpty = false;
+//$consumerPriceIsEmpty = false;
+//$quantityIsEmpty = false;
+//
+///** Check that the page was requested from itself via the POST method. */
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//    /** Check whether the user has filled in the camper's name in the text field "user" */
+//    if ($_POST["itemName"] == "") {
+//        $itemNameIsEmpty = true;
+//    }
+//    if ($_POST["originalPrice"] == "") {
+//        $originalPriceIsEmpty = true;
+//    }
+//    if ($_POST["consumerPrice"] == "") {
+//        $consumerPriceIsEmpty = true;
+//    }
+//    if ($_POST["quantity"] == "") {
+//        $quantityIsEmpty = true;
+//    }
+//    /** Create database connection */
+//    $con = mysqli_connect("localhost", "phpuser", "phpuserpw");
+//    if (!$con) {
+//        exit('Connect Error (' . mysqli_connect_errno() . ') '
+//                . mysqli_connect_error());
+//    }
+////set the default client character set 
+//    mysqli_set_charset($con, 'utf-8');
+//
+//    $itemName = mysqli_real_escape_string($con, $_POST['itemName']);
+//    $originalPrice = mysqli_real_escape_string($con, $_POST['originalPrice']);
+//    $consumerPrice = mysqli_real_escape_string($con, $_POST['consumerPrice']);
+//    $quantity = mysqli_real_escape_string($con, $_POST['quantity']);
+//
+//    mysqli_select_db($con, "seggiecampers");
+//    mysqli_query($con, "INSERT inventory (itemName, itemPrice, consumerPrice, quantity) VALUES ('" . $itemName . "', '" . $originalPrice . "', '" . $consumerPrice . "','" . $quantity . "')");
+//    mysqli_close($con);
+//    header('Location:inventoryPage.php');
+//    exit;
+//}
 ?>
 <html>
     <head>
@@ -92,54 +92,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <!--Currently hidden, to style later-->
             <div id="newInventory">
+                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i>
                 <h1>Add New Inventory:</h1>
                 <!--Replace the PHP here with Javascript, so it can prompt the user 
                 for the fields without calling the database-->
                 <form action="inventoryPage.php" method="POST">
-                    Item Name: <input type="text" name="itemName">
-                    <?php
-//                    if ($itemNameIsEmpty) {
-//                        echo ("Enter item's name, please!");
-//                        echo ("<br/>");
-//                    }
-//                    
-                    ?>
-                    Original Price: <input type="text" name="originalPrice">
-                    <?php
-//                    if ($originalPriceIsEmpty) {
-//                        echo ("Enter original price, please!");
-//                        echo ("<br/>");
-//                    }
-//                    
-                    ?>
-                    Consumer Price: <input type="text" name="consumerPrice">
-                    <?php
-//                    if ($consumerPriceIsEmpty) {
-//                        echo ("Enter consumer price, please!");
-//                        echo ("<br>");
-//                    }
-//                    
-                    ?>
-                    Quantity: <input type="text" name="quantity">
-                    <?php
-//                    if ($quantityIsEmpty) {
-//                        echo ("Enter quantity of item, please!");
-//                        echo ("<br>");
-//                    }
-//                    
-                    ?>
-                    <input type="submit" onblur="checkField()"> <!--value="Add Inventory"-->
+                    Item Name: <br>
+                    <input type="text" name="itemName"><br>
+
+                    Original Price:<br> 
+                    <input type="text" name="originalPrice"><br>
+
+
+                    Consumer Price:<br> 
+                    <input type="text" name="consumerPrice"><br>
+
+                    Quantity:<br> 
+                    <input type="text" name="quantity"><br>
+
+                    <input type="submit" id ="addItemSubmitButton" onclick="closeNewInventory(), checkField()"> <!--value="Add Inventory"-->
                 </form>
             </div>
 
-
-
             <div id="inventoryDiv">
                 <h1>Current Inventory:</h1>
+
+                <button type="button" id="newInventoryButton" onclick="displayNewInventory()">
+                    <i class="fa fa-plus fa-2x">Add Item</i>
+                </button>
+
                 <table id="inventoryTable">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>ID#</th>
                             <th>Item</th>
                             <th>Original Price</th>
                             <th>Consumer Price</th>
@@ -154,113 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <td>dolor</td>
                             <td>sit</td>
                         </tr>
-                        <tr>
-                            <td>1,002</td>
-                            <td>amet</td>
-                            <td>consectetur</td>
-                            <td>adipiscing</td>
-                            <td>elit</td>
-                        </tr>
-                        <tr>
-                            <td>1,003</td>
-                            <td>Integer</td>
-                            <td>nec</td>
-                            <td>odio</td>
-                            <td>Praesent</td>
-                        </tr>
-                        <tr>
-                            <td>1,003</td>
-                            <td>libero</td>
-                            <td>Sed</td>
-                            <td>cursus</td>
-                            <td>ante</td>
-                        </tr>
-                        <tr>
-                            <td>1,004</td>
-                            <td>dapibus</td>
-                            <td>diam</td>
-                            <td>Sed</td>
-                            <td>nisi</td>
-                        </tr>
-                        <tr>
-                            <td>1,005</td>
-                            <td>Nulla</td>
-                            <td>quis</td>
-                            <td>sem</td>
-                            <td>at</td>
-                        </tr>
-                        <tr>
-                            <td>1,006</td>
-                            <td>nibh</td>
-                            <td>elementum</td>
-                            <td>imperdiet</td>
-                            <td>Duis</td>
-                        </tr>
-                        <tr>
-                            <td>1,007</td>
-                            <td>sagittis</td>
-                            <td>ipsum</td>
-                            <td>Praesent</td>
-                            <td>mauris</td>
-                        </tr>
-                        <tr>
-                            <td>1,008</td>
-                            <td>Fusce</td>
-                            <td>nec</td>
-                            <td>tellus</td>
-                            <td>sed</td>
-                        </tr>
-                        <tr>
-                            <td>1,009</td>
-                            <td>augue</td>
-                            <td>semper</td>
-                            <td>porta</td>
-                            <td>Mauris</td>
-                        </tr>
-                        <tr>
-                            <td>1,010</td>
-                            <td>massa</td>
-                            <td>Vestibulum</td>
-                            <td>lacinia</td>
-                            <td>arcu</td>
-                        </tr>
-                        <tr>
-                            <td>1,011</td>
-                            <td>eget</td>
-                            <td>nulla</td>
-                            <td>Class</td>
-                            <td>aptent</td>
-                        </tr>
-                        <tr>
-                            <td>1,012</td>
-                            <td>taciti</td>
-                            <td>sociosqu</td>
-                            <td>ad</td>
-                            <td>litora</td>
-                        </tr>
-                        <tr>
-                            <td>1,013</td>
-                            <td>torquent</td>
-                            <td>per</td>
-                            <td>conubia</td>
-                            <td>nostra</td>
-                        </tr>
-                        <tr>
-                            <td>1,014</td>
-                            <td>per</td>
-                            <td>inceptos</td>
-                            <td>himenaeos</td>
-                            <td>Curabitur</td>
-                        </tr>
-                        <tr>
-                            <td>1,015</td>
-                            <td>sodales</td>
-                            <td>ligula</td>
-                            <td>in</td>
-                            <td>libero</td>
-                        </tr>
-                    </tbody>
-                    <?php
+                        <?php
 //                    $con = mysqli_connect("localhost", "phpuser", "phpuserpw", "seggiecampers");
 //                    if (!$con) {
 //                        exit('Connect Error (' . mysqli_connect_errno() . ') '
@@ -274,9 +153,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //                        echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
 //                        echo "<td>" . htmlentities($row["quantity"]) . "</td></tr>\n";
 //                    }
-                    ?>
+                        ?>
+                    </tbody>
                 </table>
             </div>
+
+
         </div>
     </body>
 </html>

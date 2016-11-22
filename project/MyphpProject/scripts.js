@@ -79,18 +79,17 @@ function val() {
 }
 
 function checkField() {
-    
-    var $name = document.getElementById("itemName").value;
-    
-    
-    
-
+    /*var $name = document.getElementById("itemName").value;*/
+    console.log("submit!")
 }
 
+function displayNewInventory() {
+    document.getElementById("newInventory").style.display = "block";
+}
 
-
-
-
+function closeNewInventory(){
+    document.getElementById("newInventory").style.display = "none";
+}
 
 
 

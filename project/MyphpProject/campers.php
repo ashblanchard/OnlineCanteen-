@@ -50,7 +50,7 @@ and open the template in the editor.
 
             <div id="camperSearch">
                 <form name="seggiecampers" action="campers.php">
-                    <h3>Search:</h3>
+                    <h2>Search Campers:</h2>
                     <input id="camperSearchBar" type="text" name="camper">
                     <input id="camperSearchButton" type="submit" value="Search">
                 </form>  
@@ -79,10 +79,10 @@ and open the template in the editor.
             mysqli_free_result($camperdb);
             ?>
 
-            <div id ="camperSearchResults">
+            <div id ="camperSearchResultsDiv">
                 <table id="searchResultsTable">
                     <tr>
-                        <th>ID</th>
+                        <th>ID#</th>
                         <th>Name</th>
                         <th>Cabin</th>
                         <th>Store Deposit</th>

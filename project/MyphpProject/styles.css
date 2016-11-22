@@ -27,20 +27,51 @@ body{
 #passwordBox{
     vertical-align: bottom;
     width: 50%; 
-    height: 29px; 
+    height: 31px; 
     font-size: 20px;
+    background-color: white !important;
+    border: 1px solid #373a3c;
 }
 #loginButton{
-    width: 100px; 
+    width: 200px;
     height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
     vertical-align: bottom;
-    margin-left: 5px;
+}
+#loginButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#loginButton:active{
+    transition: 0s;
+    background-color: #104A31;
 }
 #loginReset{
-    margin-top: 10px;
-    width: 100px; 
+    width: 200px;
     height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
     vertical-align: bottom;
+    margin-top: 20px;
+}
+#loginReset:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#loginReset:active{
+    transition: 0s;
+    background-color: #104A31;
 }
 #loginBottomImage{
     width: 40%;
@@ -133,26 +164,32 @@ body{
     width: 100%;
     margin-top: 50px;
 }
-hr{
-    margin: 2px;
-}
 #homeSearchBox{
     vertical-align: bottom;
     width: 50%; 
-    height: 29px; 
+    height: 31px; 
     font-size: 20px;
     font-family: inherit;
+    border: 1px solid #373a3c;
 }
 #homeSearchButton{
-    width: 100px; 
+    width: 200px;
     height: 35px;
-    vertical-align: bottom;
-    font: 20px FontAwesome;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
 }
-#homeImageBottom{
-    margin-top: 45px;
-    display: block;
-    width: 100%;
+#homeSearchButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#homeSearchButton:active{
+    transition: 0s;
+    background-color: #104A31;
 }
 /*Settings Page----------------------------------*/
 #camperListUpload{
@@ -173,31 +210,85 @@ hr{
 }
 /*Camper Search Results Page---------------------*/
 #camperSearch{
-
+    width: 100%;
+    margin-top: 50px;
 }
+
 #camperSearchBar{
     vertical-align: bottom;
     width: 50%; 
-    height: 29px; 
+    height: 31px; 
     font-size: 20px;
     font-family: inherit;
+    border: 1px solid #373a3c;
 }
 #camperSearchButton{
-    width: 100px; 
+    width: 200px;
     height: 35px;
-    vertical-align: bottom;
-    font: 20px FontAwesome;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
 }
-#camperSearchResults{
-    display: inline-block;
-    width: 50%;
+#camperSearchButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#camperSearchButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#camperSearchResultsDiv{
+    display: block;
+    width: auto;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
 }
 #searchResultsTable{
-    border: 1px solid #ccc;
     padding: 100px;
+    padding-top: 50px;
     width: 100%;
+    line-height: 1.5;
+}
+#searchResultsTable td{
+    padding: 12px;
+}
+#searchResultsTable td a{
+    text-decoration: none;
+    color: #373a3c;
+    font-weight: bold;
+}
+#searchResultsTable td a:hover{
+    color: #166E47;
+}
+#searchResultsTable td a:active{
+    /*    color: #181818;*/
+    color: #104A31
 }
 /*Inventory Page---------------------------------*/
+/*Button to display the add inventory page*/
+#newInventoryButton{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#newInventoryButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#newInventoryButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*The adding menu*/
 #inventoryDiv{
     display: block;
     width: auto;
@@ -209,24 +300,76 @@ hr{
     padding: 100px;
     padding-top: 50px;
     width: 100%;
-    line-height: 1.5
+    line-height: 1.5;
 }
 #inventoryTable td{
     padding: 12px;
-    padding
 }
 #newInventory{
-    padding: 100px;
+    padding: 50px;
     border: 1px solid #222;
     display: none;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    bottom: 5%;
+    right: 20%;
+    background-color: white;
+    text-align: left;
 }
-
-
-
-
-
-
-
+#newInventory h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#newInventory form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#newInventory form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+/*The button to submit the new item*/
+#addItemSubmitButton{
+    margin-top: 10px;
+    width: 200px;
+    height: 37px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 20px !important;
+}
+#addItemSubmitButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addItemSubmitButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*The button to close the add menu*/
+#closeNewInventory{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+#closeNewInventory:hover{
+    color: #2b2b2b;
+}
+#closeNewInventory:active{
+    color: #181818;
+}
 
 
 
