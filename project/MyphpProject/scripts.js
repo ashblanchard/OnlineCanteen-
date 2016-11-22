@@ -80,18 +80,20 @@ function val() {
 
 function checkField() {
     /*var $name = document.getElementById("itemName").value;*/
-    console.log("submit!")
+    /*If the required fields are empty, notify the user.
+     if the fields are all good,
+     then send them to the database and close the window
+     closeNewInventory
+     */
 }
 
 function displayNewInventory() {
     document.getElementById("newInventory").style.display = "block";
 }
 
-function closeNewInventory(){
+function closeNewInventory() {
     document.getElementById("newInventory").style.display = "none";
 }
-
-
 
 
 

@@ -58,9 +58,17 @@
         <!--CSS for Icons-->
         <link rel="stylesheet" href="fontAwesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="fontAwesome/css/font-awesome.css">
+        
 
         <!--Scripts-->
         <script src ="scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#newInventory").draggable();
+            });
+        </script>
     </head>
     <body>
         <!--Navigation Bar------------------------------------------------------->
@@ -90,8 +98,7 @@
         <!----------------------------------------------------------------------->
         <div class="container">
 
-            <!--Currently hidden, to style later-->
-            <div id="newInventory">
+            <div id="newInventory" class="ui-widget-content">
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i>
                 <h1>Add New Inventory:</h1>
                 <!--Replace the PHP here with Javascript, so it can prompt the user 

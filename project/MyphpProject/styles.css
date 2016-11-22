@@ -192,6 +192,48 @@ body{
     background-color: #104A31;
 }
 /*Settings Page----------------------------------*/
+#staffSettings{
+    float: right;
+    margin-right: 5%;
+}
+#camperSettings{
+    float: left;
+    margin-left: 5%;
+}
+#addStaff{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#addStaff:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addStaff:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#addCamper{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#addCamper:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addCamper:active{
+    transition: 0s;
+    background-color: #104A31;
+}
 #camperListUpload{
     padding: 20px;
 }
@@ -213,7 +255,6 @@ body{
     width: 100%;
     margin-top: 50px;
 }
-
 #camperSearchBar{
     vertical-align: bottom;
     width: 50%; 
@@ -288,7 +329,6 @@ body{
     transition: 0s;
     background-color: #104A31;
 }
-/*The adding menu*/
 #inventoryDiv{
     display: block;
     width: auto;
@@ -305,6 +345,7 @@ body{
 #inventoryTable td{
     padding: 12px;
 }
+/*The adding menu*/
 #newInventory{
     padding: 50px;
     border: 1px solid #222;
@@ -312,8 +353,9 @@ body{
     position: absolute;
     left: 20%;
     top: 20%;
-    bottom: 5%;
-    right: 20%;
+   
+    height: 660px;
+    width: 755px;
     background-color: white;
     text-align: left;
 }
@@ -370,6 +412,7 @@ body{
 #closeNewInventory:active{
     color: #181818;
 }
+
 
 
 

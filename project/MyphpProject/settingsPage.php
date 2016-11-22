@@ -48,38 +48,39 @@ add comfirmation for upload
         </div>
         <!----------------------------------------------------------------------->
         <div class = "container">
-            <!--Uploading a list of the current campers-->
-            <div id="camperListUpload">
-                <form method = 'POST' enctype ='multipart/form-data'>
-                    <h3>Upload Camper's File:</h3>
-                    <i class="fa fa-cloud-upload fa-2x"></i>
-                    <input type="file" name="file"/>
-                    <input type ='submit' name='submitCamper' value ='Upload'/>
-                </form>
-            </div>
 
-            <!-- Uploading a list of the staff members-->
-            <div id="staffListUpload">
-                <form method = 'POST' enctype ='multipart/form-data'>
-                    <h3>Upload Staff File:</h3>
-                    <i class="fa fa-cloud-upload fa-2x"></i>
-                    <input type="file" name="staffFile">
-                    <input type ='submit' name='submitStaff' value ='Upload'/>
-                </form> 
-            </div>
+            <div id="camperSettings">
+                <!--Uploading a list of the current campers-->
+                <div id="camperListUpload">
+                    <form method = 'POST' enctype ='multipart/form-data'>
+                        <h3>Upload Camper's File:</h3>
+                        <i class="fa fa-cloud-upload fa-2x"></i>
+                        <input type="file" name="file"/>
+                        <input type ='submit' name='submitCamper' value ='Upload'/>
+                    </form>
+                </div>
 
-            <!--Adding a SINGLE camper to the database-->
-            <div id="addCamper">
-                New Camper:
-                <a href="createNewCamper.php">ADD</a> 
+                <!--Adding a SINGLE camper to the database-->
+                <button type="button" id="addCamper">
+                    <i class="fa fa-plus fa-2x">Add Staff</i>
+                </button>
             </div>
+            <div id="staffSettings">
+                <!-- Uploading a list of the staff members-->
+                <div id="staffListUpload">
+                    <form method = 'POST' enctype ='multipart/form-data'>
+                        <h3>Upload Staff File:</h3>
+                        <i class="fa fa-cloud-upload fa-2x"></i>
+                        <input type="file" name="staffFile">
+                        <input type ='submit' name='submitStaff' value ='Upload'/>
+                    </form> 
+                </div>
 
-            <!--Adding a SINGLE staff member-->
-            <div class="addStaff">
-                New Staff:
-                <a href="createNewStaff.php">ADD</a> 
+                <!--Adding a SINGLE staff member-->
+                <button type="button" id="addStaff">
+                    <i class="fa fa-plus fa-2x">Add Staff</i>
+                </button>
             </div>
-
 
 
         </div>
@@ -89,6 +90,10 @@ add comfirmation for upload
 
 
 <?php
+
+//require('createNewCamper.php');
+//require('createNewStaff.php');
+
 $x = 1;
 //Database info subject to change
 $con = mysqli_connect("localhost:3308", "root", "root", "camp seggie");

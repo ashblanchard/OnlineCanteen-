@@ -50,9 +50,6 @@ the various functions.
                     <input id = "homeSearchButton" type="submit" value="Search" />
                 </form>  
             </div>
-            <!--<div id ="homeImageBottom">
-                    <img alt="" src="images/kidsPool.jpg">
-                </div>-->
         </div>
     </body>
 </html>
