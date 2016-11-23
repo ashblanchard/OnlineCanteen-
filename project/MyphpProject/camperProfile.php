@@ -1,63 +1,96 @@
 
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Tuck Shop</title>
+
+        <!--Custom CSS-->
+        <link href ="../styles.css" type ="text/css" rel ="stylesheet"/>
+        <link rel="shortcut icon" href="../images/favicon.png">
+
+        <!--CSS for Icons-->
+        <link rel="stylesheet" href="../fontAwesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="../fontAwesome/css/font-awesome.css">
+
+        <!--Scripts-->
+        <script src ="scripts.js"></script>
+    </head>
     <body>
-        <?php
-        $con = mysqli_connect("localhost:3308", "root", "root");
-        if (!$con) {
-            exit('Connect Error (' . mysqli_connect_errno() . ') '
-                    . mysqli_connect_error());
-        }
-//set the default client character set 
-        mysqli_set_charset($con, 'utf-8');
+        <!--Navigation Bar------------------------------------------------------->
+        <div class ="navBarLeft">
+            <a href ="../home.php">
+                <i class="fa fa-home fa-2x" title="Home"> Home</i>
+            </a>
+            <a href ="../inventoryPage.php">
+                <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
+            </a>
+            <a href ="../settingsPage.php">
 
+                <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
+            </a>
+            <a href="../index.php">
+                <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
+            </a>
+        </div>
+        <div class ="navBannerDiv">
+            <img alt = " " class = "navBanner" src = "../images/campStore.png">
+        </div>
+        <div class="backToTop">
+            <a href="#top">
+                <i class="fa fa-angle-double-up fa-2x"></i>
+            </a>
+        </div>
+        <!----------------------------------------------------------------------->
+        <div class = "container">
+            <?php
+            require_once("Includes/db.php");
 
-        mysqli_select_db($con, "camp_seggie");
-        $selectedCamper = mysqli_query($con, "SELECT * FROM camper  WHERE id='" . $_GET['camperid'] . "'");
-        while ($row = mysqli_fetch_assoc($selectedCamper)) {
-            echo "<h1>" . htmlentities($row["name"]) . "<br/></h1></div>";
-            echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "<br/><br></br><br></br></h2>";
-            $cabin = htmlentities($row["cabin"]);
-            if (strcmp($cabin, "STAFF") == 0) {
-                echo "<h3>Amount Due: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
-            } else {
-                echo "<h3>Initial Balance: $" . number_format(htmlentities($row["initialBalance"]), 2) . "</h3>";
-                echo "<h3>Current Balance: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+            $selectedCamper = SeggieDB::getInstance()->get_camperInformation_by_camper_id($_GET["camperid"]);
+            while ($row = mysqli_fetch_assoc($selectedCamper)) {
+                echo "<h1>" . htmlentities($row["name"]) . "<br/></h1>";
+                $cabin = htmlentities($row["cabin"]);
+                if (strcmp($cabin, "STAFF") == 0) {
+                    echo "<h2>Camp Seggie: " . htmlentities($row["cabin"]) . "</h2>";
+                    echo "<h3>Amount Due: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+                } else {
+                    echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "</h2>";
+                    echo "<h3>Initial Balance: $" . number_format(htmlentities($row["initialBalance"]), 2) . "</h3>";
+                    echo "<h3>Current Balance: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+                }
             }
-        }
-        mysqli_close($con);
-        ?>
+            ?>
 
 
 
-        <h3>Current Inventory:</h3><br>
-        <table border="black">
-            <div align ='left'>
-                <tr>
-                    <th> ID </th>
-                    <th> Item </th>
-                    <th> Price </th>
-                    <th> Quantity </th>
-                    <th> Purchse </th>
-                </tr>
-<?php
-$con = mysqli_connect("localhost:3308", "root", "root", "camp_seggie");
-if (!$con) {
-    exit('Connect Error (' . mysqli_connect_errno() . ')  '
-            . mysqli_connect_error());
-}
-$result = mysqli_query($con, "SELECT id, itemName, itemPrice, consumerPrice, quantity FROM inventory ");
-while ($row = mysqli_fetch_assoc($result)) {
-    echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
-    echo "<td>" . htmlentities($row["itemName"]) . "</td>";
-    if (strcmp($cabin, "STAFF") == 0) {
-        echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
-    } else {
-        echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
-    }
-    echo "<td>" . htmlentities($row["quantity"]) . "</td>";
-    echo "<td>  </td>";
-}
-?>
-        </table>
+            <h3>Current Inventory:</h3><br>
+            <div class="resultsDiv">
+                <table class="resultsTable">
+                    <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Item </th>
+                            <th> Price </th>
+                            <th> Purchase </th>
+                        </tr>
+                    </thead>
+                    <?php
+                    require_once("Includes/db.php");
+
+                    $result = SeggieDB::getInstance()->get_allInventoryInfo();
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
+                        echo "<td>" . htmlentities($row["itemName"]) . "</td>";
+                        if (strcmp($cabin, "STAFF") == 0) {
+                            echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
+                        } else {
+                            echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
+                        }
+                        echo "<td>  </td>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
     </body>
+
 </html>

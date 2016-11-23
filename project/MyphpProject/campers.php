@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Tuck Shop Canteen</title>
+        <title>Tuck Shop</title>
 
         <!--Custom CSS-->
         <link href ="styles.css" type ="text/css" rel ="stylesheet"/>
@@ -46,60 +46,47 @@ and open the template in the editor.
             </a>
         </div>
         <!----------------------------------------------------------------------->
-        <div class = "container">
-
-            <div id="camperSearch">
+        <div class="container">
+            <div id ="camperSearch">
                 <form name="seggiecampers" action="campers.php">
-                    <h2>Search Campers:</h2>
+                    <h2>Search:</h2>
                     <input id="camperSearchBar" type="text" name="camper">
-                    <input id="camperSearchButton" type="submit" value="Search">
-                </form>  
+                    <input class="button" type="submit" value="Search">
+                </form> 
             </div>
-            <h4>Search Results: <?php echo $_GET["camper"]; ?></h4>
+
+            <h4>Search Results: <?php echo $_GET["camper"] . "<br/>"; ?> </h4>
 
 
             <?php
-            $con = mysqli_connect("localhost:3308", "root", "root");
-            if (!$con) {
-                exit('Connect Error (' . mysqli_connect_errno() . ') '
-                        . mysqli_connect_error());
+            require_once("Includes/db.php");
+
+            $camperID = SeggieDB::getInstance()->get_allSimilarCamper_id_by_name($_GET["camper"]);
+            if (!$camperID) {
+                exit("The person " . $_GET["camper"] . " is not found. Please check the spelling and try again");
             }
-            //set the default client character set 
-            mysqli_set_charset($con, 'utf-8');
-            mysqli_select_db($con, "camp seggie");
-
-            $camper = mysqli_real_escape_string($con, htmlentities($_GET["camper"]));
-
-            $camperdb = mysqli_query($con, "SELECT camper_id FROM camper WHERE name LIKE '%$camper%'");
-
-            if (mysqli_num_rows($camperdb) < 1) {
-                exit("The person " . htmlentities($_GET["camper"]) . " is not found. Please check the spelling and try again");
-            }
-            $row = mysqli_fetch_row($camperdb);
-            mysqli_free_result($camperdb);
             ?>
-
-            <div id ="camperSearchResultsDiv">
-                <table id="searchResultsTable">
-                    <tr>
-                        <th>ID#</th>
-                        <th>Name</th>
-                        <th>Cabin</th>
-                        <th>Store Deposit</th>
-                    </tr>
+            <div class ="resultsDiv">
+                <table class="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Cabin</th>
+                            <th>Store Deposit</th>
+                        </tr>
+                    </thead>
                     <?php
-                    $result = mysqli_query($con, "SELECT camper_id, name, cabin, balance FROM camper  WHERE name LIKE '%$camper%'");
+                    $result = SeggieDB::getInstance()->get_allSimilarCamperInformation_by_camper_id($_GET["camper"]);
                     while ($row = mysqli_fetch_array($result)) {
-                        echo "<tr><td>" . htmlentities($row["camper_id"]) . "</td>";
-                        echo "<td> <a href=\"camperProfile.php/?camper_id=" . $row["camper_id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                        echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
+                        echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
                         echo "<td>" . htmlentities($row["cabin"]) . "</td>";
-                        echo "<td>" . htmlentities($row["balance"]) . "</td></tr>\n";
+                        echo "<td>" . htmlentities($row["storeDeposit"]) . "</td></tr>\n";
                     }
                     mysqli_free_result($result);
-                    mysqli_close($con);
                     ?>
                 </table>
             </div>
-        </div>
     </body>
 </html>

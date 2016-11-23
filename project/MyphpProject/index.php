@@ -11,7 +11,7 @@ Login page for users
         <!--Custom CSS-->
         <link href ="styles.css" type ="text/css" rel ="stylesheet"/>
         <link rel="shortcut icon" href="images/favicon.png">
-        <!--Scripts-->
+        <!--Scripts - Password verification code -->
         <script src ="scripts.js"></script>
     </head>
     <body>
@@ -19,15 +19,17 @@ Login page for users
             <div id ="loginBanner">
                 <img src = "images/bannerImageNoTitle.png">
             </div>
-            <h1 class = "navBannerText">Online Canteen</h1>
-            <div id ="passwordDiv">
+            <h1 class = "navBannerText">Welcome to the Tuck Shop</h1>
+            
+            <div id ="passwordDiv">   
                 <form name="frm" method="post" action="home.php">
                     <h3>Enter Password:</h3><br>
                     <input id = "passwordBox" type ="password" name="userpass">
-                    <input type="submit" id ="loginButton" value="Submit" onclick="return val();" style = "" />
-                    <br><input id="loginReset" type="reset" value="Reset"/>
+                    <input type="submit" class="button" value="Submit" onclick="return val();" style = "" />
+                    <br><input class="button" type="reset" value="Reset"/>
                 </form>
             </div>
+            <!-- Camp Seggie logo on bottom of login page -->
             <div id ="loginBottomImage">
                 <img alt="" src="images/campStore.png">
             </div>

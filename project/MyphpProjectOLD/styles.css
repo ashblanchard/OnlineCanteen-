@@ -1,0 +1,433 @@
+/*
+Styles page for the website
+*/
+
+body{
+    margin: 0px;
+    color: #373a3c;
+    font-family: Arial, serif, Times;
+}
+.container{
+    margin: 20px;
+    margin-left: 232px;
+    font-family: Arial;
+    text-align: center;
+    height: 100%;
+}
+.container table{
+    text-align: center;
+}
+/*Login Page-------------------------------------*/
+#loginBanner img{
+    width: 75%;
+}
+#passwordDiv{
+    margin-top: 1%;
+}
+#passwordBox{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 20px;
+    background-color: white !important;
+    border: 1px solid #373a3c;
+}
+#loginButton{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+    vertical-align: bottom;
+}
+#loginButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#loginButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#loginReset{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+    vertical-align: bottom;
+    margin-top: 20px;
+}
+#loginReset:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#loginReset:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#loginBottomImage{
+    width: 40%;
+    height: 10%;
+    display: inline-block;
+}
+#loginBottomImage img{
+    width: 70%;
+    height: auto;
+    max-height: 200px;
+    max-width: 400px;
+    min-height: 50px;
+    min-width: 100px;
+}
+/*Navigation Bar---------------------------------*/
+/*The section containing the nav bar, and the logo*/
+.navBarLeft{
+    padding-top: 70px;
+    text-align: left;
+    background-color: #222;
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #303030;
+}
+/*The default for every link in the menu*/
+.navBarLeft a{
+    display: block;
+    transition: 0.2s;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 0px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid black; 
+    border-top: 1px solid #2b2b2b;   
+}
+/*Makes the link turn slightly darker when hovered over*/
+.navBarLeft a:hover{
+    color: white;
+    background-color: #166E47;
+}
+/*Makes the link turn darker when clicked on*/
+.navBarLeft a:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*Makes the link turn darker on the current page*/
+.currentLink{
+    background-color: #125E3D;
+}
+/*Contains the logo*/
+.navBannerDiv{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 210px;
+    background-color: white;
+    display: block; 
+    border-bottom: 1px solid #2b2b2b;
+}
+/*The logo itself*/
+.navBanner{
+    text-align: left;
+    height: 70px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+/*Back to top button*/
+.backToTop{
+    position: fixed;
+    left: 90px;
+    bottom: 20px;
+}
+.backToTop a{
+    color: white;
+}
+.backToTop a:hover{
+    color: darkgray;
+}
+.backToTop a:active{
+    color: grey;
+}
+/*Home Page-------------------------------------*/
+#homeSearchDiv{
+    width: 100%;
+    margin-top: 50px;
+}
+#homeSearchBox{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 20px;
+    font-family: inherit;
+    border: 1px solid #373a3c;
+}
+#homeSearchButton{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+}
+#homeSearchButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#homeSearchButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*Settings Page----------------------------------*/
+#staffSettings{
+    float: right;
+    margin-right: 5%;
+}
+#camperSettings{
+    float: left;
+    margin-left: 5%;
+}
+#addStaff{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#addStaff:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addStaff:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#addCamper{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#addCamper:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addCamper:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#camperListUpload{
+    padding: 20px;
+}
+#staffListUpload{
+    padding: 20px;
+}
+#staffListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+#camperListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+/*Camper Search Results Page---------------------*/
+#camperSearch{
+    width: 100%;
+    margin-top: 50px;
+}
+#camperSearchBar{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 20px;
+    font-family: inherit;
+    border: 1px solid #373a3c;
+}
+#camperSearchButton{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+}
+#camperSearchButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#camperSearchButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#camperSearchResultsDiv{
+    display: block;
+    width: auto;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+#searchResultsTable{
+    padding: 100px;
+    padding-top: 50px;
+    width: 100%;
+    line-height: 1.5;
+}
+#searchResultsTable td{
+    padding: 12px;
+}
+#searchResultsTable td a{
+    text-decoration: none;
+    color: #373a3c;
+    font-weight: bold;
+}
+#searchResultsTable td a:hover{
+    color: #166E47;
+}
+#searchResultsTable td a:active{
+    /*    color: #181818;*/
+    color: #104A31
+}
+/*Inventory Page---------------------------------*/
+/*Button to display the add inventory page*/
+#newInventoryButton{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#newInventoryButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#newInventoryButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+#inventoryDiv{
+    display: block;
+    width: auto;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+#inventoryTable{
+    padding: 100px;
+    padding-top: 50px;
+    width: 100%;
+    line-height: 1.5;
+}
+#inventoryTable td{
+    padding: 12px;
+}
+/*The adding menu*/
+#newInventory{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+   
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#newInventory h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#newInventory form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#newInventory form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+/*The button to submit the new item*/
+#addItemSubmitButton{
+    margin-top: 10px;
+    width: 200px;
+    height: 37px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 20px !important;
+}
+#addItemSubmitButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#addItemSubmitButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*The button to close the add menu*/
+#closeNewInventory{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+#closeNewInventory:hover{
+    color: #2b2b2b;
+}
+#closeNewInventory:active{
+    color: #181818;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

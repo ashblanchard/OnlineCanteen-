@@ -17,6 +17,60 @@ body{
 .container table{
     text-align: center;
 }
+.resultsDiv{
+    display: block;
+    width: auto;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.resultsTable{
+    padding: 100px;
+    padding-top: 50px;
+    width: 100%;
+    line-height: 1.5;
+
+}
+.resultsTable td{
+    padding: 12px;
+}
+.resultsTable th{
+    background-color: #222;
+    color: white;
+    font-family: FontAwesome;
+}
+.resultsTable td a{
+    text-decoration: none;
+    color: #373a3c;
+    font-weight: bold;
+}
+.resultsTable td a:hover{
+    color: #166E47;
+}
+.resultsTable td a:active{
+    /*    color: #181818;*/
+    color: #104A31
+}
+.button{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #2b2b2b;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+    vertical-align: bottom;
+}
+.button:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+.button:active{
+    transition: 0s;
+    background-color: #104A31;
+}
 /*Login Page-------------------------------------*/
 #loginBanner img{
     width: 75%;
@@ -31,47 +85,6 @@ body{
     font-size: 20px;
     background-color: white !important;
     border: 1px solid #373a3c;
-}
-#loginButton{
-    width: 200px;
-    height: 35px;
-    color: white !important;
-    background-color: #373a3c;
-    border: 1px solid #222;
-    border-bottom: 1px solid black; 
-    cursor: pointer;
-    font-family: FontAwesome !important;
-    font-size: 22px !important;
-    vertical-align: bottom;
-}
-#loginButton:hover{
-    background-color: #166E47;
-    transition: 0.2s;
-}
-#loginButton:active{
-    transition: 0s;
-    background-color: #104A31;
-}
-#loginReset{
-    width: 200px;
-    height: 35px;
-    color: white !important;
-    background-color: #373a3c;
-    border: 1px solid #222;
-    border-bottom: 1px solid black; 
-    cursor: pointer;
-    font-family: FontAwesome !important;
-    font-size: 22px !important;
-    vertical-align: bottom;
-    margin-top: 20px;
-}
-#loginReset:hover{
-    background-color: #166E47;
-    transition: 0.2s;
-}
-#loginReset:active{
-    transition: 0s;
-    background-color: #104A31;
 }
 #loginBottomImage{
     width: 40%;
@@ -172,25 +185,6 @@ body{
     font-family: inherit;
     border: 1px solid #373a3c;
 }
-#homeSearchButton{
-    width: 200px;
-    height: 35px;
-    color: white !important;
-    background-color: #373a3c;
-    border: 1px solid #222;
-    border-bottom: 1px solid black; 
-    cursor: pointer;
-    font-family: FontAwesome !important;
-    font-size: 22px !important;
-}
-#homeSearchButton:hover{
-    background-color: #166E47;
-    transition: 0.2s;
-}
-#homeSearchButton:active{
-    transition: 0s;
-    background-color: #104A31;
-}
 /*Settings Page----------------------------------*/
 #staffSettings{
     float: right;
@@ -199,40 +193,6 @@ body{
 #camperSettings{
     float: left;
     margin-left: 5%;
-}
-#addStaff{
-    width: 200px;
-    height: 37px;
-    color: white;
-    background-color: #373a3c;
-    border: 1px solid #222;
-    border-bottom: 1px solid black; 
-    cursor: pointer;
-}
-#addStaff:hover{
-    background-color: #166E47;
-    transition: 0.2s;
-}
-#addStaff:active{
-    transition: 0s;
-    background-color: #104A31;
-}
-#addCamper{
-    width: 200px;
-    height: 37px;
-    color: white;
-    background-color: #373a3c;
-    border: 1px solid #222;
-    border-bottom: 1px solid black; 
-    cursor: pointer;
-}
-#addCamper:hover{
-    background-color: #166E47;
-    transition: 0.2s;
-}
-#addCamper:active{
-    transition: 0s;
-    background-color: #104A31;
 }
 #camperListUpload{
     padding: 20px;
@@ -282,34 +242,6 @@ body{
     transition: 0s;
     background-color: #104A31;
 }
-#camperSearchResultsDiv{
-    display: block;
-    width: auto;
-    text-align: left;
-    margin-left: 50px;
-    margin-top: 50px;
-}
-#searchResultsTable{
-    padding: 100px;
-    padding-top: 50px;
-    width: 100%;
-    line-height: 1.5;
-}
-#searchResultsTable td{
-    padding: 12px;
-}
-#searchResultsTable td a{
-    text-decoration: none;
-    color: #373a3c;
-    font-weight: bold;
-}
-#searchResultsTable td a:hover{
-    color: #166E47;
-}
-#searchResultsTable td a:active{
-    /*    color: #181818;*/
-    color: #104A31
-}
 /*Inventory Page---------------------------------*/
 /*Button to display the add inventory page*/
 #newInventoryButton{
@@ -317,7 +249,7 @@ body{
     height: 37px;
     color: white;
     background-color: #373a3c;
-    border: 1px solid #222;
+    border: 1px solid #2b2b2b;
     border-bottom: 1px solid black; 
     cursor: pointer;
 }
@@ -329,22 +261,6 @@ body{
     transition: 0s;
     background-color: #104A31;
 }
-#inventoryDiv{
-    display: block;
-    width: auto;
-    text-align: left;
-    margin-left: 50px;
-    margin-top: 50px;
-}
-#inventoryTable{
-    padding: 100px;
-    padding-top: 50px;
-    width: 100%;
-    line-height: 1.5;
-}
-#inventoryTable td{
-    padding: 12px;
-}
 /*The adding menu*/
 #newInventory{
     padding: 50px;
@@ -353,7 +269,6 @@ body{
     position: absolute;
     left: 20%;
     top: 20%;
-   
     height: 660px;
     width: 755px;
     background-color: white;

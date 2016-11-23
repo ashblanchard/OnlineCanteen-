@@ -6,7 +6,7 @@ the various functions.
 
 <html>
     <head>
-        <title>Tuck Shop Canteen</title>
+        <title>Tuck Shop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!--Custom CSS-->
@@ -42,12 +42,11 @@ the various functions.
         </div>
         <!----------------------------------------------------------------------->
         <div class = "container">
-
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">
-                    <h2>Search Campers:</h2>
+                    <h2>Search:</h2>
                     <input id = "homeSearchBox" type="text" name="camper" />
-                    <input id = "homeSearchButton" type="submit" value="Search" />
+                    <input class="button" type="submit" value="Search" />
                 </form>  
             </div>
         </div>
