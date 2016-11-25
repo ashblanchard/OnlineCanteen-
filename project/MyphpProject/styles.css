@@ -1,7 +1,6 @@
 /*
 Styles page for the website
 */
-
 body{
     margin: 0px;
     color: #373a3c;
@@ -14,6 +13,29 @@ body{
     text-align: center;
     height: 100%;
 }
+/*The search box for the home page and camper page*/
+.camperSearchBox{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 22px;
+    font-family: inherit;
+    border: 1px solid #373a3c;
+    font-family: FontAwesome;
+}
+::-webkit-input-placeholder {
+    color: #303030;
+}
+::-moz-placeholder {
+    color: #303030;
+}
+::-ms-placeholder {
+    color: #303030;
+}
+::placeholder {
+    color: #303030;
+}
+/*Styling for tables-----------------------------*/
 .container table{
     text-align: center;
 }
@@ -29,7 +51,6 @@ body{
     padding-top: 50px;
     width: 100%;
     line-height: 1.5;
-
 }
 .resultsTable td{
     padding: 12px;
@@ -51,18 +72,17 @@ body{
     /*    color: #181818;*/
     color: #104A31
 }
+/*Buttons Galore!--------------------------------*/
 .button{
     width: 200px;
     height: 35px;
     color: white !important;
-    background-color: #222 !important;
+    background-color: #222222;
     border: 1px solid black !important;
-    border-bottom: 1px solid black; 
     cursor: pointer;
     font-family: FontAwesome !important;
     font-size: 22px !important;
     vertical-align: bottom;
-
 }
 .button:hover{
     background-color: #166E47;
@@ -71,6 +91,10 @@ body{
 .button:active{
     transition: 0s;
     background-color: #104A31;
+}
+/*Makes the input boxes NOT GLOW BLUE*/
+textarea, input { 
+    outline: none; 
 }
 /*Login Page-------------------------------------*/
 #loginBanner img{
@@ -158,7 +182,7 @@ body{
     display: inline-block;
     vertical-align: bottom;
 }
-/*Back to top button*/
+/*Back to top button, little arrows at the bottom*/
 .backToTop{
     position: fixed;
     left: 90px;
@@ -173,34 +197,68 @@ body{
 .backToTop a:active{
     color: grey;
 }
-.navSearch input{
+/*The search bar and button for the nav bar*/
+/*the form*/
+.navSearch{
     width: 100%;
+    margin: 0;
+    height: auto;
+}
+.navSearchBar{
+    width: 100%; 
+    height: 38px;
+    font-size: 22px;
+    font-family: FontAwesome;
+    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+}
+.navButton{
+    width: 200px;
+    height: 42px;
+    color: white !important;
+    background-color: #222;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 25px !important;
+    vertical-align: bottom;
+    width: 100%;
+    border-top: 1px solid #2b2b2b;
+    border-right: none;
+    border-left: none;
+    display: inline;
+}
+.navButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+.navButton:active{
+    transition: 0s;
+    background-color: #104A31;
 }
 /*Home Page-------------------------------------*/
 #homeSearchDiv{
     width: 100%;
     margin-top: 50px;
 }
-#homeSearchBox{
-    vertical-align: bottom;
-    width: 50%; 
-    height: 31px; 
-    font-size: 20px;
-    font-family: inherit;
-    border: 1px solid #373a3c;
-}
 /*Settings Page----------------------------------*/
+/*Section to the right*/
 #staffSettings{
     float: right;
     margin-right: 5%;
 }
+/*Section on the left*/
 #camperSettings{
     float: left;
     margin-left: 5%;
 }
+/*upload button for camper list*/
 #camperListUpload{
     padding: 20px;
 }
+/*upload button for staff list*/
 #staffListUpload{
     padding: 20px;
 }
@@ -208,7 +266,6 @@ body{
     font-family: inherit;
     vertical-align: bottom;
     margin-bottom: 5px;
-
 }
 #camperListUpload input{
     font-family: inherit;
@@ -362,13 +419,14 @@ body{
     color: #222;
     width: 50%;
 }
-/*The button to submit the new item*/
+/*The button to submit the new item, includes the submit buttons on the
+settings page as well*/
 .addItemSubmitButton{
     margin-top: 10px;
     width: 200px;
     height: 37px;
     color: white !important;
-    background-color: #373a3c;
+    background-color: #222222;
     border: 1px solid #222;
     border-bottom: 1px solid black; 
     cursor: pointer;

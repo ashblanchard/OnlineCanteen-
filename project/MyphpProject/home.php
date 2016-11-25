@@ -23,6 +23,10 @@ the various functions.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <form class="navSearch" action="campers.php">
+                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                <input class="navButton" type="submit" value="Search" >
+            </form>
             <a href ="home.php" class="currentLink">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
@@ -35,11 +39,6 @@ the various functions.
             <a href="index.php">
                 <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
             </a>
-            <form class="navSearch" action="campers.php">
-                <h2>Search:</h2>
-                <input id = "homeSearchBox" type="text" name="camper">
-                <input class="button" type="submit" value="Search" >
-            </form>
         </div>
         <div class ="navBannerDiv">
             <img alt = " " class = "navBanner" src = "images/campStore.png">
@@ -48,8 +47,8 @@ the various functions.
         <div class = "container">
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">
-                    <h2>Search:</h2>
-                    <input id = "homeSearchBox" type="text" name="camper" />
+                    <h2>Search Campers:</h2>
+                    <input class = "camperSearchBox" placeholder="Search Campers..." type="text" name="camper" />
                     <input class="button" type="submit" value="Search" />
                 </form>  
             </div>

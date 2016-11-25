@@ -9,8 +9,8 @@ class SeggieDB extends mysqli {
     private $pass = "phpuserpw";
     private $dbName = "seggiecampers";
     private $dbHost = "localhost:3308";
-//     192.168.2.78 - Ashley's PC
 
+//     192.168.2.78 - Ashley's PC
     //This method must be static, and must return an instance of the object if the object
     //does not already exist.
     public static function getInstance() {
@@ -46,12 +46,12 @@ class SeggieDB extends mysqli {
         $name = $this->real_escape_string($name);
         $cabin = $this->real_escape_string($cabin);
         $initial = $this->real_escape_string($initial);
-        $this->query("INSERT INTO campers (name, cabin, initialBalance, storeDeposit ) VALUES ('" . $name . "', '" . $cabin . "', '" . $initial . "', '" . $initial . "')");
+        $this->query("INSERT INTO campers (name, cabin, initialBalance, storeDeposit) VALUES ('" . $name . "', '" . $cabin . "', '" . $initial . "', '" . $initial . "')");
     }
 
     public function create_new_staff($name) {
         $name = $this->real_escape_string($name);
-        $this->query("INSERT INTO campers (name, cabin, initialBalance, storeDeposit) VALUES ('" . $name . "', 'STAFF', '0.0', '0.0')");
+        $this->query("INSERT INTO campers (name, cabin, initialBalance, storeDeposit) VALUES ('" . $name . "', 'STAFF', '0', '0')");
     }
 
     public function get_camper_id_by_name($name) {
@@ -62,8 +62,9 @@ class SeggieDB extends mysqli {
         if ($camperID->num_rows > 0) {
             $row = $camper->fetch_row();
             return $row[0];
-        } else
+        } else {
             return null;
+        }
     }
 
     public function get_allSimilarCamper_id_by_name($name) {
@@ -73,8 +74,9 @@ class SeggieDB extends mysqli {
         $camperID = $this->query("SELECT id FROM campers WHERE name LIKE '%$name%'");
         if (mysqli_num_rows($camperID) < 1) {
             return null;
-        } else
+        } else {
             return true;
+        }
     }
 
     public function get_camperInformation_by_camper_id($camperID) {
@@ -96,13 +98,13 @@ class SeggieDB extends mysqli {
                 . "', storeDeposit = " . $storeDeposit
                 . " WHERE id =" . $camperID);
     }
-    
-    public function delete_camper($camperID){
-        $this->query("DELETE FROM campers WHERE id = '".$camperID."'");
+
+    public function delete_camper($camperID) {
+        $this->query("DELETE FROM campers WHERE id = '" . $camperID . "'");
     }
-    
+
 //Inventory CRUD functions
-    
+
     public function create_new_item($name, $itemPrice, $consumerPrice, $quantity) {
         $name = $this->real_escape_string($name);
         $itemPrice = $this->real_escape_string($itemPrice);
@@ -114,8 +116,8 @@ class SeggieDB extends mysqli {
     public function get_itemInfo_by_item_id($itemID) {
         return $this->query("SELECT id,itemName,itemPrice, consumerPrice,quantity FROM inventory WHERE id=" . $itemID);
     }
-    
-    public function get_allInventoryInfo(){
+
+    public function get_allInventoryInfo() {
         return $this->query("SELECT * FROM inventory");
     }
 
@@ -132,8 +134,9 @@ class SeggieDB extends mysqli {
     }
 
     public function delete_item($itemID) {
-        $this->query("DELETE FROM inventory WHERE id = ".$itemID."");
+        $this->query("DELETE FROM inventory WHERE id = " . $itemID . "");
     }
+
 }
 
 ?>

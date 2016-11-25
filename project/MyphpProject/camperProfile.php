@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,7 +6,7 @@
 
         <!--Custom CSS-->
         <link href ="../styles.css" type ="text/css" rel ="stylesheet"/>
-        <link rel="shortcut icon" href="../images/favicon.png">
+        <link href="../images/favicon.png" rel="shortcut icon" >
 
         <!--CSS for Icons-->
         <link rel="stylesheet" href="../fontAwesome/css/font-awesome.min.css">
@@ -18,22 +18,26 @@
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <a href ="home.php">
+            <form class="navSearch" action="campers.php">
+                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                <input class="navButton" type="submit" value="Search" >
+            </form>
+            <a href ="../home.php">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
-            <a href ="inventoryPage.php">
+            <a href ="../inventoryPage.php">
                 <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
             </a>
-            <a href ="settingsPage.php">
+            <a href ="../settingsPage.php">
 
                 <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
             </a>
-            <a href="index.php">
+            <a href="../index.php">
                 <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
             </a>
         </div>
         <div class ="navBannerDiv">
-            <img alt = " " class = "navBanner" src = "images/campStore.png">
+            <img alt = " " class = "navBanner" src = "../images/campStore.png">
         </div>
         <div class="backToTop">
             <a href="#top">
@@ -59,8 +63,6 @@
                 }
             }
             ?>
-
-
 
             <h3>Current Inventory:</h3><br>
             <div class="resultsDiv">

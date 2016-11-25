@@ -26,7 +26,7 @@ Login page for users
                     <h3>Enter Password:</h3><br>
                     <input id = "passwordBox" type ="password" name="userpass">
                     <input type="submit" class="button" value="Submit" onclick="return val();" style = "" />
-                    <br><input class="button" type="reset" value="Reset"/>
+                    <br><input class="button" type="reset" value="Reset" style="margin-top: 10px;">
                 </form>
             </div>
             <!-- Camp Seggie logo on bottom of login page -->

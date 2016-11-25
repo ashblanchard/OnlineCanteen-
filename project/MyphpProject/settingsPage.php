@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <!--
 Settings page
 
@@ -8,8 +8,8 @@ Add CSS for the individual camper/staff adding
 
 add comfirmation for upload
 
-
 -->
+<!DOCTYPE html>
 <?php
 require_once("Includes/db.php");
 if (isset($_POST["submitCamper"])) {
@@ -26,7 +26,7 @@ if (isset($_POST["submitCamper"])) {
     }
 }
 
-require_once("Includes/db.php");
+
 
 /** other variables */
 $nameIsEmpty = false;
@@ -52,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-
 if (isset($_POST["submitStaff"])) {
     if ($_FILES['staffFile']['name']) {
         $filename = explode(".", $_FILES['staffFile']['name']);
@@ -68,7 +67,6 @@ if (isset($_POST["submitStaff"])) {
     }
 }
 ?>
-
 
 <html>
     <head>
@@ -99,6 +97,10 @@ if (isset($_POST["submitStaff"])) {
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <form class="navSearch" action="campers.php">
+                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                <input class="navButton" type="submit" value="Search" >
+            </form>
             <a href ="home.php">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
@@ -124,14 +126,13 @@ if (isset($_POST["submitStaff"])) {
         <!----------------------------------------------------------------------->
         <div class = "container">
 
-
             <div id="camperSettings">
                 <!--Uploading a list of the current campers-->
                 <div id="camperListUpload">
                     <form method = 'POST' enctype ='multipart/form-data'>
                         <h3>Upload new camper list file (example.CSV):</h3>
                         <input type="file" name="file"/>
-                        <i class="fa fa-cloud-upload fa-2x"></i>
+                        <i class="fa fa-cloud-upload fa-2x" style="color: #222"></i>
                         <input type ='submit' name='submitCamper' value ='Upload'/>
                     </form>
                 </div>
@@ -149,7 +150,7 @@ if (isset($_POST["submitStaff"])) {
                     <form method = 'POST' enctype ='multipart/form-data'>
                         <h3>Upload staff list file (example.CSV):</h3>
                         <input type="file" name="staffFile">
-                        <i class="fa fa-cloud-upload fa-2x"></i>
+                        <i class="fa fa-cloud-upload fa-2x" style="color: #222"></i>
                         <input type ='submit' name='submitStaff' value ='Upload'>
                     </form> 
                 </div>
@@ -165,29 +166,17 @@ if (isset($_POST["submitStaff"])) {
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeAddIndividual(1)"></i>
                 <h1>Add Camper</h1>
                 <form action="createNewCamper.php" method="POST">
-                    Camper Name: <br><input type="text" name="name"><br>
-                    <?php
-                    if ($nameIsEmpty) {
-                        echo ("Enter camper's name, please!");
-                        echo ("<br/>");
-                    }
-                    ?> 
-                    Cabin: <br><input type="text" name="camperCabin"><br>
-                    <?php
-                    if ($cabinIsEmpty) {
-                        echo ("Enter camper's cabin, please!");
-                        echo ("<br/>");
-                    }
-                    ?>
-                    Store Deposit: <br><input type="text" name="store_deposit"><br>
-                    <?php
-                    if ($store_depositIsEmpty) {
-                        echo ("Enter camper's store deposit, please!");
-                        echo ("<br/>");
-                    }
-                    ?>
-
+                    Camper Name: 
+                    <br><input type="text"name="name" onblur="checkSettings()"id="camperName"><br>
+                    
+                    Cabin: 
+                    <br><input type="text" name="camperCabin" onblur="checkSettings()" id="camperCabin"><br>
+                    
+                    Store Deposit: 
+                    <br><input type="text" name="store_deposit" onblur="checkSettings()" id="camperBalance" ><br>
+                    
                     <input class="addItemSubmitButton" type="submit" value="Submit">
+                    <h3>*All Fields Required</h3>
                 </form>
             </div>
 
@@ -195,13 +184,8 @@ if (isset($_POST["submitStaff"])) {
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeAddIndividual(2)"></i>
                 <h1>Add Staff</h1>
                 <form action="createNewStaff.php" method="POST">
-                    Name: <br><input type="text" name="name"/><br>
-                    <?php
-                    if ($nameIsEmpty) {
-                        echo ("Enter staff's name, please!");
-                        echo ("<br/>");
-                    }
-                    ?> 
+                    Name: 
+                    <br><input type="text" name="staffName" onblur="checkSettings()" id="staffName"><br>
 
                     <input class="button" type="submit" value="Submit"/>
                 </form>

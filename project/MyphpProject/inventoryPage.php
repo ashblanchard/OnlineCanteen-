@@ -1,3 +1,7 @@
+<!--
+Home page for the site, maybe we can put things here that would be useful
+-->
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -24,6 +28,10 @@
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <form class="navSearch" action="campers.php">
+                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                <input class="navButton" type="submit" value="Search" >
+            </form>
             <a href ="home.php">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
@@ -50,9 +58,9 @@
         <div class = "container">
 
             <div id ="newInventory" class="ui-widget-content">
-                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i> 
                 <?php
                 require_once("Includes/db.php");
+                
                 /** other variables */
                 $itemNameIsEmpty = false;
                 $itemPriceIsEmpty = false;
@@ -81,40 +89,24 @@
                     }
                 }
                 ?>
+                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i> 
+                
                 <h1>Add New Inventory:</h1>
                 <form action="inventoryPage.php" method="POST">
-                    Item Name: <br><input type="text" name="itemName"/><br/>
-                    <?php
-                    if ($itemNameIsEmpty) {
-                        echo ("Enter item's name, please!");
-                        echo ("<br/>");
-                    }
-                    ?> 
-
-                    Original Price: <br><input type="text" name="itemPrice"/><br/>
-                    <?php
-                    if ($itemPriceIsEmpty) {
-                        echo ("Enter original price, please!");
-                        echo ("<br/>");
-                    }
-                    ?>
-
-                    Consumer Price: <br><input type="text" name="consumerPrice" /><br/>
-                    <?php
-                    if ($consumerPriceIsEmpty) {
-                        echo ("Enter consumer price, please!");
-                        echo ("<br/>");
-                    }
-                    ?>
-
-                    Quantity: <br><input type="text" name="quantity" /></br>
-                    <?php
-                    if ($quantityIsEmpty) {
-                        echo ("Enter quantity of item, please!");
-                        echo ("<br/>");
-                    }
-                    ?>
-                    <input type="submit" class ="addItemSubmitButton" onclick="closeNewInventory(), checkField()">
+                    Item Name: 
+                    <br><input type="text" id="itemName" name="itemName" onblur="checkField()"><br>
+                    
+                    Original Price: 
+                    <br><input type="text" name="itemPrice" id="itemPrice" onblur="checkField()"><br>
+                    
+                    Consumer Price: 
+                    <br><input type="text" name="consumerPrice" id="consumerPrice" onblur="checkField()"><br>
+                    
+                    Quantity: 
+                    <br><input type="text" name="quantity" id="quantity" onblur="checkField()"><br>
+                    
+                    <input type="submit" id="addItemSubmitButton" class ="button">
+                    <h3>*All Fields Required</h3>
                 </form>
             </div>
 
@@ -122,8 +114,8 @@
 
                 <h2>Current Inventory:</h2><br>
 
-                <button type="button" id="newInventoryButton" onclick="displayNewInventory()">
-                    <i class="fa fa-plus fa-2x">Add Item</i>
+                <button type="button" class="button" onclick="displayNewInventory()">
+                    <i class="fa fa-plus fa-1x" style="font-size: 28px;">Add Item</i>
                 </button>
                 <table class ="resultsTable">
                     <thead>

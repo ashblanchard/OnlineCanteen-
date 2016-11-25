@@ -1,9 +1,9 @@
-<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -23,6 +23,10 @@ and open the template in the editor.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <form class="navSearch" action="campers.php">
+                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                <input class="navButton" type="submit" value="Search" >
+            </form>
             <a href ="home.php">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
@@ -50,7 +54,7 @@ and open the template in the editor.
             <div id ="camperSearch">
                 <form name="seggiecampers" action="campers.php">
                     <h2>Search:</h2>
-                    <input id="camperSearchBar" type="text" name="camper">
+                    <input class="camperSearchBox" placeholder="Search Campers..." type="text" name="camper">
                     <input class="button" type="submit" value="Search">
                 </form> 
             </div>
@@ -88,5 +92,6 @@ and open the template in the editor.
                     ?>
                 </table>
             </div>
+        </div>
     </body>
 </html>
