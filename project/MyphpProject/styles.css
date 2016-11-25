@@ -62,6 +62,7 @@ body{
     font-family: FontAwesome !important;
     font-size: 22px !important;
     vertical-align: bottom;
+
 }
 .button:hover{
     background-color: #166E47;
@@ -204,11 +205,76 @@ body{
     font-family: inherit;
     vertical-align: bottom;
     margin-bottom: 5px;
+
 }
 #camperListUpload input{
     font-family: inherit;
     vertical-align: bottom;
     margin-bottom: 5px;
+    cursor: pointer;
+}
+#addCamper{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addCamper h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addCamper form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addCamper form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+#addStaff{
+    display: none;
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addStaff h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addStaff form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addStaff form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
 }
 /*Camper Search Results Page---------------------*/
 #camperSearch{
@@ -294,7 +360,7 @@ body{
     width: 50%;
 }
 /*The button to submit the new item*/
-#addItemSubmitButton{
+.addItemSubmitButton{
     margin-top: 10px;
     width: 200px;
     height: 37px;
@@ -306,11 +372,11 @@ body{
     font-family: FontAwesome !important;
     font-size: 20px !important;
 }
-#addItemSubmitButton:hover{
+.addItemSubmitButton:hover{
     background-color: #166E47;
     transition: 0.2s;
 }
-#addItemSubmitButton:active{
+.addItemSubmitButton:active{
     transition: 0s;
     background-color: #104A31;
 }

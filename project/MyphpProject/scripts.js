@@ -95,8 +95,22 @@ function closeNewInventory() {
     document.getElementById("newInventory").style.display = "none";
 }
 
+function displayAddIndividual(x) {
+    if (x == 1) {
+        document.getElementById("addCamper").style.display = "block";
+    } else if (x == 2) {
+        document.getElementById("addStaff").style.display = "block";
+    }
+}
 
+function closeAddIndividual(x) {
+    if (x == 1) {
+        document.getElementById("addCamper").style.display = "none";
+    } else if (x == 2) {
+        document.getElementById("addStaff").style.display = "none";
 
+    }
+}
 
 
 
