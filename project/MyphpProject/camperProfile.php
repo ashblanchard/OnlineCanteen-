@@ -18,22 +18,22 @@
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <a href ="../home.php">
+            <a href ="home.php">
                 <i class="fa fa-home fa-2x" title="Home"> Home</i>
             </a>
-            <a href ="../inventoryPage.php">
+            <a href ="inventoryPage.php">
                 <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
             </a>
-            <a href ="../settingsPage.php">
+            <a href ="settingsPage.php">
 
                 <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
             </a>
-            <a href="../index.php">
+            <a href="index.php">
                 <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
             </a>
         </div>
         <div class ="navBannerDiv">
-            <img alt = " " class = "navBanner" src = "../images/campStore.png">
+            <img alt = " " class = "navBanner" src = "images/campStore.png">
         </div>
         <div class="backToTop">
             <a href="#top">

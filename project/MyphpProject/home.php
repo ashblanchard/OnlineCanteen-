@@ -30,12 +30,16 @@ the various functions.
                 <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
             </a>
             <a href ="settingsPage.php">
-
                 <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
             </a>
             <a href="index.php">
                 <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
             </a>
+            <form class="navSearch" action="campers.php">
+                <h2>Search:</h2>
+                <input id = "homeSearchBox" type="text" name="camper">
+                <input class="button" type="submit" value="Search" >
+            </form>
         </div>
         <div class ="navBannerDiv">
             <img alt = " " class = "navBanner" src = "images/campStore.png">
