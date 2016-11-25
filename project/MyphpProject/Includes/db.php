@@ -8,8 +8,8 @@ class SeggieDB extends mysqli {
     private $user = "phpuser";
     private $pass = "phpuserpw";
     private $dbName = "seggiecampers";
-    private $dbHost = "192.168.2.78";
-    
+    private $dbHost = "localhost:3308";
+//     192.168.2.78 - Ashley's PC
 
     //This method must be static, and must return an instance of the object if the object
     //does not already exist.
