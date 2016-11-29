@@ -1,7 +1,11 @@
-<!--
-Home page for the site, maybe we can put things here that would be useful
--->
-<!DOCTYPE html>
+<?php
+session_start();
+?>
+<?php
+if (!($_SESSION['password'] == "true")) {
+    header("Location: index.php");
+}
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -58,9 +62,9 @@ Home page for the site, maybe we can put things here that would be useful
         <div class = "container">
 
             <div id ="newInventory" class="ui-widget-content">
+                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i> 
                 <?php
                 require_once("Includes/db.php");
-                
                 /** other variables */
                 $itemNameIsEmpty = false;
                 $itemPriceIsEmpty = false;
@@ -89,22 +93,20 @@ Home page for the site, maybe we can put things here that would be useful
                     }
                 }
                 ?>
-                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i> 
-                
                 <h1>Add New Inventory:</h1>
                 <form action="inventoryPage.php" method="POST">
                     Item Name: 
                     <br><input type="text" id="itemName" name="itemName" onblur="checkField()"><br>
-                    
+
                     Original Price: 
                     <br><input type="text" name="itemPrice" id="itemPrice" onblur="checkField()"><br>
-                    
+
                     Consumer Price: 
                     <br><input type="text" name="consumerPrice" id="consumerPrice" onblur="checkField()"><br>
-                    
+
                     Quantity: 
                     <br><input type="text" name="quantity" id="quantity" onblur="checkField()"><br>
-                    
+
                     <input type="submit" id="addItemSubmitButton" class ="button">
                     <h3>*All Fields Required</h3>
                 </form>
@@ -119,15 +121,7 @@ Home page for the site, maybe we can put things here that would be useful
                 </button>
                 <table class ="resultsTable">
                     <thead>
-                        <tr> 
-                            <th>ID</th> 
-                            <th>Item</th> 
-                            <th>Original Price</th> 
-                            <th>Consumer Price</th> 
-                            <th>Quantity</th> 
-                            <th>Edit</th> 
-                            <th>Remove</th> 
-                        </tr>
+                        <tr> <th>ID</th> <th>Item</th> <th>Staff Price</th> <th>Camper Price</th> <th>Quantity</th> <th>Edit</th> <th>Remove</th> </tr>
                     </thead>
                     <?php
                     require_once("Includes/db.php");
@@ -155,9 +149,9 @@ Home page for the site, maybe we can put things here that would be useful
                         </td>
                         <?php
                         echo "</tr>\n";
-                    endwhile;
-                    exit;
-                    ?>
+                        endwhile;
+                        exit;
+                        ?>
                 </table>
             </div>
         </div>

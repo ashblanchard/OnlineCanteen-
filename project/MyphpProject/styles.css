@@ -243,7 +243,7 @@ textarea, input {
     width: 100%;
     margin-top: 50px;
 }
-/*Settings Page----------------------------------*/
+/*Settings Page==================================*/
 /*Section to the right*/
 #staffSettings{
     float: right;
@@ -329,6 +329,44 @@ textarea, input {
     margin-left: 10%;
 }
 #addStaff form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+/*The display button for changing the password*/
+#changePasswordButton{
+    text-align: center;
+    margin-top: 191px;
+    vertical-align: bottom;
+}
+/*The form that shows up to change the password*/
+#changePassword{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#changePassword h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#changePassword form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#changePassword form input{
     border: 1px solid #373a3c;
     height: 30px;
     font-size: 20px;

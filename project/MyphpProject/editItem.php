@@ -11,22 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
          * Code redirects the user to the editWishList.php */
         header('Location: inventoryPage.php');
         exit;
-    }
-    if ($_POST['itemName'] == "") {
+    } else if ($_POST['item_name'] == "") {
         $itemNameisEmpty = true;
-    }
-    if ($_POST['itemPrice'] == "") {
+    } else if ($_POST['item_price'] == "") {
         $itemPriceisEmpty = true;
-    }
-    if ($_POST['consumerPrice'] == "") {
+    } else if ($_POST['consumer_price'] == "") {
         $consumerPriceisEmpty = true;
-    }
-    if ($_POST['quantity'] == "") {
+    } else if ($_POST['item_quantity'] == "") {
         $quantityisEmpty = true;
-    }
-    if (!$itemNameisEmpty && !$itemPriceisEmpty && !$consumerPriceisEmpty && !$quantityisEmpty) {
-        SeggieDB::getInstance()->update_item($_POST['currentItemID'], $_POST['itemName'], $_POST['itemPrice'], $_POST['consumerPrice'], $_POST['quantity']);
-        header('Location: editItem.php');
+    } else if (!$itemNameisEmpty && !$itemPriceisEmpty && !$consumerPriceisEmpty && !$quantityisEmpty) {
+        SeggieDB::getInstance()->update_item($_POST['currentItemID'], $_POST['item_name'], $_POST['item_price'], $_POST['consumer_price'], $_POST['item_quantity']);
+        header('Location: inventoryPage.php');
         exit;
     }
 }
@@ -37,39 +32,49 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <title>Update Inventory Form</title>
     </head>
     <body>
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST")
-            $itemInfo = array("id" => $_POST['currentItemID'], "itemName" =>
-                $_POST['itemName'], "itemPrice" =>
-                $_POST['ItemPrice'], "consumerPrice" => $_POST['consumerPrice'], "quantity" => $_POST['quantity']);
-        else if (array_key_exists("currentItemID", $_GET))
-            $itemInfo = mysqli_fetch_array(SeggieDB::getInstance()->get_itemInfo_by_item_id($_GET["currentItemID"]));
-        ?>
+<?php
+require_once("Includes/db.php");
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $itemInfo = array("id" => $_POST["currentItemID"],
+        "itemName" => $_POST["item_name"],
+        "itemPrice" => $_POST["item_price"],
+        "consumerPrice" => $_POST["consumer_price"],
+        "quantity" => $_POST["item_quantity"]);
+} else if (array_key_exists("currentItemID", $_GET))
+    $itemInfo = mysqli_fetch_array(SeggieDB::getInstance()->get_itemInfo_by_item_id($_GET["currentItemID"]));
+else
+    $itemInfo = array("id" => "", "itemName" => "", "itemPrice" => "", "consumerPrice" => "", "quantity" => "");
+?>
         <form name="editWish" action="editItem.php" method="POST">
             <input type="hidden" name="currentItemID" value="<?php echo $itemInfo['id']; ?>" />
-            Item: <input type ="text" name ="itemName" value="<?php echo $itemInfo['itemName']; ?>"/><br/>
-            <?php
-            if ($itemNameisEmpty)
-                echo "Please enter item's name.";
-            ?>
+            <label>Item:</label>
+            <input type ="text" name ="item_name" value="<?php echo $itemInfo['itemName']; ?>"/><br/>
+<?php
+if ($itemNameisEmpty)
+    echo '<div class="error">Please enter the name of the item.</div>';
+?>
             <br></br>
-            Item Price: <input type="text" name="itemPrice"  value="<?php echo $itemInfo['itemPrice']; ?>" /><br/>
-            <?php
-            if ($itemPriceisEmpty)
-                echo "Please enter item's original price.";
-            ?>
+            <label>Item Price: </label>
+            <input type="text" name="item_price"  value="<?php echo $itemInfo['itemPrice']; ?>" /><br/>
+<?php
+if ($itemPriceisEmpty)
+    echo '<div class="error">Please enter original price of item.</div>';
+?>
             <br></br>
-            Consumer Price: <input type="text" name="consumerPrice" value="<?php echo $itemInfo['consumerPrice']; ?>"/><br/>
-            <?php
-            if ($consumerPriceisEmpty)
-                echo "Please enter consumer price.";
-            ?>
+            <label>Consumer Price:</label> 
+            <input type="text" name="consumer_price" value="<?php echo $itemInfo['consumerPrice']; ?>"/><br/>
+<?php
+if ($consumerPriceisEmpty)
+    echo '<div class="error">Please enter consumer price of item.</div>';
+?>
             <br></br>
-            Quantity: <input type="text" name="quantity" value="<?php echo $itemInfo['quantity']; ?>"/><br/>
-            <?php
-            if ($quantityisEmpty)
-                echo "Please enter quantity of item.";
-            ?>
+            <label>Quantity: </label>
+            <input type="text" name="item_quantity" value="<?php echo $itemInfo['quantity']; ?>"/><br/>
+<?php
+if ($quantityisEmpty)
+    echo '<div class="error">Please enter quantity of item in stock.</div>';
+?>
+            <br></br>
             <br></br>
             <input type="submit" name="saveItem" value="Save Changes"/>
             <input type="submit" name="back" value="Back to the List"/>

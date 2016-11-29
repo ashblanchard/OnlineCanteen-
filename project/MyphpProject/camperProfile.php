@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,7 +8,7 @@
 
         <!--Custom CSS-->
         <link href ="../styles.css" type ="text/css" rel ="stylesheet"/>
-        <link href="../images/favicon.png" rel="shortcut icon" >
+        <link rel="shortcut icon" href="../images/favicon.png">
 
         <!--CSS for Icons-->
         <link rel="stylesheet" href="../fontAwesome/css/font-awesome.min.css">
@@ -47,14 +49,17 @@
         <!----------------------------------------------------------------------->
         <div class = "container">
             <?php
+            if (!($_SESSION['password'] == "true")) {
+                header("Location: index.php");
+            }
             require_once("Includes/db.php");
 
             $selectedCamper = SeggieDB::getInstance()->get_camperInformation_by_camper_id($_GET["camperid"]);
             while ($row = mysqli_fetch_assoc($selectedCamper)) {
                 echo "<h1>" . htmlentities($row["name"]) . "<br/></h1>";
-                $cabin = htmlentities($row["cabin"]);
-                if (strcmp($cabin, "STAFF") == 0) {
-                    echo "<h2>Camp Seggie: " . htmlentities($row["cabin"]) . "</h2>";
+                echo "<h2>Type: " . htmlentities($row["type"]) . "";
+                $type = htmlentities($row["type"]);
+                if (strcmp($type, "Staff") == 0) {
                     echo "<h3>Amount Due: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
                 } else {
                     echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "</h2>";
@@ -64,17 +69,16 @@
             }
             ?>
 
-            <h3>Current Inventory:</h3><br>
-            <div class="resultsDiv">
-                <table class="resultsTable">
-                    <thead>
-                        <tr>
-                            <th> ID </th>
-                            <th> Item </th>
-                            <th> Price </th>
-                            <th> Purchase </th>
-                        </tr>
-                    </thead>
+
+                <h3>Current Inventory:</h3><br>
+                <div class ="resultsDiv">
+                     <table class ="resultsTable">
+                    <tr>
+                        <th> ID </th>
+                        <th> Item </th>
+                        <th> Price </th>
+                        <th> Purchase </th>
+                    </tr>
                     <?php
                     require_once("Includes/db.php");
 
@@ -82,7 +86,7 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
                         echo "<td>" . htmlentities($row["itemName"]) . "</td>";
-                        if (strcmp($cabin, "STAFF") == 0) {
+                        if (strcmp($type, "Staff") == 0) {
                             echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
                         } else {
                             echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
@@ -91,7 +95,7 @@
                     }
                     ?>
                 </table>
-            </div>
+            </center>
         </div>
     </body>
 

@@ -1,9 +1,12 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -50,6 +53,11 @@ and open the template in the editor.
             </a>
         </div>
         <!----------------------------------------------------------------------->
+        <?php
+        if (!($_SESSION['password'] == "true")) {
+            header("Location: index.php");
+        }
+        ?>
         <div class="container">
             <div id ="camperSearch">
                 <form name="seggiecampers" action="campers.php">
@@ -75,6 +83,7 @@ and open the template in the editor.
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Type</th>
                             <th>Name</th>
                             <th>Cabin</th>
                             <th>Store Deposit</th>
@@ -84,6 +93,7 @@ and open the template in the editor.
                     $result = SeggieDB::getInstance()->get_allSimilarCamperInformation_by_camper_id($_GET["camper"]);
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
+                        echo "<td>" . htmlentities($row["type"]) . "</td>";
                         echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
                         echo "<td>" . htmlentities($row["cabin"]) . "</td>";
                         echo "<td>" . htmlentities($row["storeDeposit"]) . "</td></tr>\n";

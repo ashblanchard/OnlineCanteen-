@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!--
 This is the home page for the website. Will allow the user to navigate to 
@@ -34,6 +37,7 @@ the various functions.
                 <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
             </a>
             <a href ="settingsPage.php">
+
                 <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
             </a>
             <a href="index.php">
@@ -44,10 +48,25 @@ the various functions.
             <img alt = " " class = "navBanner" src = "images/campStore.png">
         </div>
         <!----------------------------------------------------------------------->
+        <?php
+        if (isset($_SESSION['password'])) {
+            if (!($_SESSION['password'] == "true")) {
+                header("Location: index.php");
+            }
+        } else if (isset($_POST['userpass'])) {
+            if (!($_POST['userpass'] == "123456")) {
+                header("Location: index.php");
+            } else {
+                $_SESSION['password'] = "true";
+            }
+        } else {
+            header("Location: index.php");
+        }
+        ?>
         <div class = "container">
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">
-                    <h2>Search Campers:</h2>
+                    <h2>Search:</h2>
                     <input class = "camperSearchBox" placeholder="Search Campers..." type="text" name="camper" />
                     <input class="button" type="submit" value="Search" />
                 </form>  

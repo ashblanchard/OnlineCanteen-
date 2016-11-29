@@ -151,6 +151,9 @@ function checkSettings(){
     if($staffName.length < 1){
         document.getElementById("staffName").style.border = "1px solid red";
         
+    //new password
+        
+        
     }
     
     /*If the required fields are okay*/
@@ -163,7 +166,9 @@ function checkSettings(){
     if($camperBalance.length >= 1){
         document.getElementById("camperBalance").style.border = "1px solid #373a3c";
     }
-    
+    if($staffName.lentgh >= 1){
+        document.getElementById("staffName").style.border = "1px solid #373a3c";
+    }
     
     /*if the camper balance is not a number*/
     if(isNaN($camperBalance)){
@@ -196,9 +201,13 @@ function closeAddIndividual(x) {
     }
 }
 
+function displayChangePassword(){
+    document.getElementById("changePassword").style.display = "block";
+}
 
-
-
+function closeChangePassword(){
+    document.getElementById("changePassword").style.display = "none";
+}
 
 
 

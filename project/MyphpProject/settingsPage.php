@@ -4,15 +4,17 @@ Settings page
 
 -----TODO-----
 
-Add CSS for the individual camper/staff adding
-
-add comfirmation for upload
 
 -->
 <!DOCTYPE html>
 <?php
 require_once("Includes/db.php");
 if (isset($_POST["submitCamper"])) {
+    $result = SeggieDB::getInstance()->select_campers();
+    while ($row = mysqli_fetch_array($result)) {
+        echo "<h1>" . htmlentities($row["id"]) . "</h1>";
+        SeggieDB::getInstance()->delete_camper($row["id"]);
+    }
     if ($_FILES['file']['name']) {
         $filename = explode(".", $_FILES['file']['name']);
         if ($filename[1] == 'csv') {
@@ -54,6 +56,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 if (isset($_POST["submitStaff"])) {
     if ($_FILES['staffFile']['name']) {
+        $result = SeggieDB::getInstance()->select_staff();
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<h1>" . htmlentities($row["id"]) . "</h1>";
+            SeggieDB::getInstance()->delete_staff($row["id"]);
+        }
         $filename = explode(".", $_FILES['staffFile']['name']);
         if ($filename[1] == 'csv') {
             $handle = fopen($_FILES['staffFile']['tmp_name'], "r");
@@ -87,10 +94,9 @@ if (isset($_POST["submitStaff"])) {
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             $(function () {
-                $("#addCamper").draggable();
-            });
-            $(function () {
                 $("#addStaff").draggable();
+                $("#addCamper").draggable();
+                $("#changePassword").draggable();
             });
         </script>
     </head>
@@ -107,8 +113,7 @@ if (isset($_POST["submitStaff"])) {
             <a href ="inventoryPage.php">
                 <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
             </a>
-            <a href ="settingsPage.php">
-
+            <a href ="settingsPage.php"class="currentLink">
                 <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
             </a>
             <a href="index.php">
@@ -143,7 +148,6 @@ if (isset($_POST["submitStaff"])) {
                 </button>
             </div>
 
-
             <div id="staffSettings">
                 <!-- Uploading a list of the staff members-->
                 <div id="staffListUpload">
@@ -161,40 +165,102 @@ if (isset($_POST["submitStaff"])) {
                 </button>
             </div>
 
+            <button id="changePasswordButton" class="button" onclick="displayChangePassword()">
+                Change Password
+            </button>
+            <!-- CHANGE NEW PASSWORD FORM===============================================================================-->
+            <!--            For changing the password for the logged in user-->
+            <div id="changePassword">
+                <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeChangePassword()"></i>
+                <h1>Change Password</h1>
+                <form action="change password php file" method="POST">
+                    Current Password:
+                    <br><input type="password"name="currentPass" onblur="checkSettings()"id="currentPass"><br>
 
+                    New Password:
+                    <br><input type="password" name="newPass" onblur="checkSettings()" id="newPass"><br>
+
+                    Confirm New Password: 
+                    <br><input type="password" name="confirmPass" onblur="checkSettings()" id="confirmPass" ><br>
+
+                    <input class="addItemSubmitButton" type="submit" value="Submit">
+                    <h3>*All Fields Required</h3>
+                </form> 
+            </div>
+            <!--========================================================================================================-->                
+
+            <!--            Pop up div that allows the user to add a new camper-->
             <div id="addCamper">
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeAddIndividual(1)"></i>
                 <h1>Add Camper</h1>
                 <form action="createNewCamper.php" method="POST">
                     Camper Name: 
                     <br><input type="text"name="name" onblur="checkSettings()"id="camperName"><br>
-                    
+
                     Cabin: 
                     <br><input type="text" name="camperCabin" onblur="checkSettings()" id="camperCabin"><br>
-                    
+
                     Store Deposit: 
                     <br><input type="text" name="store_deposit" onblur="checkSettings()" id="camperBalance" ><br>
-                    
+
                     <input class="addItemSubmitButton" type="submit" value="Submit">
                     <h3>*All Fields Required</h3>
                 </form>
             </div>
-
+            <!--            Pop up div that allows the user to add a staff member-->
             <div id="addStaff" >
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeAddIndividual(2)"></i>
                 <h1>Add Staff</h1>
                 <form action="createNewStaff.php" method="POST">
                     Name: 
-                    <br><input type="text" name="staffName" onblur="checkSettings()" id="staffName"><br>
+                    <br><input type="text" name="name" onblur="checkSettings()" id="staffName"><br>
 
                     <input class="button" type="submit" value="Submit"/>
+                    <h3>*All Fields Required</h3>
                 </form>
             </div>
-
+            <!--Table at the bottom of the page-->
+            <div class ="resultsDiv">
+                <table class="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Cabin</th>
+                            <th>Store Deposit</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $result = SeggieDB::getInstance()->get_allCamperInfo();
+                    while ($row = mysqli_fetch_array($result)) :
+                        echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
+                        echo "<td>" . htmlentities($row["type"]) . "</td>";
+                        echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                        echo "<td>" . htmlentities($row["cabin"]) . "</td>";
+                        echo "<td>" . htmlentities($row["storeDeposit"]) . "</td>";
+                        ?>
+                        <td>
+                            <form name="editItem" action="editItem.php" method="">
+                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
+                                <input type="submit" name="editItem" value="Edit"/>
+                            </form>
+                        </td>
+                        <td>  
+                            <form name="deleteItem" action="deleteItem.php" method="POST">
+                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
+                                <input type="submit" name="deleteItem" value="Delete"/>
+                            </form>
+                        </td>
+                        <?php
+                        echo "</tr>\n";
+                    endwhile;
+                    exit;
+                    ?>
+                </table>
+            </div>
         </div>
     </body>
 </html>
-
-
-
-

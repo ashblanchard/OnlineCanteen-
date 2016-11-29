@@ -1,4 +1,13 @@
+<?php
 
+session_start();
+?>
+<?php
+
+if (!($_SESSION['password'] == "true")) {
+    header("Location: index.html");
+}
+?>
 <?php
 
 require_once("Includes/db.php");
@@ -26,6 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: settingsPage.php');
         exit;
     }
+    else {
+        header('Location: settingsPage.php');
+    }
 }
 ?>
+
+
 

@@ -1,3 +1,7 @@
+<?php
+session_start();
+unset($_SESSION['password']);
+?>
 <!DOCTYPE html>
 <!--
 This is the page that will show up upon opening the site. 
