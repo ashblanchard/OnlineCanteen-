@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $storeDepositIsEmpty = true;
     } else if (!$typeIsEmpty && !$cabinIsEmpty && !$balanceIsEmpty && !$storeDepositIsEmpty) {
         SeggieDB::getInstance()->update_camper($_POST['currentID'], $_POST['camperType'], $_POST['camperCabin'], $_POST['camperBalance'], $_POST['camperDeposit']);
-        header('Location: settingsPage.php');
+        header('Location: showCampers.php');
         exit;
     }
 }
@@ -65,14 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     echo '<div class="error">Please enter camper cabin.</div>';
                 ?>
                 <br></br>
-                <label>Add to Account:</label> 
+                <label>Update Initial Deposit:</label> 
                 <input type="text" name="camperBalance" value="<?php echo $camperInfo['initialBalance']; ?>"/><br/>
                 <?php
                 if ($balanceIsEmpty)
                     echo '<div class="error">Please enter balance you wish to add.</div>';
                 ?>
                 <br></br>
-                <label>Edit Camper Store Deposit: </label>
+                <label>Update Store Deposit: </label>
                 <input type="text" name="camperDeposit" value="<?php echo $camperInfo['storeDeposit']; ?>"/><br/>
                 <?php
                 if ($storeDepositIsEmpty)

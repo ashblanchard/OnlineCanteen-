@@ -2,10 +2,9 @@
 session_start();
 ?>
 <?php
-if (!($_SESSION['password'] == "true")) {
-    header("Location: index.php");
-}
-?>
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php")
+    ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -149,9 +148,9 @@ if (!($_SESSION['password'] == "true")) {
                         </td>
                         <?php
                         echo "</tr>\n";
-                        endwhile;
-                        exit;
-                        ?>
+                    endwhile;
+                    exit;
+                    ?>
                 </table>
             </div>
         </div>

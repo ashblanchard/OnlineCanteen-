@@ -1,6 +1,10 @@
 <?php
 session_start();
 ?>
+<?php
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php")
+    ?>
 <!DOCTYPE html>
 <!--
 This is the home page for the website. Will allow the user to navigate to 
@@ -26,6 +30,7 @@ the various functions.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <h2 style="color:white;"><?php echo "Hello ". $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
@@ -48,21 +53,6 @@ the various functions.
             <img alt = " " class = "navBanner" src = "images/campStore.png">
         </div>
         <!----------------------------------------------------------------------->
-        <?php
-        if (isset($_SESSION['password'])) {
-            if (!($_SESSION['password'] == "true")) {
-                header("Location: index.php");
-            }
-        } else if (isset($_POST['userpass'])) {
-            if (!($_POST['userpass'] == "123456")) {
-                header("Location: index.php");
-            } else {
-                $_SESSION['password'] = "true";
-            }
-        } else {
-            header("Location: index.php");
-        }
-        ?>
         <div class = "container">
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">

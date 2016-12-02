@@ -1,6 +1,10 @@
 <?php
 session_start();
 ?>
+<?php
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php")
+    ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -53,11 +57,6 @@ and open the template in the editor.
             </a>
         </div>
         <!----------------------------------------------------------------------->
-        <?php
-        if (!($_SESSION['password'] == "true")) {
-            header("Location: index.php");
-        }
-        ?>
         <div class="container">
             <div id ="camperSearch">
                 <form name="seggiecampers" action="campers.php">
@@ -82,7 +81,6 @@ and open the template in the editor.
                 <table class="resultsTable">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Type</th>
                             <th>Name</th>
                             <th>Cabin</th>
@@ -92,7 +90,6 @@ and open the template in the editor.
                     <?php
                     $result = SeggieDB::getInstance()->get_allSimilarCamperInformation_by_camper_id($_GET["camper"]);
                     while ($row = mysqli_fetch_array($result)) {
-                        echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
                         echo "<td>" . htmlentities($row["type"]) . "</td>";
                         echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
                         echo "<td>" . htmlentities($row["cabin"]) . "</td>";

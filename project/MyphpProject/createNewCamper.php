@@ -3,11 +3,9 @@
 session_start();
 ?>
 <?php
-
-if (!($_SESSION['password'] == "true")) {
-    header("Location: index.html");
-}
-?>
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php")
+    ?>
 <?php
 
 require_once("Includes/db.php");

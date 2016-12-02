@@ -35,7 +35,7 @@ body{
 ::placeholder {
     color: #303030;
 }
-/*Styling for tables-----------------------------*/
+/*Styling for tables*/
 .container table{
     text-align: center;
 }
@@ -72,7 +72,7 @@ body{
     /*    color: #181818;*/
     color: #104A31
 }
-/*Buttons Galore!--------------------------------*/
+/*=============================================================Buttons Galore!*/
 .button{
     width: 200px;
     height: 35px;
@@ -96,7 +96,7 @@ body{
 textarea, input { 
     outline: none; 
 }
-/*Login Page-------------------------------------*/
+/*==================================================================Login Page*/
 #loginBanner img{
     width: 75%;
 }
@@ -124,7 +124,7 @@ textarea, input {
     min-height: 50px;
     min-width: 100px;
 }
-/*Navigation Bar---------------------------------*/
+/*==============================================================Navigation Bar*/
 /*The section containing the nav bar, and the logo*/
 .navBarLeft{
     padding-top: 70px;
@@ -238,12 +238,12 @@ textarea, input {
     transition: 0s;
     background-color: #104A31;
 }
-/*Home Page-------------------------------------*/
+/*===================================================================Home Page*/
 #homeSearchDiv{
     width: 100%;
     margin-top: 50px;
 }
-/*Settings Page==================================*/
+/*===============================================================Settings Page*/
 /*Section to the right*/
 #staffSettings{
     float: right;
@@ -253,6 +253,7 @@ textarea, input {
 #camperSettings{
     float: left;
     margin-left: 5%;
+    text-align: center;
 }
 /*upload button for camper list*/
 #camperListUpload{
@@ -277,7 +278,7 @@ textarea, input {
     padding: 50px;
     border: 1px solid #222;
     display: none;
-    position: absolute;
+    position: fixed;
     left: 30%;
     top: 5%;
     height: 660px;
@@ -309,7 +310,7 @@ textarea, input {
     padding: 50px;
     border: 1px solid #222;
     display: none;
-    position: absolute;
+    position: fixed;
     left: 30%;
     top: 5%;
     height: 660px;
@@ -347,7 +348,7 @@ textarea, input {
     padding: 50px;
     border: 1px solid #222;
     display: none;
-    position: absolute;
+    position: fixed;
     left: 30%;
     top: 5%;
     height: 660px;
@@ -374,7 +375,35 @@ textarea, input {
     color: #222;
     width: 50%;
 }
-/*Camper Search Results Page---------------------*/
+.popupForm{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: fixed;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#settingsCamperTable{
+    display: none;
+}
+#settingsStaffTable{
+    display: none;
+}
+#toggleCamperTable{
+    margin-top: 10px;
+}
+#toggleStaffTable{
+    margin-top: 10px;
+}
+
+
+
+
+/*==================================================Camper Search Results Page*/
 #camperSearch{
     width: 100%;
     margin-top: 50px;
@@ -406,7 +435,7 @@ textarea, input {
     transition: 0s;
     background-color: #104A31;
 }
-/*Inventory Page---------------------------------*/
+/*==============================================================Inventory Page*/
 /*Button to display the add inventory page*/
 #newInventoryButton{
     width: 200px;
@@ -492,5 +521,22 @@ settings page as well*/
 #closeNewInventory:active{
     color: #181818;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

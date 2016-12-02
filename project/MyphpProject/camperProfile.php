@@ -1,6 +1,10 @@
 <?php
 session_start();
 ?>
+<?php
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php")
+    ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -20,7 +24,7 @@ session_start();
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <form class="navSearch" action="campers.php">
+            <form class="navSearch" action="../campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
             </form>
@@ -49,9 +53,6 @@ session_start();
         <!----------------------------------------------------------------------->
         <div class = "container">
             <?php
-            if (!($_SESSION['password'] == "true")) {
-                header("Location: index.php");
-            }
             require_once("Includes/db.php");
 
             $selectedCamper = SeggieDB::getInstance()->get_camperInformation_by_camper_id($_GET["camperid"]);
@@ -70,33 +71,55 @@ session_start();
             ?>
 
 
-                <h3>Current Inventory:</h3><br>
-                <div class ="resultsDiv">
-                     <table class ="resultsTable">
+            <h3>Current Inventory:</h3>
+            <div class ="resultsDiv">
+                <table class ="resultsTable">
                     <tr>
-                        <th> ID </th>
                         <th> Item </th>
                         <th> Price </th>
-                        <th> Purchase </th>
+                        <th> Quantity </th>
+                        <th> Add to Cart </th>
                     </tr>
                     <?php
                     require_once("Includes/db.php");
 
                     $result = SeggieDB::getInstance()->get_allInventoryInfo();
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr><td>" . htmlentities($row["id"]) . "</td>";
-                        echo "<td>" . htmlentities($row["itemName"]) . "</td>";
+                    while ($row = mysqli_fetch_assoc($result)) :
+                        echo "<tr><td>" . htmlentities($row["itemName"]) . "</td>";
                         if (strcmp($type, "Staff") == 0) {
                             echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
                         } else {
                             echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
                         }
-                        echo "<td>  </td>";
-                    }
+                        ?>
+                        <td>
+                            <form name="quantity" method="">
+                                <select name="quantityOfItem">
+                                    <option>0</option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                </select>
+                            </form>
+                        </td>
+                        <td>  
+                            <form name="purchase" method="POST">
+                                <input type="submit" value="ADD" />
+                            </form>
+                        </td>
+                        <?php
+                        echo "</tr>\n";
+                    endwhile;
+                    exit;
                     ?>
-                </table>
-            </center>
-        </div>
-    </body>
+                </table>               
 
-</html>
+                </body>
+
+                </html>

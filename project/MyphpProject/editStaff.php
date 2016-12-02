@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $amountDueIsEmpty = true;
     } else if (!$typeIsEmpty && !$amountDueIsEmpty) {
         SeggieDB::getInstance()->update_staff($_POST['currentID'], $_POST['staffType'], $_POST['staffAmount']);
-        header('Location: settingsPage.php');
+        header('Location: showStaff.php');
         exit;
     }
 }
