@@ -15,6 +15,9 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title>Tuck Shop</title>
+        <meta http-equiv=”Pragma” content=”no-cache”>
+        <meta http-equiv=”Expires” content=”-1″>
+        <meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
 
         <!--Custom CSS-->
         <link href ="styles.css" type ="text/css" rel ="stylesheet"/>
@@ -30,6 +33,7 @@ and open the template in the editor.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >

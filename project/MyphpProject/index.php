@@ -8,6 +8,9 @@ Login page for users
         <title>Login Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=”Pragma” content=”no-cache”>
+        <meta http-equiv=”Expires” content=”-1″>
+        <meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
         <!--Custom CSS-->
         <link href ="styles.css" type ="text/css" rel ="stylesheet"/>
         <link rel="shortcut icon" href="images/favicon.png">
@@ -67,12 +70,12 @@ Login page for users
                     </form>
                     <br></br><a href="forgotPass.php">Forgot your password?</a>
                 </div>
-                
-                    <!-- Camp Seggie logo on bottom of login page -->
-                    <div id ="loginBottomImage">
-                        <img alt="" src="images/campStore.png">
-                    </div>
-<?php } ?>
-            </div>
+
+                <!-- Camp Seggie logo on bottom of login page -->
+                <div id ="loginBottomImage">
+                    <img alt="" src="images/campStore.png">
+                </div>
+            <?php } ?>
+        </div>
     </body>
 </html>

@@ -26,12 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 ?>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Update Inventory Form</title>
-    </head>
-    <body>
+
 <?php
 require_once("Includes/db.php");
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -45,40 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 else
     $itemInfo = array("id" => "", "itemName" => "", "itemPrice" => "", "consumerPrice" => "", "quantity" => "");
 ?>
-        <form name="editWish" action="editItem.php" method="POST">
-            <input type="hidden" name="currentItemID" value="<?php echo $itemInfo['id']; ?>" />
-            <label>Item:</label>
-            <input type ="text" name ="item_name" value="<?php echo $itemInfo['itemName']; ?>"/><br/>
-<?php
-if ($itemNameisEmpty)
-    echo '<div class="error">Please enter the name of the item.</div>';
-?>
-            <br></br>
-            <label>Item Price: </label>
-            <input type="text" name="item_price"  value="<?php echo $itemInfo['itemPrice']; ?>" /><br/>
-<?php
-if ($itemPriceisEmpty)
-    echo '<div class="error">Please enter original price of item.</div>';
-?>
-            <br></br>
-            <label>Consumer Price:</label> 
-            <input type="text" name="consumer_price" value="<?php echo $itemInfo['consumerPrice']; ?>"/><br/>
-<?php
-if ($consumerPriceisEmpty)
-    echo '<div class="error">Please enter consumer price of item.</div>';
-?>
-            <br></br>
-            <label>Quantity: </label>
-            <input type="text" name="item_quantity" value="<?php echo $itemInfo['quantity']; ?>"/><br/>
-<?php
-if ($quantityisEmpty)
-    echo '<div class="error">Please enter quantity of item in stock.</div>';
-?>
-            <br></br>
-            <br></br>
-            <input type="submit" name="saveItem" value="Save Changes"/>
-            <input type="submit" name="back" value="Back to the List"/>
-
-        </form>
-    </body>
-</html>
+        
+        
+        
+ 

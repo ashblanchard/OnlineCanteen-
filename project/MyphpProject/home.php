@@ -16,6 +16,9 @@ the various functions.
         <title>Tuck Shop</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv=”Pragma” content=”no-cache”>
+        <meta http-equiv=”Expires” content=”-1″>
+        <meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
         <!--Custom CSS-->
         <link href ="styles.css" type ="text/css" rel ="stylesheet"/>
         <link rel="shortcut icon" href="images/favicon.png">
@@ -30,7 +33,7 @@ the various functions.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <h2 style="color:white;"><?php echo "Hello ". $_SESSION['FirstName'] ?></h2>
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >

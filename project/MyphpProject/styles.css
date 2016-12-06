@@ -6,6 +6,14 @@ body{
     color: #373a3c;
     font-family: Arial, serif, Times;
 }
+.hello{
+    font-family: FontAwesome;
+    color: white;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    font-weight: 200;
+    margin-left: 5px;
+}
 .container{
     margin: 20px;
     margin-left: 232px;
@@ -35,7 +43,7 @@ body{
 ::placeholder {
     color: #303030;
 }
-/*Styling for tables-----------------------------*/
+/*----------------------------------------------------------Styling for Tables*/
 .container table{
     text-align: center;
 }
@@ -72,7 +80,7 @@ body{
     /*    color: #181818;*/
     color: #104A31
 }
-/*Buttons Galore!--------------------------------*/
+/*---------------------------------------------------------------------Buttons*/
 .button{
     width: 200px;
     height: 35px;
@@ -96,7 +104,7 @@ body{
 textarea, input { 
     outline: none; 
 }
-/*Login Page-------------------------------------*/
+/*------------------------------------------------------------------Login Page*/
 #loginBanner img{
     width: 75%;
 }
@@ -124,7 +132,7 @@ textarea, input {
     min-height: 50px;
     min-width: 100px;
 }
-/*Navigation Bar---------------------------------*/
+/*--------------------------------------------------------------Navigation Bar*/
 /*The section containing the nav bar, and the logo*/
 .navBarLeft{
     padding-top: 70px;
@@ -238,21 +246,22 @@ textarea, input {
     transition: 0s;
     background-color: #104A31;
 }
-/*Home Page-------------------------------------*/
+/*-------------------------------------------------------------------Home Page*/
 #homeSearchDiv{
     width: 100%;
     margin-top: 50px;
 }
-/*Settings Page==================================*/
-/*Section to the right*/
-#staffSettings{
-    float: right;
-    margin-right: 5%;
+/*---------------------------------------------------------------Settings page*/
+.settingsBox{
+    padding: 50px;
+
+    display: inline-block;
 }
-/*Section on the left*/
-#camperSettings{
-    float: left;
-    margin-left: 5%;
+.settingsBox input{
+    margin-top: 10px;
+}
+.settingsBox button{
+    margin-top: 10px;
 }
 /*upload button for camper list*/
 #camperListUpload{
@@ -273,6 +282,7 @@ textarea, input {
     margin-bottom: 5px;
     cursor: pointer;
 }
+
 #addCamper{
     padding: 50px;
     border: 1px solid #222;
@@ -304,6 +314,7 @@ textarea, input {
     color: #222;
     width: 50%;
 }
+
 #addStaff{
     display: none;
     padding: 50px;
@@ -336,12 +347,7 @@ textarea, input {
     color: #222;
     width: 50%;
 }
-/*The display button for changing the password*/
-#changePasswordButton{
-    text-align: center;
-    margin-top: 191px;
-    vertical-align: bottom;
-}
+
 /*The form that shows up to change the password*/
 #changePassword{
     padding: 50px;
@@ -374,7 +380,64 @@ textarea, input {
     color: #222;
     width: 50%;
 }
-/*Camper Search Results Page---------------------*/
+
+
+#addNewUser{
+    display: none;
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addNewUser h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addNewUser form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addNewUser form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+#showAllStaff{
+    display: none;
+}
+#showAllCampers{
+    display: none;
+}
+
+#closeNewUser{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+#closeNewUser:hover{
+    color: #2b2b2b;
+}
+#closeNewUser:active{
+    color: #181818;
+}
+
+
+
+/*-------------------------------------------------------Camper Search Results*/
 #camperSearch{
     width: 100%;
     margin-top: 50px;
@@ -406,7 +469,7 @@ textarea, input {
     transition: 0s;
     background-color: #104A31;
 }
-/*Inventory Page---------------------------------*/
+/*--------------------------------------------------------------Inventory Page*/
 /*Button to display the add inventory page*/
 #newInventoryButton{
     width: 200px;
@@ -492,5 +555,51 @@ settings page as well*/
 #closeNewInventory:active{
     color: #181818;
 }
+/*--------------------------------------------------------------Camper Profile*/
+#camperProfileCart{
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    margin-left: 6%;
+}
+#camperProfileInventory{
+    display: inline-block;
+    vertical-align: top;
+    width: 43%;
+}
+#camperProfileCartTable{
+    width: 100%;
+    padding: 0;
+}
+#camperProfileInventoryTable{
+    width: 100%;
+    padding: 0;
+}
+#camperProfile{
+    overflow: hidden;
+    min-width: 1000px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
