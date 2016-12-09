@@ -1,0 +1,605 @@
+/*
+Styles page for the website
+*/
+body{
+    margin: 0px;
+    color: #373a3c;
+    font-family: Arial, serif, Times;
+}
+.hello{
+    font-family: FontAwesome;
+    color: white;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    font-weight: 200;
+    margin-left: 5px;
+}
+.container{
+    margin: 20px;
+    margin-left: 232px;
+    font-family: Arial;
+    text-align: center;
+    height: 100%;
+}
+/*The search box for the home page and camper page*/
+.camperSearchBox{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 22px;
+    font-family: inherit;
+    border: 1px solid #373a3c;
+    font-family: FontAwesome;
+}
+::-webkit-input-placeholder {
+    color: #303030;
+}
+::-moz-placeholder {
+    color: #303030;
+}
+::-ms-placeholder {
+    color: #303030;
+}
+::placeholder {
+    color: #303030;
+}
+/*----------------------------------------------------------Styling for Tables*/
+.container table{
+    text-align: center;
+}
+.resultsDiv{
+    display: block;
+    width: auto;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.resultsTable{
+    padding: 100px;
+    padding-top: 50px;
+    width: 100%;
+    line-height: 1.5;
+}
+.resultsTable td{
+    padding: 12px;
+}
+.resultsTable th{
+    background-color: #222;
+    color: white;
+    font-family: FontAwesome;
+}
+.resultsTable td a{
+    text-decoration: none;
+    color: #373a3c;
+    font-weight: bold;
+}
+.resultsTable td a:hover{
+    color: #166E47;
+}
+.resultsTable td a:active{
+    /*    color: #181818;*/
+    color: #104A31
+}
+/*---------------------------------------------------------------------Buttons*/
+.button{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #222222;
+    border: 1px solid black !important;
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+    vertical-align: bottom;
+}
+.button:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+.button:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*Makes the input boxes NOT GLOW BLUE*/
+textarea, input { 
+    outline: none; 
+}
+/*------------------------------------------------------------------Login Page*/
+#loginBanner img{
+    width: 75%;
+}
+#passwordDiv{
+    margin-top: 1%;
+}
+#passwordBox{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 20px;
+    background-color: white !important;
+    border: 1px solid #373a3c;
+}
+#loginBottomImage{
+    width: 40%;
+    height: 10%;
+    display: inline-block;
+}
+#loginBottomImage img{
+    width: 70%;
+    height: auto;
+    max-height: 200px;
+    max-width: 400px;
+    min-height: 50px;
+    min-width: 100px;
+}
+/*--------------------------------------------------------------Navigation Bar*/
+/*The section containing the nav bar, and the logo*/
+.navBarLeft{
+    padding-top: 70px;
+    text-align: left;
+    background-color: #222;
+    width: 210px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #303030;
+}
+/*The default for every link in the menu*/
+.navBarLeft a{
+    display: block;
+    transition: 0.2s;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 30px;
+    padding-right: 0px;
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px solid black; 
+    border-top: 1px solid #2b2b2b;   
+}
+/*Makes the link turn slightly darker when hovered over*/
+.navBarLeft a:hover{
+    color: white;
+    background-color: #166E47;
+}
+/*Makes the link turn darker when clicked on*/
+.navBarLeft a:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*Makes the link turn darker on the current page*/
+.currentLink{
+    background-color: #125E3D;
+}
+/*Contains the logo*/
+.navBannerDiv{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 210px;
+    background-color: white;
+    display: block; 
+    border-bottom: 1px solid #2b2b2b;
+}
+/*The logo itself*/
+.navBanner{
+    text-align: left;
+    height: 70px;
+    width: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+/*Back to top button, little arrows at the bottom*/
+.backToTop{
+    position: fixed;
+    left: 90px;
+    bottom: 20px;
+}
+.backToTop a{
+    color: white;
+}
+.backToTop a:hover{
+    color: darkgray;
+}
+.backToTop a:active{
+    color: grey;
+}
+/*The search bar and button for the nav bar*/
+/*the form*/
+.navSearch{
+    width: 100%;
+    margin: 0;
+    height: auto;
+}
+.navSearchBar{
+    width: 100%; 
+    height: 38px;
+    font-size: 22px;
+    font-family: FontAwesome;
+    border-top: 1px solid #2b2b2b;
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-right: none;
+}
+.navButton{
+    width: 200px;
+    height: 42px;
+    color: white !important;
+    background-color: #222;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 25px !important;
+    vertical-align: bottom;
+    width: 100%;
+    border-top: 1px solid #2b2b2b;
+    border-right: none;
+    border-left: none;
+    display: inline;
+}
+.navButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+.navButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*-------------------------------------------------------------------Home Page*/
+#homeSearchDiv{
+    width: 100%;
+    margin-top: 50px;
+}
+/*---------------------------------------------------------------Settings page*/
+.settingsBox{
+    padding: 50px;
+
+    display: inline-block;
+}
+.settingsBox input{
+    margin-top: 10px;
+}
+.settingsBox button{
+    margin-top: 10px;
+}
+/*upload button for camper list*/
+#camperListUpload{
+    padding: 20px;
+}
+/*upload button for staff list*/
+#staffListUpload{
+    padding: 20px;
+}
+#staffListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+}
+#camperListUpload input{
+    font-family: inherit;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+#addCamper{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addCamper h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addCamper form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addCamper form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+#addStaff{
+    display: none;
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addStaff h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addStaff form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addStaff form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+/*The form that shows up to change the password*/
+#changePassword{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#changePassword h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#changePassword form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#changePassword form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+
+#addNewUser{
+    display: none;
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 30%;
+    top: 5%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#addNewUser h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#addNewUser form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#addNewUser form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+#showAllStaff{
+    display: none;
+}
+#showAllCampers{
+    display: none;
+}
+
+#closeNewUser{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+#closeNewUser:hover{
+    color: #2b2b2b;
+}
+#closeNewUser:active{
+    color: #181818;
+}
+
+
+
+/*-------------------------------------------------------Camper Search Results*/
+#camperSearch{
+    width: 100%;
+    margin-top: 50px;
+}
+#camperSearchBar{
+    vertical-align: bottom;
+    width: 50%; 
+    height: 31px; 
+    font-size: 20px;
+    font-family: inherit;
+    border: 1px solid #373a3c;
+}
+#camperSearchButton{
+    width: 200px;
+    height: 35px;
+    color: white !important;
+    background-color: #373a3c;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 22px !important;
+}
+#camperSearchButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#camperSearchButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*--------------------------------------------------------------Inventory Page*/
+/*Button to display the add inventory page*/
+#newInventoryButton{
+    width: 200px;
+    height: 37px;
+    color: white;
+    background-color: #373a3c;
+    border: 1px solid #2b2b2b;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+}
+#newInventoryButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+#newInventoryButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*The adding menu*/
+#newInventory{
+    padding: 50px;
+    border: 1px solid #222;
+    display: none;
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    height: 660px;
+    width: 755px;
+    background-color: white;
+    text-align: left;
+}
+#newInventory h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+#newInventory form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+#newInventory form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+/*The button to submit the new item, includes the submit buttons on the
+settings page as well*/
+.addItemSubmitButton{
+    margin-top: 10px;
+    width: 200px;
+    height: 37px;
+    color: white !important;
+    background-color: #222222;
+    border: 1px solid #222;
+    border-bottom: 1px solid black; 
+    cursor: pointer;
+    font-family: FontAwesome !important;
+    font-size: 20px !important;
+}
+.addItemSubmitButton:hover{
+    background-color: #166E47;
+    transition: 0.2s;
+}
+.addItemSubmitButton:active{
+    transition: 0s;
+    background-color: #104A31;
+}
+/*The button to close the add menu*/
+#closeNewInventory{
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+#closeNewInventory:hover{
+    color: #2b2b2b;
+}
+#closeNewInventory:active{
+    color: #181818;
+}
+/*--------------------------------------------------------------Camper Profile*/
+#camperProfileCart{
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    margin-left: 6%;
+}
+#camperProfileInventory{
+    display: inline-block;
+    vertical-align: top;
+    width: 43%;
+}
+#camperProfileCartTable{
+    width: 100%;
+    padding: 0;
+}
+#camperProfileInventoryTable{
+    width: 100%;
+    padding: 0;
+}
+#camperProfile{
+    overflow: hidden;
+    min-width: 1000px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

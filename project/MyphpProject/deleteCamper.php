@@ -3,5 +3,5 @@
     $currentID = $_POST['currentID'];
     
     SeggieDB::getInstance()->delete_camper($currentID);
-    header('Location: showCampers.php' );
+    header('Location: settingsPage.php' );
 ?>

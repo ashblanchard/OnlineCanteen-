@@ -24,6 +24,45 @@
         </script>
     </head>
     <body>
-        
+        <div class ="resultsDiv">
+            <table class="resultsTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Amount Due</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <?php
+                require_once("Includes/db.php");
+                $result = SeggieDB::getInstance()->get_allStaffInfo();
+                while ($row = mysqli_fetch_array($result)) :
+                    echo "<tr><td>" . htmlentities($row["type"]) . "</td>";
+                    echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                    echo "<td>" . htmlentities($row["storeDeposit"]) . "</td>";
+                    $currentID = $row['id'];
+                    $type = htmlentities($row["type"]);
+                    ?>
+                    <td>
+                        <form name="editPerson" action="editStaff.php" method="GET">
+                            <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                            <input type="submit" name="editStaff" value="Edit"/>
+                        </form>  
+                    </td>
+                    <td>  
+                        <form name="deletePerson" action="deleteStaff.php" method="POST">
+                            <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                            <input type="submit" name="deletePerson" value="Delete"/>
+                        </form>
+                    </td>
+                    <?php
+                    echo "</tr>\n";
+                endwhile;
+                exit;
+                ?>
+            </table>
+        </div>
     </body>
 </html>

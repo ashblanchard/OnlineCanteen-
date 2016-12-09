@@ -5,7 +5,7 @@ session_start();
 if (!($_SESSION['LoggedIn'] == 1))
     header("Location: index.php")
     ?>
-<!DOCTYPE html>
+<!DOCTYPE html><!--NEW-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -30,7 +30,7 @@ if (!($_SESSION['LoggedIn'] == 1))
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2><!--NEW-->
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
@@ -60,62 +60,6 @@ if (!($_SESSION['LoggedIn'] == 1))
         <!----------------------------------------------------------------------->
         <div class = "container">
 
-
-
-
-            <div class="resultsDiv">
-
-                <h2>Current Inventory:</h2><br>
-
-                <button type="button" class="button" onclick="displayNewInventory()">
-                    <i class="fa fa-plus fa-1x" style="font-size: 28px;">Add Item</i>
-                </button>
-                <table class ="resultsTable">
-                    <thead>
-                        <tr> 
-                            <th>ID</th> 
-                            <th>Item</th> 
-                            <th>Staff Price</th> 
-                            <th>Camper Price</th> 
-                            <th>Quantity</th> 
-                            <th>Edit</th> 
-                            <th>Remove</th> 
-                        </tr>
-                    </thead>
-                    <?php
-                    require_once("Includes/db.php");
-
-                    $result = SeggieDB::getInstance()->get_allInventoryInfo();
-                    while ($row = mysqli_fetch_assoc($result)) :
-                        echo "<tr><td> " . htmlentities($row["id"]) . "</td>";
-                        echo "<td>" . htmlentities($row["itemName"]) . "</td>";
-                        echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
-                        echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
-                        echo "<td>" . htmlentities($row["quantity"]) . "</td>";
-                        $currentItemID = $row["id"];
-                        ?>
-                        <td>
-                            <button ype="button" id="editItem">Edit</button>
-                            <!--                            <form name="editItem" action="editItem.php" method="">
-                                                            <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
-                                                            <input type="submit" name="editItem" value="Edit"/>
-                                                        </form>-->
-                        </td>
-                        <td>  
-                            <form name="deleteItem" action="deleteItem.php" method="POST">
-                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
-                                <input type="submit" name="deleteItem" value="Delete"/>
-                            </form>
-                        </td>
-                        <?php
-                        echo "</tr>\n";
-                    endwhile;
-                    ?>
-                </table>
-            </div>
-
-            <!--HIDDEN DIVS=============================================================================================-->
-
             <div id ="newInventory" class="ui-widget-content">
                 <i class="fa fa-times fa-2x" id="closeNewInventory" onclick="closeNewInventory()"></i> 
                 <?php
@@ -125,7 +69,6 @@ if (!($_SESSION['LoggedIn'] == 1))
                 $itemPriceIsEmpty = false;
                 $consumerPriceIsEmpty = false;
                 $quantityIsEmpty = false;
-
                 /** Check that the page was requested from itself via the POST method. */
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     /** Check whether the user has filled in the camper's name in the text field "user" */
@@ -166,40 +109,50 @@ if (!($_SESSION['LoggedIn'] == 1))
                     <h3>*All Fields Required</h3>
                 </form>
             </div>
-
-            <div id="editItemDiv">
-
-                <form name="editWish" action="editItem.php" method="POST">
-
-                    <input type="hidden" name="currentItemID" value="<?php echo $itemInfo['id']; ?>" >
-                    Item:
-                    <input type ="text" name ="item_name" value="<?php echo $itemInfo['itemName']; ?>"><br>
-
-
-                    Item Price: 
-                    <input type="text" name="item_price"  value="<?php echo $itemInfo['itemPrice']; ?>" ><br>
-
-                    Consumer Price:
-                    <input type="text" name="consumer_price" value="<?php echo $itemInfo['consumerPrice']; ?>"><br>
-
-
-                    Quantity: 
-                    <input type="text" name="item_quantity" value="<?php echo $itemInfo['quantity']; ?>"><br>
-
-
-                    <input class="button" type="submit" name="saveItem" value="Save Changes"/>
-
-                    <input class="button" type="submit" name="back" value="Back to the List"/>
-
-                </form>
+            <div class="resultsDiv">
+                <h2>Current Inventory:</h2><br>
+                <button type="button" class="button" onclick="displayNewInventory()">
+                    <i class="fa fa-plus fa-1x" style="font-size: 28px;">Add Item</i>
+                </button>
+                <table class ="resultsTable">
+                    <thead>
+                        <tr> <th>ID</th> <th>Item</th> <th>Staff Price</th> <th>Camper Price</th> <th>Quantity</th> <th>Edit</th> <th>Remove</th> </tr>
+                    </thead>
+                    <?php
+                    require_once("Includes/db.php");
+                    $result = SeggieDB::getInstance()->get_allInventoryInfo();
+                    while ($row = mysqli_fetch_assoc($result)) :
+                        echo "<tr><td> " . htmlentities($row["id"]) . "</td>";
+                        echo "<td>" . htmlentities($row["itemName"]) . "</td>";
+                        echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
+                        echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
+                        echo "<td>" . htmlentities($row["quantity"]) . "</td>";
+                        $currentItemID = $row["id"];
+                        ?>
+                        <td>
+                            <form name="editItem" action="editItem.php" class="editItemForm">
+                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>">
+                                <input type="submit" name="editItem" value="Edit">
+                            </form>
+                        </td>
+                        <td>  
+                            <form name="deleteItem" action="deleteItem.php" method="POST">
+                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
+                                <input type="submit" name="deleteItem" value="Delete"/>
+                            </form>
+                        </td>
+                        <?php
+                        echo "</tr>\n";
+                    endwhile;
+                    ?>
+                </table>
             </div>
-
             <script>
                 $(function () {
                     $("#newInventory").draggable();
                 });
+                
             </script>
-        </div>
     </body>
 </html>
 

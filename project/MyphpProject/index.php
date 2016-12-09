@@ -24,7 +24,7 @@ Login page for users
             </div>
             <h1 class = "navBannerText">Welcome to the Tuck Shop</h1>
             <?php
-            include "base.php";
+            include "Includes/connect.php";
             if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])) {
                 $_SESSION = array();
                 session_destroy();

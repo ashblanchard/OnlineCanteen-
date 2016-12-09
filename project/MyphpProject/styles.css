@@ -555,6 +555,43 @@ settings page as well*/
 #closeNewInventory:active{
     color: #181818;
 }
+.editItemWindow{
+    padding: 50px;
+    display: inline-block;
+    border: 1px solid #222;
+    height: 700px;
+    width: 70%;
+    background-color: white;
+    text-align: left;
+    margin-top: 100px;
+    position: absolute;
+    top: 0;
+    left: 18%;
+}
+.editItemWindow h1{
+    margin: 10px;
+    margin-left: 50px;
+}
+.editItemWindow form{
+    font-family: FontAwesome;
+    font-size: 20px;
+    color: #222;
+    line-height: 2;
+    margin-left: 10%;
+}
+.editItemWindow form input{
+    border: 1px solid #373a3c;
+    height: 30px;
+    display: block;
+    font-size: 20px;
+    font-family: FontAwesome;
+    color: #222;
+    width: 50%;
+}
+
+
+
+
 /*--------------------------------------------------------------Camper Profile*/
 #camperProfileCart{
     display: inline-block;

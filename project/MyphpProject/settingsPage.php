@@ -294,18 +294,18 @@ if (isset($_POST["submitStaff"])) {
                             $currentID = $row['id'];
                             $type = htmlentities($row["type"]);
                             ?>
-                            <td>
-                                <form name="editPerson" action="editStaff.php" method="GET">
-                                    <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="editStaff" value="Edit"/>
-                                </form>  
-                            </td>
-                            <td>  
-                                <form name="deletePerson" action="deleteStaff.php" method="POST">
-                                    <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="deletePerson" value="Delete"/>
-                                </form>
-                            </td>
+                                <td>
+                                    <form name="editPerson" action="editStaff.php" method="GET">
+                                        <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                                        <input type="submit" name="editStaff" value="Edit"/>
+                                    </form>  
+                                </td>
+                                <td>  
+                                    <form name="deletePerson" action="deleteStaff.php" method="POST">
+                                        <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                                        <input type="submit" name="deletePerson" value="Delete"/>
+                                    </form>
+                                </td>
                             <?php
                             echo "</tr>\n";
                         endwhile;
@@ -340,18 +340,18 @@ if (isset($_POST["submitStaff"])) {
                             $currentID = $row['id'];
                             $type = htmlentities($row["type"]);
                             ?>
-                            <td>
-                                <form name="editPerson" action="editCamper.php" method="GET">
-                                    <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="editPerson" value="Edit"/>
-                                </form>  
-                            </td>
-                            <td>  
-                                <form name="deletePerson" action="deleteCamper.php" method="POST">
-                                    <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="deletePerson" value="Delete"/>
-                                </form>
-                            </td>
+                                <td>
+                                    <form name="editPerson" action="editCamper.php" method="GET">
+                                        <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                                        <input type="submit" name="editPerson" value="Edit"/>
+                                    </form>  
+                                </td>
+                                <td>  
+                                    <form name="deletePerson" action="deleteCamper.php" method="POST">
+                                        <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
+                                        <input type="submit" name="deletePerson" value="Delete"/>
+                                    </form>
+                                </td>
                             <?php
                             echo "</tr>\n";
                         endwhile;
@@ -369,16 +369,17 @@ if (isset($_POST["submitStaff"])) {
                 $("#addStaff").draggable();
                 $("#addCamper").draggable();
                 $("#changePassword").draggable();
+                $("#addNewUser").draggable();/*NEW*/
             });
 
+
             /*
-             
-             $('').click(function () {
-             $('').toggle();
-             
-             });
-             
-             */
+            $('').click(function () {
+                $('').toggle();
+
+            });
+            */
+
 
             $('#showStaffButton').click(function () {
                 $('#showAllStaff').toggle();

@@ -1,18 +1,52 @@
 <?php
-include("Includes/connect.php");
-if (!($_SESSION['LoggedIn'] == 1))
-    header("Location: index.php")
-    ?>
+if (!isset($_SESSION['cart']))
+    session_start();
+?>
 <?php
-require_once("Includes/db.php");
+if (!($_SESSION['LoggedIn'] == 1))
+    header("Location: index.php");
+?>
+<?php
+include("Includes/db.php");
 
-if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'add' && $_REQUEST['id'] > 0) {
-    $pid = $_REQUEST['id'];
-    SeggieDB::getInstance()->addtocart($pid, 1); //changed 1 to 0
-    exit();
+if (isset($_REQUEST['command1']) && $_REQUEST['command1'] == 'add' && $_REQUEST['id1'] > 0) {
+    $pid = $_REQUEST['id1'];
+    SeggieDB::getInstance()->addtocart($pid, 1);
+    //changed 1 to 0
 }
 ?>
-<!DOCTYPE html>
+<?php
+if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'delete' && $_REQUEST['pid'] > 0) {
+    SeggieDB::getInstance()->remove_product($_REQUEST['pid']);
+} else if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'clear') {
+    unset($_SESSION['cart']);
+} else if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'checkout') {
+     $max = count($_SESSION['cart']);
+    for ($i = 0; $i < $max; $i++) {
+        $pid = $_SESSION['cart'][$i]['id'];
+        $q = intval($_REQUEST['product' . $pid]);
+        if ($q > 0 && $q <= 999) {
+            $_SESSION['cart'][$i]['quantity'] = $q;
+            SeggieDB::getInstance()->update_quantity($pid, $q); //reaarrange!
+        }
+    }
+    unset($_SESSION['cart']);
+    header("Refresh:0");
+} else if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'update') {
+    $max = count($_SESSION['cart']);
+    for ($i = 0; $i < $max; $i++) {
+        $pid = $_SESSION['cart'][$i]['id'];
+        $q = intval($_REQUEST['product' . $pid]);
+        if ($q > 0 && $q <= 999) {
+            $_SESSION['cart'][$i]['quantity'] = $q;
+            SeggieDB::getInstance()->update_quantity($pid, $q); //reaarrange!
+        } else {
+            //$msg = 'Some proudcts not updated!, quantity must be a number between 1 and 999';
+        }
+    }
+}
+?>
+<!DOCTYPE html><!--NEW-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -32,95 +66,101 @@ if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'add' && $_REQUEST['i
         <!--Scripts-->
         <script src ="scripts.js"></script>
         <script language="javascript">
-            function addtocart(pid) {
-                document.form1.id.value = pid;
-                document.form1.command.value = 'add';
+            function addtocart(pid1) {
+                document.form1.id1.value = pid1;
+                document.form1.command1.value = 'add';
                 document.form1.submit();
             }
-            function del(pid1) {
+            function del(pid) {
                 if (confirm('Do you really mean to delete this item')) {
-                    document.form2.pid1.value = pid;
-                    document.form2.command1.value = 'delete';
+                    document.form2.pid.value = pid;
+                    document.form2.command2.value = 'delete';
                     document.form2.submit();
                 }
             }
             function clear_cart() {
                 if (confirm('This will empty your shopping cart, continue?')) {
-                    document.form2.command1.value = 'clear';
+                    document.form2.command2.value = 'clear';
                     document.form2.submit();
                 }
             }
             function update_cart() {
-                document.form2.command1.value = 'update';
+                document.form2.command2.value = 'update';
                 document.form2.submit();
             }
             function place_order() {
-                if (confirm('Your current balance is now updated')) {
-                    document.form2.command1.value = 'clear';
-                    document.form2.submit();
-                }
+                if (confirm('Please confirm checkout.')) {
+                document.form2.command2.value = 'checkout';
+                document.form2.submit();
             }
+            }
+
+
         </script>
     </head>
     <body>
         <!--Navigation Bar------------------------------------------------------->
-        <div class ="navBarLeft">
-            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
-            <form class="navSearch" action="../campers.php">
-                <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
-                <input class="navButton" type="submit" value="Search" >
-            </form>
-            <a href ="../home.php">
-                <i class="fa fa-home fa-2x" title="Home"> Home</i>
-            </a>
-            <a href ="../inventoryPage.php">
-                <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
-            </a>
-            <a href ="../settingsPage.php">
-
-                <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
-            </a>
-            <a href="../index.php">
-                <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
-            </a>
-        </div>
-        <div class ="navBannerDiv">
-            <img alt = " " class = "navBanner" src = "../images/campStore.png">
-        </div>
-        <div class="backToTop">
-            <a href="#top">
-                <i class="fa fa-angle-double-up fa-2x"></i>
-            </a>
-        </div>
+                <div class ="navBarLeft">
+                    <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2><!--NEW-->
+                    <form class="navSearch" action="../campers.php">
+                        <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
+                        <input class="navButton" type="submit" value="Search" >
+                    </form>
+                    <a href ="../home.php">
+                        <i class="fa fa-home fa-2x" title="Home"> Home</i>
+                    </a>
+                    <a href ="../inventoryPage.php">
+                        <i class="fa fa-database fa-2x" title="Inventory"> Inventory</i>
+                    </a>
+                    <a href ="../settingsPage.php">
+        
+                        <i class="fa fa-cogs fa-2x" title="Settings"> Settings</i>
+                    </a>
+                    <a href="../index.php">
+                        <i class ="fa fa-sign-out   fa-2x" title="Log Out"> Log Out</i>
+                    </a>
+                </div>
+                <div class ="navBannerDiv">
+                    <img alt = " " class = "navBanner" src = "../images/campStore.png">
+                </div>
+                <div class="backToTop">
+                    <a href="#top">
+                        <i class="fa fa-angle-double-up fa-2x"></i>
+                    </a>
+                </div>
         <!----------------------------------------------------------------------->
         <div class = "container">
-            <?php
-            require_once("Includes/db.php");
-            $selectedCamper = SeggieDB::getInstance()->get_camperInformation_by_camper_id($_GET["camperid"]);
-            while ($row = mysqli_fetch_assoc($selectedCamper)) {
-                echo "<h1>" . htmlentities($row["name"]) . "<br/></h1>";
-                echo "<h2>Type: " . htmlentities($row["type"]) . "";
-                $type = htmlentities($row["type"]);
-                if (strcmp($type, "Staff") == 0) {
-                    echo "<h3>Amount Due: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
-                } else {
-                    echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "</h2>";
-                    echo "<h3>Initial Balance: $" . number_format(htmlentities($row["initialBalance"]), 2) . "</h3>";
-                    echo "<h3>Current Balance: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+            <form method ='post'>
+                <?php
+                $selectedCamper = SeggieDB::getInstance()->get_camperInformation_by_camper_id($_GET["camperid"]);
+
+                while ($row = mysqli_fetch_assoc($selectedCamper)) {
+                    echo "<h1>" . htmlentities($row["name"]) . "<br/></h1>";
+                    echo "<h2>Type: " . htmlentities($row["type"]) . "";
+                    $type = htmlentities($row["type"]);
+                    if (strcmp($type, "Staff") == 0) {
+                        echo "<h3>Amount Due: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+                    } else {
+                        echo "<h2>Cabin: " . htmlentities($row["cabin"]) . "</h2>";
+                        echo "<h3>Initial Balance: $" . number_format(htmlentities($row["initialBalance"]), 2) . "</h3>";
+                        echo "<h3>Current Balance: $" . number_format(htmlentities($row["storeDeposit"]), 2) . "</h3>";
+                    }
+                    $initialBalance = htmlentities($row["initialBalance"]);
+                    $storeDeposit = htmlentities($row["storeDeposit"]);
+                    $personID = htmlentities($row["id"]);
                 }
-            }
-            ?>
+                ?>
+            </form>
             <div style="display:none;">
-                <form name="form1">
-                    <input type="hidden" name="id" />
-                    <input type="hidden" name="command" />
+                <form name="form1" method="post">
+                    <input type="hidden" name="id1" />
+                    <input type="hidden" name="command1" />
                 </form>
             </div>
-
             <div id="camperProfile">
                 <!--Inventory===============================================================================================-->
                 <div id="camperProfileInventory">
-                    <h1><i class="fa fa-archive fa-1x" aria-hidden="true"></i>Inventory</h1>
+                    <h1><i class="fa fa-archive fa-1x" aria-hidden="true"></i>  Inventory</h1>
                     <!--                <h3>Current Inventory:</h3>-->
                     <table id="camperProfileInventoryTable" class="resultsTable">
                         <tr>
@@ -129,7 +169,6 @@ if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'add' && $_REQUEST['i
                             <th> Add to Cart </th>
                         </tr>
                         <?php
-                        require_once("Includes/db.php");
                         $result = SeggieDB::getInstance()->get_allInventoryInfo();
                         while ($row = mysqli_fetch_assoc($result)) :
                             echo "<tr><td>" . htmlentities($row["itemName"]) . "</td>";
@@ -147,45 +186,35 @@ if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'add' && $_REQUEST['i
                             echo "</tr>\n";
                         endwhile;
                         ?>
-                        <?php
-                        if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'delete' && $_REQUEST['pid'] > 0) {
-                            SeggieDB::getInstance()->remove_product($_REQUEST['pid']);
-                        } else if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'clear') {
-                            unset($_SESSION['cart']);
-                        } else if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'update') {
-                            $max = count($_SESSION['cart']);
-                            for ($i = 0; $i < $max; $i++) {
-                                $pid = $_SESSION['cart'][$i]['id'];
-                                $q = intval($_REQUEST['product' . $pid]);
-                                if ($q > 0 && $q <= 999) {
-                                    $_SESSION['cart'][$i]['quantity'] = $q; //reaarrange!
-                                } else {
-                                    //$msg = 'Some proudcts not updated!, quantity must be a number between 1 and 999';
-                                }
-                            }
-                        }
-                        ?>
                     </table>
                 </div>
                 <!--========================================================================================================-->
 
                 <!--Shopping Cart==========================================================================================-->
                 <div id="camperProfileCart">
-                    <h1><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>Cart</h1>
+                    <h1><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i>  Cart</h1>
                     <form name="form2" method="post">
-                        <input type="hidden" name="pid1" />
-                        <input type="hidden" name="command1" />
+                        <input type="hidden" name="pid" />
+
+                        <input type="hidden" name="balance" />
+                        <input type="hidden" name="daily" />
+                        <input type="hidden" name="type" />
+                        <input type="hidden" name="id" />
+                        <input type="hidden" name="command2" />
+
+
                         <table id="camperProfileCartTable" class="resultsTable">
                             <tr>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Qty</th>
+                                <th>Amount</th>
                                 <th>Options</th>
                             </tr>
                             <?php
                             if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
                                 $max = count($_SESSION['cart']);
-                                for ($i = 0; $i < $max; $i++) { //changed the $1 = 0 
+                                for ($i = 0; $i < $max; $i++) {  //changed the $1 = 0 
                                     $pid = $_SESSION['cart'][$i]['id'];
                                     $q = $_SESSION['cart'][$i]['quantity'];
                                     $pname = SeggieDB::getInstance()->get_product_name($pid);
@@ -193,45 +222,48 @@ if (isset($_REQUEST['command']) && $_REQUEST['command'] == 'add' && $_REQUEST['i
                                         continue;
                                     }
                                     ?>
-                                    <tr>
-                                        <td><?php echo $pname; ?>
-                                        </td><!--changed PID-->
-                                        <td>
-                                            $ <?php echo SeggieDB::getInstance()->get_CamperPrice($pid) ?>
-                                        </td>
-                                        <td>
-                                            <input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>">
-                                        </td>                    
+                                    <?php if (!strcmp($type, "Staff") == 0) { ?>
+                                        <tr><td><?php echo $pname; ?></td><!--changed PID-->
+                                            <td>$ <?php echo SeggieDB::getInstance()->get_CamperPrice($pid) ?></td>
+                                            <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
+                                            <td>$ <?php echo SeggieDB::getInstance()->get_CamperPrice($pid) * $q ?></td>
+                                            <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
 
-                                        <td>
-                                            <a href="javascript:del(<?php echo $pid ?>)">Remove</a>
-                                        </td>
-                                    </tr>
-                                    <?php
+                                    <?php } else if (strcmp($type, "Staff") == 0) { ?>
+                                        <tr><td><?php echo $pname; ?></td><!--changed PID-->
+                                            <td>$ <?php echo SeggieDB::getInstance()->get_StaffPrice($pid) ?></td>
+                                            <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
+                                            <td>$ <?php echo SeggieDB::getInstance()->get_StaffPrice($pid) * $q ?></td>
+                                            <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
+                                        <?php
+                                    }
                                 }
                                 ?>
-                                <tr>
-                                    <td colspan="4" style="font-weight: 700;">
-                                        Order Total: $<?php echo SeggieDB::getInstance()->get_order_total() ?>
-                                    </td>
 
-                                </tr>
-                                <?php
-                            } else {
-                                echo "<tr bgColor='#FFFFFF'><td>There are no items in your shopping cart!</td>";
-                            }
-                            ?>
-                            <tr>
-                                <td><input type="button" value="Clear Cart" onclick="clear_cart()" class="button"></td>
-                                <td><input type="button" value="Update Cart" onclick="update_cart()" class="button"></td>
-                                <td><input type="button" value="Place Order" onclick="place_order()"class="button"></td>
-                            </tr>
-                        </table>
+                                <tr><td colspan="4" style="font-weight: 700;">Today's Spendings:
+                                        $<?php
+                                        if (strcmp($type, "Staff") == 0) {
+                                            $dailyAmount = SeggieDB::getInstance()->get_StaffOrder_total();
+                                            echo $dailyAmount;
+                                        } else
+                                            $dailyAmount = SeggieDB::getInstance()->get_CamperOrder_total();
+                                        echo $dailyAmount;
+                                        ?></td></tr>
+                                <tr><td><input type="button" value="Clear Cart" onclick="clear_cart()" class="button"></td>
+                                    <td><input type="button" value="Update Cart" onclick="update_cart()" class="button"></td>
+                                    <td><input type="button" value="Place Order" onclick="place_order()" class="button"></td></tr>
+                                <tr><td><b>Potential Balance: <?php echo SeggieDB::getInstance()->get_seggie_type($personID, $type, $storeDeposit, $initialBalance) ?></b></td>
+                            </table>
+                            <?php
+                        } else
+                            echo "<tr bgColor='#FFFFFF'><td>There are no items in your shopping cart!</td>";
+                        ?>
+
                     </form>
                 </div>
-                <!--========================================================================================================-->
-
             </div>
         </div>
+
     </body>
+
 </html>
