@@ -3,7 +3,7 @@ session_start();
 ?>
 <?php
 if (!($_SESSION['LoggedIn'] == 1))
-    header("Location: index.php")
+    header("Location: index.php");
     ?>
 
 <!DOCTYPE html>
@@ -27,11 +27,7 @@ if (!($_SESSION['LoggedIn'] == 1))
         <script src ="scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            function del() {
-                document.deleteItem.deleteCommand
-            }
-        </script>
+
     </head>
     <body>
         <!--Navigation Bar------------------------------------------------------->
@@ -173,7 +169,7 @@ if (!($_SESSION['LoggedIn'] == 1))
                             <form name="deleteItem" action="deleteItem.php" method="POST">
                                 <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
                                 <input type="hidden" name="deleteCommand"/> 
-                                <input type="submit" name="deleteItem" value="Delete" onclick='del()'/>
+                                <input type="button" name="deleteItem" id="deleteItem" value="Delete" onclick='del()'/>
                             </form>
                         </td>
                         <?php
@@ -189,6 +185,7 @@ if (!($_SESSION['LoggedIn'] == 1))
                 $("#newInventory").draggable();
             });
 
+           
         </script>
     </body>
 </html>

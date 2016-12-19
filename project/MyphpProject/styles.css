@@ -592,10 +592,6 @@ settings page as well*/
     overflow:scroll;
     height:100px;
 }
-
-
-
-
 /*--------------------------------------------------------------Camper Profile*/
 #camperProfileCart{
     display: inline-block;
@@ -625,7 +621,14 @@ settings page as well*/
     top: 20px;
     left: 230px;
 }
+#camperProfileInventoryHead{
 
+}
+#camperProfileInventoryTableDiv{
+    display: block;
+    overflow-y: scroll;
+    height: 400px;
+}
 
 
 

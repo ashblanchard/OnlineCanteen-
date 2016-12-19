@@ -64,7 +64,7 @@ if (isset($_POST["submitStaff"])) {
     }
 }
 ?>
-
+<!DOCTYPE html><!--NEW-->
 <html>
     <head>
         <meta charset="UTF-8">
@@ -92,12 +92,7 @@ if (isset($_POST["submitStaff"])) {
             function addStaff_confirm() {
                 alert("Staff member was successfully added to the database.");
             }
-            function newUser_confirm() {
-                alert("New User was successfully created.");
-            }
-            function passwordChange_confirm() {
-                alert("Password change was successful.");
-            }
+         
         </script>
     </head>
     <body>
@@ -204,7 +199,7 @@ if (isset($_POST["submitStaff"])) {
                     Confirm New Password:
                     <br><input type = "password" name = "newPass2" onblur = "checkSettings()" id = "confirmPass" ><br>
 
-                    <input class = "addItemSubmitButton" type = "submit" value = "Submit" onclick="passwordChange_confirm()">>
+                    <input class = "addItemSubmitButton" type = "submit" value = "Submit">
                     <h3>*All Fields Required</h3>
                 </form>
             </div>
@@ -310,7 +305,8 @@ if (isset($_POST["submitStaff"])) {
                             <td>  
                                 <form name="deletePerson" action="deleteStaff.php" method="POST">
                                     <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="deletePerson" value="Delete"/>
+                                    <input type="hidden" name="deleteCommand"/>
+                                    <input type="button" name="deleteStaff" id="deleteStaff" value="Delete" onclick="deletestaff_confirm()">
                                 </form>
                             </td>
                             <?php
@@ -356,7 +352,8 @@ if (isset($_POST["submitStaff"])) {
                             <td>  
                                 <form name="deletePerson" action="deleteCamper.php" method="POST">
                                     <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
-                                    <input type="submit" name="deletePerson" value="Delete"/>
+                                    <input type="hidden" name="deleteCommand"/> 
+                                    <input type="button" name="deleteCamper" id="deleteCamper" value="Delete" onclick="deletecamper_confirm()">
                                 </form>
                             </td>
                             <?php

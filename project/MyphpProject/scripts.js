@@ -84,7 +84,6 @@ function checkField() {
     var $itemPrice = document.getElementById("itemPrice").value;
     var $consumerPrice = document.getElementById("consumerPrice").value;
     var $quantity = document.getElementById("quantity").value;
-
     /*If the required fields are empty, notify the user.*/
     if ($name.length < 1) {
         document.getElementById("itemName").style.border = "1px solid red";
@@ -134,23 +133,18 @@ function checkSettings() {
     var $camperCabin = document.getElementById("camperCabin").value;
     var $camperBalance = document.getElementById("camperBalance").value;
     var $staffName = document.getElementById("staffName").value;
-
     /*If the required fields are empty*/
     if ($camperName.length < 1) {
         document.getElementById("camperName").style.border = "1px solid red";
-
     }
     if ($camperCabin.length < 1) {
         document.getElementById("camperCabin").style.border = "1px solid red";
-
     }
     if ($camperBalance.length < 1) {
         document.getElementById("camperBalance").style.border = "1px solid red";
-
     }
     if ($staffName.length < 1) {
         document.getElementById("staffName").style.border = "1px solid red";
-
         //new password
 
 
@@ -197,7 +191,6 @@ function closeAddIndividual(x) {
         document.getElementById("addCamper").style.display = "none";
     } else if (x == 2) {
         document.getElementById("addStaff").style.display = "none";
-
     }
 }
 
@@ -209,11 +202,12 @@ function closeChangePassword() {
     document.getElementById("changePassword").style.display = "none";
 }
 
-function uploadCamperFileAlert(){
-    if (file1.value == ""){
+function uploadCamperFileAlert() {
+    if (file1.value == "") {
         alert("Upload failed. Please try again.")
         return false;
-    } var stuff = file1.value.match(/^(.*)(\.)(.{1,8})$/)[3];
+    }
+    var stuff = file1.value.match(/^(.*)(\.)(.{1,8})$/)[3];
     if (stuff != "csv") {
         alert("Please Choose .csv file");
         return false;
@@ -227,7 +221,8 @@ function uploadStaffFileAlert() {
     if (file2.value == "") {
         alert("Upload failed. Please try again.")
         return false;
-    } var stuff = file2.value.match(/^(.*)(\.)(.{1,8})$/)[3];
+    }
+    var stuff = file2.value.match(/^(.*)(\.)(.{1,8})$/)[3];
     if (stuff != "csv") {
         alert("Please Choose .csv file");
         return false;
@@ -239,13 +234,44 @@ function uploadStaffFileAlert() {
 
 
 
+function deletecamper_confirm(currentID) {
+    var camper = document.getElementById("deleteCamper");
+
+    if (confirm('Delete camper?')) {
+        camper.type = "submit";
+        camper.currentID = currentID;
+        camper.command2 = 'delete';
+
+    } else {
+        camper.type = "button";
+    }
+}
+function deletestaff_confirm(currentID) {
+    var staff = document.getElementById("deleteStaff");
+
+    if (confirm('Delete staff member?')) {
+        staff.type = "submit";
+        staff.currentID = currentID;
+        staff.command2 = 'delete';
+
+    } else {
+        staff.type = "button";
+    }
+}
 
 
+function del(currentitemID) {
+    var item = document.getElementById("deleteItem");
 
+    if (confirm("Delete item from inventory?")) {
+        item.type = "submit";
+        item.currentitemID = currentitemID;
+        item.command2 = 'delete';
 
-
-
-
+    } else {
+        item.type = "button";
+    }
+}
 
 
 
