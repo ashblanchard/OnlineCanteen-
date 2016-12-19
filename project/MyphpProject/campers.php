@@ -33,7 +33,7 @@ and open the template in the editor.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2><!--NEW-->
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
@@ -68,6 +68,7 @@ and open the template in the editor.
                     <input class="camperSearchBox" placeholder="Search Campers..." type="text" name="camper">
                     <input class="button" type="submit" value="Search">
                 </form> 
+                
             </div>
 
             <h4>Search Results: <?php echo $_GET["camper"] . "<br/>"; ?> </h4>
@@ -78,7 +79,7 @@ and open the template in the editor.
 
             $camperID = SeggieDB::getInstance()->get_allSimilarCamper_id_by_name($_GET["camper"]);
             if (!$camperID) {
-                exit("The person " . $_GET["camper"] . " is not found. Please check the spelling and try again");
+                exit("The person " . $_GET["camper"] . " is not found. Please check the spelling and try again.");
             }
             ?>
             <div class ="resultsDiv">
@@ -95,13 +96,15 @@ and open the template in the editor.
                     $result = SeggieDB::getInstance()->get_allSimilarCamperInformation_by_camper_id($_GET["camper"]);
                     while ($row = mysqli_fetch_array($result)) {
                         echo "<td>" . htmlentities($row["type"]) . "</td>";
-                        echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "\">" . htmlentities($row["name"]) . "</a></td>";
+                        $id = $row["id"];
+                        echo "<td> <a href=\"camperProfile.php/?camperid=" . $row["id"] . "&camperSearch=".$_GET["camper"]."\">" . htmlentities($row["name"]) . "</a></td>";
                         echo "<td>" . htmlentities($row["cabin"]) . "</td>";
-                        echo "<td>" . htmlentities($row["storeDeposit"]) . "</td></tr>\n";
+                        echo "<td>$" . number_format(htmlentities($row["storeDeposit"]), 2) . "</td></tr>\n";
                     }
                     mysqli_free_result($result);
                     ?>
                 </table>
+
             </div>
         </div>
     </body>

@@ -84,94 +84,94 @@ function checkField() {
     var $itemPrice = document.getElementById("itemPrice").value;
     var $consumerPrice = document.getElementById("consumerPrice").value;
     var $quantity = document.getElementById("quantity").value;
-    
+
     /*If the required fields are empty, notify the user.*/
-    if($name.length < 1){
+    if ($name.length < 1) {
         document.getElementById("itemName").style.border = "1px solid red";
         console.log("name is empty");
     }
-    if($itemPrice.length < 1){
+    if ($itemPrice.length < 1) {
         document.getElementById("itemPrice").style.border = "1px solid red";
     }
-    if($consumerPrice.length < 1){
+    if ($consumerPrice.length < 1) {
         document.getElementById("consumerPrice").style.border = "1px solid red";
     }
-    if($quantity.length < 1){
+    if ($quantity.length < 1) {
         document.getElementById("quantity").style.border = "1px solid red";
     }
-    
-    
-    
+
+
+
     /*If fields are filled in*/
-    if($name.length >= 1){
+    if ($name.length >= 1) {
         document.getElementById("itemName").style.border = "1px solid #373a3c";
     }
-    if($itemPrice.length >= 1){
+    if ($itemPrice.length >= 1) {
         document.getElementById("itemPrice").style.border = "1px solid #373a3c";
     }
-    if($consumerPrice.length >= 1){
+    if ($consumerPrice.length >= 1) {
         document.getElementById("consumerPrice").style.border = "1px solid #373a3c";
     }
-    if($quantity.length >= 1){
+    if ($quantity.length >= 1) {
         document.getElementById("quantity").style.border = "1px solid #373a3c";
     }
-    
+
     /*If the numeric inputs are not numbers*/
-    if(isNaN($itemPrice)){
+    if (isNaN($itemPrice)) {
         document.getElementById("itemPrice").style.border = "1px solid red";
     }
-    if(isNaN($consumerPrice)){
+    if (isNaN($consumerPrice)) {
         document.getElementById("consumerPrice").style.border = "1px solid red";
     }
-    if(isNaN($quantity)){
+    if (isNaN($quantity)) {
         document.getElementById("quantity").style.border = "1px solid red";
     }
-    
+
 }
 
-function checkSettings(){
+function checkSettings() {
     var $camperName = document.getElementById("camperName").value;
     var $camperCabin = document.getElementById("camperCabin").value;
     var $camperBalance = document.getElementById("camperBalance").value;
     var $staffName = document.getElementById("staffName").value;
-    
+
     /*If the required fields are empty*/
-    if($camperName.length < 1){
+    if ($camperName.length < 1) {
         document.getElementById("camperName").style.border = "1px solid red";
-        
+
     }
-    if($camperCabin.length < 1){
+    if ($camperCabin.length < 1) {
         document.getElementById("camperCabin").style.border = "1px solid red";
-        
+
     }
-    if($camperBalance.length < 1){
+    if ($camperBalance.length < 1) {
         document.getElementById("camperBalance").style.border = "1px solid red";
-        
+
     }
-    if($staffName.length < 1){
+    if ($staffName.length < 1) {
         document.getElementById("staffName").style.border = "1px solid red";
-        
-    //new password
-        
-        
+
+        //new password
+
+
     }
-    
+
     /*If the required fields are okay*/
-    if($camperName.length >= 1){
+    if ($camperName.length >= 1) {
         document.getElementById("camperName").style.border = "1px solid #373a3c";
     }
-    if($camperCabin.length >= 1){
+    if ($camperCabin.length >= 1) {
         document.getElementById("camperCabin").style.border = "1px solid #373a3c";
     }
-    if($camperBalance.length >= 1){
+    if ($camperBalance.length >= 1) {
         document.getElementById("camperBalance").style.border = "1px solid #373a3c";
     }
-    if($staffName.lentgh >= 1){
+    if ($staffName.lentgh >= 1) {
         document.getElementById("staffName").style.border = "1px solid #373a3c";
     }
-    
+
     /*if the camper balance is not a number*/
-    if(isNaN($camperBalance)){
+    if (isNaN($camperBalance)) {
         document.getElementById("camperBalance").style.border = "1px solid red";
     }
 }
@@ -201,12 +201,40 @@ function closeAddIndividual(x) {
     }
 }
 
-function displayChangePassword(){
+function displayChangePassword() {
     document.getElementById("changePassword").style.display = "block";
 }
 
-function closeChangePassword(){
+function closeChangePassword() {
     document.getElementById("changePassword").style.display = "none";
+}
+
+function uploadCamperFileAlert(){
+    if (file1.value == ""){
+        alert("Upload failed. Please try again.")
+        return false;
+    } var stuff = file1.value.match(/^(.*)(\.)(.{1,8})$/)[3];
+    if (stuff != "csv") {
+        alert("Please Choose .csv file");
+        return false;
+    } else {
+        alert("Upload successful.");
+        return true;
+    }
+}
+
+function uploadStaffFileAlert() {
+    if (file2.value == "") {
+        alert("Upload failed. Please try again.")
+        return false;
+    } var stuff = file2.value.match(/^(.*)(\.)(.{1,8})$/)[3];
+    if (stuff != "csv") {
+        alert("Please Choose .csv file");
+        return false;
+    } else {
+        alert("Upload successful.");
+        return true;
+    }
 }
 
 

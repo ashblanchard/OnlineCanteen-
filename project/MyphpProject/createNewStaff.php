@@ -23,9 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: settingsPage.php');
         exit;
     } else {
-        header('Location: settingsPage.php');
+        echo "Cannot add to database.";
     }
 }
-?>
+
 
 

@@ -68,7 +68,6 @@ Login page for users
                         <br><input type="submit" class="button" value="Submit" style = "margin-top: 10px;" />
                         <br><input class="button" type="reset" value="Reset" style="margin-top: 10px;">
                     </form>
-                    <br></br><a href="forgotPass.php">Forgot your password?</a>
                 </div>
 
                 <!-- Camp Seggie logo on bottom of login page -->

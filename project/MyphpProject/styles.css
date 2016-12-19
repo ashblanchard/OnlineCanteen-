@@ -588,6 +588,10 @@ settings page as well*/
     color: #222;
     width: 50%;
 }
+.scrollit {
+    overflow:scroll;
+    height:100px;
+}
 
 
 
@@ -616,7 +620,11 @@ settings page as well*/
     overflow: hidden;
     min-width: 1000px;
 }
-
+#camperProfileBackButton{
+    position: absolute;
+    top: 20px;
+    left: 230px;
+}
 
 
 

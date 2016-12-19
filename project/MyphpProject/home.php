@@ -33,8 +33,7 @@ the various functions.
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            
-            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2><!--NEW-->
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
@@ -61,7 +60,8 @@ the various functions.
             <div id ="homeSearchDiv">
                 <form name="seggiecampers" action="campers.php">
                     <h2>Search:</h2>
-                    <input class = "camperSearchBox" placeholder="Search Campers..." type="text" name="camper" />
+                        <br></br>
+                    <input class = "camperSearchBox" placeholder="Search ..." type="text" name="camper" />
                     <input class="button" type="submit" value="Search" />
                 </form>  
             </div>

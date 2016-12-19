@@ -2,13 +2,12 @@
 
 class SeggieDB extends mysqli {
 
-    // single instance of self shared among all instances
     private static $instance = null;
-    //db connection config vars for x10hosting.com to connect to deployed database.
-    // private $user = "campsegg_phpuser";
-    // private $pass = "phpuserpw";
-    // private $dbName = "campsegg_seggiecampers";
-    // private $dbHost = "198.91.81.2";
+//    //db connection config vars for x10hosting.com to connect to deployed database.
+//     private $user = "campsegg_phpuser";
+//     private $pass = "phpuserpw";
+//     private $dbName = "campsegg_seggiecampers";
+//     private $dbHost = "198.91.81.2";
 
     private $user = "phpuser";
     private $pass = "phpuserpw";
@@ -23,7 +22,6 @@ class SeggieDB extends mysqli {
         }
         return self::$instance;
     }
-
     // The clone and wakeup methods prevents external instantiation of copies of the Singleton class,
     // thus eliminating the possibility of duplicate objects.
     public function __clone() {
@@ -33,7 +31,6 @@ class SeggieDB extends mysqli {
     public function __wakeup() {
         trigger_error('Deserializing is not allowed.', E_USER_ERROR);
     }
-
     // private constructor
     private function __construct() {
         parent::__construct($this->dbHost, $this->user, $this->pass, $this->dbName);
@@ -43,9 +40,7 @@ class SeggieDB extends mysqli {
         }
         parent::set_charset('utf-8');
     }
-
 // CAMPER & STAFF CRUD FUNCTIONS    
-
     public function create_new_camper($name, $cabin, $initial) {
         $name = $this->real_escape_string($name);
         $cabin = $this->real_escape_string($cabin);
@@ -59,15 +54,14 @@ class SeggieDB extends mysqli {
     }
 
     public function get_allCamperInfo() {
-        return $this->query("SELECT * FROM campers WHERE type='Camper'");
+        return $this->query("SELECT * FROM campers WHERE type='Camper' ORDER BY name");
     }
 
     public function get_allStaffInfo() {
-        return $this->query("SELECT * FROM campers WHERE type='Staff'");
+        return $this->query("SELECT * FROM campers WHERE type='Staff' ORDER BY name");
     }
 
     public function get_camper_id_by_name($name) {
-
         $name = $this->real_escape_string($name);
 
         $camperID = $this->query("SELECT id FROM campers WHERE name = " . $name);
@@ -79,7 +73,6 @@ class SeggieDB extends mysqli {
     }
 
     public function get_allSimilarCamper_id_by_name($name) {
-
         $name = $this->real_escape_string($name);
 
         $camperID = $this->query("SELECT id FROM campers WHERE name LIKE '%$name%'");
@@ -96,7 +89,7 @@ class SeggieDB extends mysqli {
     }
 
     public function get_camperInformation_by_camper_id($camperID) {
-        return $this->query("SELECT id,type,name,cabin,initialBalance,storeDeposit FROM campers WHERE id=" . $camperID);
+        return $this->query("SELECT * FROM campers WHERE id=" . $camperID);
     }
 
     public function get_camperName_by_id($camperID) {
@@ -104,24 +97,22 @@ class SeggieDB extends mysqli {
     }
 
     public function get_allSimilarCamperInformation_by_camper_id($name) {
-        return $this->query("SELECT id,type,name,cabin,storeDeposit FROM campers WHERE name LIKE '%$name%'");
+        return $this->query("SELECT * FROM campers WHERE name LIKE '%$name%' ORDER BY name");
     }
 
-    public function update_camper($camperID, $type, $cabin, $initialBalance, $storeDeposit) {
-        $type = $this->real_escape_string($type);
+    public function update_camper($camperID, $cabin, $initialBalance, $storeDeposit) {
         $cabin = $this->real_escape_string($cabin);
         $initialBalance = $this->real_escape_string($initialBalance);
         $storeDeposit = $this->real_escape_string($storeDeposit);
-        if ($type != "" && $cabin != "" && $initialBalance != "" && $storeDeposit != "") {
-            $this->query("UPDATE campers SET type = '" . $type . "', cabin = '" . $cabin . "', initialBalance = '" . $initialBalance . "', storeDeposit = '" . $storeDeposit . "' WHERE id =" . $camperID);
+        if ($cabin != "" && $initialBalance != "" && $storeDeposit != "") {
+            $this->query("UPDATE campers SET cabin = '" . $cabin . "', initialBalance = '" . $initialBalance . "', storeDeposit = '" . $storeDeposit . "' WHERE id =" . $camperID);
         }
     }
 
-    public function update_staff($staffID, $type, $storeDeposit) {
-        $type = $this->real_escape_string($type);
+    public function update_staff($staffID, $storeDeposit) {
         $storeDeposit = $this->real_escape_string($storeDeposit);
-        if ($type != "" && $storeDeposit != "") {
-            $this->query("UPDATE campers SET type = '" . $type . "', storeDeposit = '" . $storeDeposit . "' WHERE id = " . $staffID);
+        if ($storeDeposit != "") {
+            $this->query("UPDATE campers SET storeDeposit = '" . $storeDeposit . "' WHERE id = " . $staffID);
         }
     }
 
@@ -174,7 +165,8 @@ class SeggieDB extends mysqli {
     }
 
     public function get_allInventoryInfo() {
-        return $this->query("SELECT * FROM inventory");
+        return $this->query("SELECT * FROM inventory ORDER BY itemName");
+        
     }
 
     public function update_item($itemID, $itemName, $itemPrice, $consumerPrice, $quantity) {
@@ -204,7 +196,6 @@ class SeggieDB extends mysqli {
         $quantity = $row['quantity'];
         $newQuantity = $quantity - $q;
         $this->query("UPDATE inventory SET quantity = '" . $newQuantity . "' WHERE id = " . $productID);
-        //}
     }
 
     public function addtocart($pid, $q) { //-$q
@@ -224,51 +215,40 @@ class SeggieDB extends mysqli {
         }
     }
 
-    public function get_seggie_type($id, $type, $deposit, $balance) {
-
-        if (strcmp($type, "Camper") == 0) {
-            $updateBalance = get_new_balance($deposit);
-        } else {
-            $updateBalance = get_new_deposit($deposit);
-        }
-        $this->query("UPDATE campers SET storeDeposit = '" . $updateBalance . "' WHERE id =" . $id);
-        return $updateBalance;
-    }
-    public function get_CamperOrder_total() {
-    $max = count($_SESSION['cart']);
-    $sum = 0;
-    for ($i = 0; $i < $max; $i++) {
-        $pid = $_SESSION['cart'][$i]['id'];
-        $q = $_SESSION['cart'][$i]['quantity'];
-        $price = get_CamperPrice($pid);
-        $sum += $price * $q;
-    }
-    return $sum;
-}
-
-public function get_StaffOrder_total() {
-    $max = count($_SESSION['cart']);
-    $sum = 0;
-    for ($i = 0; $i < $max; $i++) {
-        $pid = $_SESSION['cart'][$i]['id'];
-        $q = $_SESSION['cart'][$i]['quantity'];
-        $price = get_StaffPrice($pid);
-        $sum += $price * $q;
-    }
-    return $sum;
-}
-
-    public function placeOrder($balance, $daily, $type, $id) {
-        $type = $this->real_escape_string($type);
-        $id = $this->real_escape_string($id);
-
-
-        if (strcmp($type == "Staff")) {
-            $balance += $daily;
-            $this->query("UPDATE campers SET storeDeposit = '" . $balance . "' WHERE id = " . $id);
+    public function update_balance($id, $updateBalance) {
+        $result = $this->query("SELECT type, storeDeposit FROM campers WHERE id='" . $id . "'");
+        $row = mysqli_fetch_array($result);
+        $initial = $row['storeDeposit'];
+        $type = $row['type'];
+        if (strcmp($type,"Staff")== 0) {
+            $newBalance = $initial + $updateBalance;
         } else
-            $balance -= $daily;
-        $this->query("UPDATE campers SET storeDeposit = '" . $balance . "' WHERE id = " . $id);
+            $newBalance = $initial - $updateBalance;
+        $this->query("UPDATE campers SET storeDeposit = '" . $newBalance . "' WHERE id =" . $id);
+    }
+
+    public function get_CamperOrder_total() {
+        $max = count($_SESSION['cart']);
+        $sum = 0;
+        for ($i = 0; $i < $max; $i++) {
+            $pid = $_SESSION['cart'][$i]['id'];
+            $q = $_SESSION['cart'][$i]['quantity'];
+            $price = get_CamperPrice($pid);
+            $sum += $price * $q;
+        }
+        return $sum;
+    }
+
+    public function get_StaffOrder_total() {
+        $max = count($_SESSION['cart']);
+        $sum = 0;
+        for ($i = 0; $i < $max; $i++) {
+            $pid = $_SESSION['cart'][$i]['id'];
+            $q = $_SESSION['cart'][$i]['quantity'];
+            $price = get_StaffPrice($pid);
+            $sum += $price * $q;
+        }
+        return $sum;
     }
 
     public function delete_item($itemID) {
@@ -277,20 +257,19 @@ public function get_StaffOrder_total() {
 
     public function getUserInfo($userName, $passWord) {
         return $this->query("SELECT * FROM users WHERE Username='" . $userName . "' AND Password='" . $passWord . "'");
-    }
-
+    }     
 }
 
 function get_CamperPrice($pid) {
-    // $user = "campsegg_phpuser";
-    // $pass = "phpuserpw";
-    // $dbName = "campsegg_seggiecampers";
-    //$dbHost = "198.91.81.2";
+//     $user = "campsegg_phpuser";
+//     $pass = "phpuserpw";
+//    $dbName = "campsegg_seggiecampers";
+//    $dbHost = "198.91.81.2";
 
     $user = "phpuser";
     $pass = "phpuserpw";
     $dbName = "seggiecampers";
-    $dbHost = "localhost";
+    $dbHost = "localhost:3308";
 // Create connection
     $con = mysqli_connect($dbHost, $user, $pass, $dbName);
     $result = mysqli_query($con, "SELECT consumerPrice FROM inventory WHERE id='" . $pid . "'");
@@ -299,15 +278,15 @@ function get_CamperPrice($pid) {
 }
 
 function get_StaffPrice($pid) {
-    // $user = "campsegg_phpuser";
-    // $pass = "phpuserpw";
-    // $dbName = "campsegg_seggiecampers";
-    //$dbHost = "198.91.81.2";
+//     $user = "campsegg_phpuser";
+//     $pass = "phpuserpw";
+//     $dbName = "campsegg_seggiecampers";
+//    $dbHost = "198.91.81.2";
 
     $user = "phpuser";
     $pass = "phpuserpw";
     $dbName = "seggiecampers";
-    $dbHost = "localhost";
+    $dbHost = "localhost:3308";
 // Create connection
     $con = mysqli_connect($dbHost, $user, $pass, $dbName);
     $result = mysqli_query($con, "SELECT itemPrice FROM inventory WHERE id='" . $pid . "'");
@@ -326,47 +305,6 @@ function product_exists($pid) {
         }
     }
     return $flag;
-}
-
-function get_new_balance($balance) {
-
-    $sum = get_CamperOrder_total();
-    if ($balance < $sum) {
-        return 'Not enough money';
-    } else {
-        $balance = $balance - $sum;
-        return $balance;
-    }
-}
-
-function get_new_deposit($deposit) {
-    $sum = get_StaffOrder_total();
-    $deposit = $deposit + $sum;
-    return $deposit;
-}
-
-function get_CamperOrder_total() {
-    $max = count($_SESSION['cart']);
-    $sum = 0;
-    for ($i = 0; $i < $max; $i++) {
-        $pid = $_SESSION['cart'][$i]['id'];
-        $q = $_SESSION['cart'][$i]['quantity'];
-        $price = get_CamperPrice($pid);
-        $sum += $price * $q;
-    }
-    return $sum;
-}
-
-function get_StaffOrder_total() {
-    $max = count($_SESSION['cart']);
-    $sum = 0;
-    for ($i = 0; $i < $max; $i++) {
-        $pid = $_SESSION['cart'][$i]['id'];
-        $q = $_SESSION['cart'][$i]['quantity'];
-        $price = get_StaffPrice($pid);
-        $sum += $price * $q;
-    }
-    return $sum;
 }
 
 ?>

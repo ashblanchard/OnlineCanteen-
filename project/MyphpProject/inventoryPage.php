@@ -5,7 +5,8 @@ session_start();
 if (!($_SESSION['LoggedIn'] == 1))
     header("Location: index.php")
     ?>
-<!DOCTYPE html><!--NEW-->
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -26,11 +27,16 @@ if (!($_SESSION['LoggedIn'] == 1))
         <script src ="scripts.js"></script>
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            function del() {
+                document.deleteItem.deleteCommand
+            }
+        </script>
     </head>
     <body>
         <!--Navigation Bar------------------------------------------------------->
         <div class ="navBarLeft">
-            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2><!--NEW-->
+            <h2 class="hello"><?php echo "Hello " . $_SESSION['FirstName'] ?></h2>
             <form class="navSearch" action="campers.php">
                 <input class="navSearchBar" type="text" placeholder="Search Campers..." name="camper">
                 <input class="navButton" type="submit" value="Search" >
@@ -69,6 +75,10 @@ if (!($_SESSION['LoggedIn'] == 1))
                 $itemPriceIsEmpty = false;
                 $consumerPriceIsEmpty = false;
                 $quantityIsEmpty = false;
+                $quantityIsNumeric = false;
+                $itemPriceIsNumeric = false;
+                $consumerPriceIsNumeric = false;
+
                 /** Check that the page was requested from itself via the POST method. */
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     /** Check whether the user has filled in the camper's name in the text field "user" */
@@ -84,8 +94,21 @@ if (!($_SESSION['LoggedIn'] == 1))
                     if ($_POST["quantity"] == "") {
                         $quantityIsEmpty = true;
                     }
-                    if (!$itemNameIsEmpty && !$itemPriceIsEmpty && !$consumerPriceIsEmpty && !$quantityIsEmpty) {
-                        SeggieDB::getInstance()->create_new_item($_POST["itemName"], $_POST["itemPrice"], $_POST["consumerPrice"], $_POST["quantity"]);
+                    if (is_numeric($_POST["quantity"])) {
+                        $quantityIsNumeric = true;
+                    }
+                    $itemPriceEntered = $_POST["itemPrice"];
+                    $newItemPrice = trim($itemPriceEntered, '$');
+                    if (is_numeric($newItemPrice)) {
+                        $itemPriceIsNumeric = true;
+                    }
+                    $consumerPriceEntered = $_POST["consumerPrice"];
+                    $newConsumerPrice = trim($consumerPriceEntered, '$');
+                    if (is_numeric($newConsumerPrice)) {
+                        $consumerPriceIsNumeric = true;
+                    }
+                    if (!$itemNameIsEmpty && !$itemPriceIsEmpty && !$consumerPriceIsEmpty && !$quantityIsEmpty && $quantityIsNumeric && $itemPriceIsNumeric && $consumerPriceIsNumeric) {
+                        SeggieDB::getInstance()->create_new_item($_POST["itemName"], $newItemPrice, $newConsumerPrice, $_POST["quantity"]);
                         header('Location: inventoryPage.php');
                         exit;
                     }
@@ -109,50 +132,64 @@ if (!($_SESSION['LoggedIn'] == 1))
                     <h3>*All Fields Required</h3>
                 </form>
             </div>
+
             <div class="resultsDiv">
+
                 <h2>Current Inventory:</h2><br>
+
                 <button type="button" class="button" onclick="displayNewInventory()">
                     <i class="fa fa-plus fa-1x" style="font-size: 28px;">Add Item</i>
                 </button>
                 <table class ="resultsTable">
                     <thead>
-                        <tr> <th>ID</th> <th>Item</th> <th>Staff Price</th> <th>Camper Price</th> <th>Quantity</th> <th>Edit</th> <th>Remove</th> </tr>
+                        <tr><th>Item</th> <th>Staff Price</th> <th>Camper Price</th> <th>Quantity</th> <th>Edit</th> <th>Remove</th> </tr>
                     </thead>
                     <?php
                     require_once("Includes/db.php");
+
                     $result = SeggieDB::getInstance()->get_allInventoryInfo();
                     while ($row = mysqli_fetch_assoc($result)) :
-                        echo "<tr><td> " . htmlentities($row["id"]) . "</td>";
-                        echo "<td>" . htmlentities($row["itemName"]) . "</td>";
-                        echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
-                        echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
-                        echo "<td>" . htmlentities($row["quantity"]) . "</td>";
+                        $quantity = $row["quantity"];
+                        if ($quantity < 20) {
+                            echo "<tr><td><font color = red>" . htmlentities($row["itemName"]) . "</td>";
+                            echo "<td><font color = red>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
+                            echo "<td><font color = red>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
+                            echo "<td><font color = red>" . htmlentities($row["quantity"]) . "</td>";
+                        } else {
+                            echo "<tr><td>" . htmlentities($row["itemName"]) . "</td>";
+                            echo "<td>$" . number_format(htmlentities($row["itemPrice"]), 2) . "</td>";
+                            echo "<td>$" . number_format(htmlentities($row["consumerPrice"]), 2) . "</td>";
+                            echo "<td>" . htmlentities($row["quantity"]) . "</td>";
+                        }
                         $currentItemID = $row["id"];
                         ?>
                         <td>
                             <form name="editItem" action="editItem.php" class="editItemForm">
-                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>">
-                                <input type="submit" name="editItem" value="Edit">
+                                <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
+                                <input type="submit" name="editItem" value="Edit"/>
                             </form>
                         </td>
                         <td>  
                             <form name="deleteItem" action="deleteItem.php" method="POST">
                                 <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
-                                <input type="submit" name="deleteItem" value="Delete"/>
+                                <input type="hidden" name="deleteCommand"/> 
+                                <input type="submit" name="deleteItem" value="Delete" onclick='del()'/>
                             </form>
                         </td>
                         <?php
                         echo "</tr>\n";
                     endwhile;
+                    exit;
                     ?>
                 </table>
             </div>
-            <script>
-                $(function () {
-                    $("#newInventory").draggable();
-                });
-                
-            </script>
+        </div>
+        <script>
+            $(function () {
+                $("#newInventory").draggable();
+            });
+
+        </script>
     </body>
 </html>
 

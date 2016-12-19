@@ -1,24 +1,24 @@
 <?php
 $newPasswordDifferent = false;
 $invalidPassword = false;
+$errorMessage = "";
 
-include "base.php";
+include "Includes/connect.php";
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     if ((strcmp($_POST['newPass1'],$_POST['newPass2'])) != 0) {
         $newPasswordDifferent = true;
-        echo "passwords different.";
+        $errorMessage += "The passwords you entered are different./n";
     }if (strlen($_POST['newPass1']) < 6) {
         $invalidPassword = true;
-        echo "less than 6";
+        $errorMessage+= "Your password has to be at least 6 characters.";
     }if (!$newPasswordDifferent && !$invalidPassword) {
-        mysql_query("UPDATE users SET Password = '" . $_POST['newPass1'] . "' WHERE Password = '" . $_POST['oldPass1'] . "'");
+        $password = md5($_POST['newPass1']);
+        mysql_query("UPDATE users SET Password = '" . $password . "' WHERE Username = '" . $_SESSION['Username'] . "'");
         header('Location: settingsPage.php');
         exit;
-    }
-     else {
-         echo "no.";
-     }
-         
+    }  
+    else 
+        echo "ERROR: /n" . $errorMessage;
 }
 ?>
 
