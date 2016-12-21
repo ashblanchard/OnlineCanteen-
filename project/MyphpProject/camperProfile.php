@@ -83,6 +83,8 @@ if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'delete' && $_REQUE
                     document.form2.pid.value = pid;
                     document.form2.command2.value = 'delete';
                     document.form2.submit();
+                } else {
+
                 }
             }
             function clear_cart() {

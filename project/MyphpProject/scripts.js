@@ -234,42 +234,38 @@ function uploadStaffFileAlert() {
 
 
 
-function deletecamper_confirm(currentID) {
-    var camper = document.getElementById("deleteCamper");
+function deletecamper_confirm() {
+    var button = document.getElementById("deleteCamper");
+    var form = document.getElementById("deleteCamperForm");
 
     if (confirm('Delete camper?')) {
-        camper.type = "submit";
-        camper.currentID = currentID;
-        camper.command2 = 'delete';
-
+        button.type = "submit";
+        form.submit();
     } else {
-        camper.type = "button";
+        button.type = "button";
     }
 }
-function deletestaff_confirm(currentID) {
-    var staff = document.getElementById("deleteStaff");
+function deletestaff_confirm() {
+    var button = document.getElementById("deleteStaff");
+    var form = document.getElementById("deleteStaffForm");
 
     if (confirm('Delete staff member?')) {
-        staff.type = "submit";
-        staff.currentID = currentID;
-        staff.command2 = 'delete';
-
+        button.type = "submit";
+        form.submit();
     } else {
-        staff.type = "button";
+        button.type = "button";
     }
 }
-
-
-function del(currentitemID) {
-    var item = document.getElementById("deleteItem");
+function del() {
+    var button = document.getElementById("deleteItem");
+    var form = document.getElementById("deleteItemForm");
 
     if (confirm("Delete item from inventory?")) {
-        item.type = "submit";
-        item.currentitemID = currentitemID;
-        item.command2 = 'delete';
+        button.type = "submit";
+        form.submit();
 
     } else {
-        item.type = "button";
+        button.type = "button";
     }
 }
 

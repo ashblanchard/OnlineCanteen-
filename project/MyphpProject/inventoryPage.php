@@ -166,7 +166,7 @@ if (!($_SESSION['LoggedIn'] == 1))
                             </form>
                         </td>
                         <td>  
-                            <form name="deleteItem" action="deleteItem.php" method="POST">
+                            <form name="deleteItem" id="deleteItemForm" action="deleteItem.php" method="POST">
                                 <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
                                 <input type="hidden" name="deleteCommand"/> 
                                 <input type="button" name="deleteItem" id="deleteItem" value="Delete" onclick='del()'/>
