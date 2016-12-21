@@ -593,45 +593,45 @@ settings page as well*/
     height:100px;
 }
 /*--------------------------------------------------------------Camper Profile*/
-#camperProfileCart{
-    display: inline-block;
-    vertical-align: top;
-    width: 49%;
-    margin-left: 6%;
+#camperProfile{
+    width: 100%;
+    text-align: center;
+    overflow: auto;
 }
 #camperProfileInventory{
     display: inline-block;
     vertical-align: top;
-    width: 43%;
-}
-#camperProfileCartTable{
-    width: 100%;
-    padding: 0;
+    width: 70%;
+    max-width: 700px;
 }
 #camperProfileInventoryTable{
     width: 100%;
     padding: 0;
-}
-#camperProfile{
-    overflow: hidden;
-    min-width: 1000px;
-}
-#camperProfileBackButton{
-    position: absolute;
-    top: 20px;
-    left: 230px;
-}
-#camperProfileInventoryHead{
-
 }
 #camperProfileInventoryTableDiv{
     display: block;
     overflow-y: scroll;
     height: 400px;
 }
-
-
-
+#camperProfileCart{
+    display: inline-block;
+    vertical-align: top;
+    width: 70%;
+    max-width: 700px;
+}
+#camperProfileCartTable{
+    width: 100%;
+    padding: 0;
+}
+#camperProfileCartDiv{
+    display: block;
+    height: 400px;
+}
+#camperProfileBackButton{
+    position: absolute;
+    top: 20px;
+    left: 230px;
+}
 
 
 

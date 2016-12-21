@@ -234,40 +234,36 @@ function uploadStaffFileAlert() {
 
 
 
-function deletecamper_confirm() {
-    var button = document.getElementById("deleteCamper");
-    var form = document.getElementById("deleteCamperForm");
-
-    if (confirm('Delete camper?')) {
-        button.type = "submit";
-        form.submit();
+function deletecamper_confirm(pid) {
+    if (confirm('Do you really mean to remove this Camper?')) {
+        document.getElementById("deleteCamperForm").currentID.value = pid;
+        document.getElementById("deleteCamperForm").deleteCommand.value = 'delete';
+        document.getElementById("deleteCamperForm").submit();
     } else {
-        button.type = "button";
+
     }
 }
-function deletestaff_confirm() {
-    var button = document.getElementById("deleteStaff");
-    var form = document.getElementById("deleteStaffForm");
 
-    if (confirm('Delete staff member?')) {
-        button.type = "submit";
-        form.submit();
+function deletestaff_confirm(pid) {
+    if (confirm('Do you really mean to remove this Staff Member?')) {
+        document.getElementById("deleteStaffForm").currentID.value = pid;
+        document.getElementById("deleteStaffForm").deleteCommand.value = 'delete';
+        document.getElementById("deleteStaffForm").submit();
     } else {
-        button.type = "button";
+
     }
 }
-function del() {
-    var button = document.getElementById("deleteItem");
-    var form = document.getElementById("deleteItemForm");
 
-    if (confirm("Delete item from inventory?")) {
-        button.type = "submit";
-        form.submit();
-
+function del(pid) {
+    if (confirm('Do you really mean to remove this item?')) {
+        document.getElementById("deleteItemForm").currentItemID.value = pid;
+        document.getElementById("deleteItemForm").deleteCommand.value = 'delete';
+        document.getElementById("deleteItemForm").submit();
     } else {
-        button.type = "button";
+
     }
 }
+
 
 
 

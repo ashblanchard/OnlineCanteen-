@@ -4,7 +4,7 @@ session_start();
 <?php
 if (!($_SESSION['LoggedIn'] == 1))
     header("Location: index.php");
-    ?>
+?>
 
 <!DOCTYPE html>
 <html>
@@ -169,7 +169,7 @@ if (!($_SESSION['LoggedIn'] == 1))
                             <form name="deleteItem" id="deleteItemForm" action="deleteItem.php" method="POST">
                                 <input type="hidden" name="currentItemID" value="<?php echo $currentItemID; ?>"/>
                                 <input type="hidden" name="deleteCommand"/> 
-                                <input type="button" name="deleteItem" id="deleteItem" value="Delete" onclick='del()'/>
+                                <input type="button" name="deleteItem" id="deleteItem" value="Delete" onclick="del(<?php echo $currentItemID; ?>)"/>
                             </form>
                         </td>
                         <?php
@@ -185,7 +185,7 @@ if (!($_SESSION['LoggedIn'] == 1))
                 $("#newInventory").draggable();
             });
 
-           
+
         </script>
     </body>
 </html>

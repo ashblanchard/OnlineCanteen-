@@ -303,10 +303,10 @@ if (isset($_POST["submitStaff"])) {
                                 </form>  
                             </td>
                             <td>  
-                                <form name="deletePerson" id="deleteStaffForm" action="deleteStaff.php" method="POST">
+                                <form name="deleteStaffForm" id="deleteStaffForm" action="deleteStaff.php" method="POST">
                                     <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
                                     <input type="hidden" name="deleteCommand"/>
-                                    <input type="button" name="deleteStaff" id="deleteStaff" value="Delete" onclick="deletestaff_confirm()">
+                                    <input type="button" name="deleteStaff" id="deleteStaff" value="Delete" onclick="deletestaff_confirm(<?php echo $currentID; ?>)">
                                 </form>
                             </td>
                             <?php
@@ -353,7 +353,7 @@ if (isset($_POST["submitStaff"])) {
                                 <form name="deletePerson" id="deleteCamperForm" action="deleteCamper.php" method="POST">
                                     <input type="hidden" name="currentID" value="<?php echo $currentID; ?>"/>
                                     <input type="hidden" name="deleteCommand"/> 
-                                    <input type="button" name="deleteCamper" id="deleteCamper" value="Delete" onclick="deletecamper_confirm()">
+                                    <input type="button" name="deleteCamper" id="deleteCamper" value="Delete" onclick="deletecamper_confirm(<?php echo $currentID; ?>)">
                                 </form>
                             </td>
                             <?php

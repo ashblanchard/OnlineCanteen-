@@ -221,71 +221,76 @@ if (isset($_REQUEST['command2']) && $_REQUEST['command2'] == 'delete' && $_REQUE
             <!--Shopping Cart==========================================================================================-->
             <div id="camperProfileCart">
                 <h1><i class="fa fa-shopping-cart fa-1x" aria-hidden="true"></i> Cart</h1>
-                <form name="form2" method="post">
-                    <input type="hidden" name="pid" />
-                    <input type="hidden" name="newBalance" />
-                    <input type="hidden" name="id" />
-                    <input type ="hidden" name="searchName" />
-                    <input type="hidden" name="command2" />
+                <div id="camperProfileCartDiv">
+                    <form name="form2" method="post">
+                        <input type="hidden" name="pid" />
+                        <input type="hidden" name="newBalance" />
+                        <input type="hidden" name="id" />
+                        <input type ="hidden" name="searchName" />
+                        <input type="hidden" name="command2" />
 
 
 
-                    <table id="camperProfileCartTable" class="resultsTable">
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th style="min-width: 70px;">Amount</th>
-                            <th>Options</th>
-                        </tr>
-                        <?php
-                        if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
-                            $max = count($_SESSION['cart']);
-                            for ($i = 0; $i < $max; $i++) {  //changed the $1 = 0 
-                                $pid = $_SESSION['cart'][$i]['id'];
-                                $q = $_SESSION['cart'][$i]['quantity'];
-                                $pname = SeggieDB::getInstance()->get_product_name($pid);
-                                if ($q == 0) {
-                                    continue;
+                        <table id="camperProfileCartTable" class="resultsTable">
+                            <tr>
+                                <th>Name</th>
+                                <th style="min-width: 70px;">Price</th>
+                                <th>Qty</th>
+                                <th style="min-width: 70px;">Amount</th>
+                                <th style="width: 100%;">Options</th>
+                            </tr>
+                            <?php
+                            if (isset($_SESSION['cart']) && is_array($_SESSION['cart'])) {
+                                $max = count($_SESSION['cart']);
+                                for ($i = 0; $i < $max; $i++) {  //changed the $1 = 0 
+                                    $pid = $_SESSION['cart'][$i]['id'];
+                                    $q = $_SESSION['cart'][$i]['quantity'];
+                                    $pname = SeggieDB::getInstance()->get_product_name($pid);
+                                    if ($q == 0) {
+                                        continue;
+                                    }
+                                    ?>
+                                    <?php if (!strcmp($type, "Staff") == 0) { ?>
+                                        <tr><td><?php echo $pname; ?></td><!--changed PID-->
+                                            <td>$ <?php echo number_format(SeggieDB::getInstance()->get_CamperPrice($pid), 2) ?></td>
+                                            <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
+                                            <td>$ <?php echo number_format(SeggieDB::getInstance()->get_CamperPrice($pid) * $q, 2) ?></td>
+                                            <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
+
+                                    <?php } else if (strcmp($type, "Staff") == 0) { ?>
+                                        <tr><td><?php echo $pname; ?></td><!--changed PID-->
+                                            <td>$<?php echo number_format(SeggieDB::getInstance()->get_StaffPrice($pid), 2) ?></td>
+                                            <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
+                                            <td style="min-width: 50px;">$<?php echo number_format(SeggieDB::getInstance()->get_StaffPrice($pid) * $q, 2) ?></td>
+                                            <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
+                                        <?php
+                                    }
                                 }
                                 ?>
-                                <?php if (!strcmp($type, "Staff") == 0) { ?>
-                                    <tr><td><?php echo $pname; ?></td><!--changed PID-->
-                                        <td>$ <?php echo number_format(SeggieDB::getInstance()->get_CamperPrice($pid), 2) ?></td>
-                                        <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
-                                        <td>$ <?php echo number_format(SeggieDB::getInstance()->get_CamperPrice($pid) * $q, 2) ?></td>
-                                        <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
 
-                                <?php } else if (strcmp($type, "Staff") == 0) { ?>
-                                    <tr><td><?php echo $pname; ?></td><!--changed PID-->
-                                        <td>$<?php echo number_format(SeggieDB::getInstance()->get_StaffPrice($pid), 2) ?></td>
-                                        <td><input type="text" name="product<?php echo $pid ?>" value="<?php echo $q ?>" maxlength="3" size="2" /></td>                    
-                                        <td style="min-width: 50px;">$<?php echo number_format(SeggieDB::getInstance()->get_StaffPrice($pid) * $q, 2) ?></td>
-                                        <td><a href="javascript:del(<?php echo $pid ?>)">Remove</a></td></tr>
-                                    <?php
-                                }
-                            }
+                                <tr><td style="font-weight: 700;">Today's Spendings:
+                                        $<?php
+                                        if (strcmp($type, "Staff") == 0) {
+                                            $dailyAmount = number_format(SeggieDB::getInstance()->get_StaffOrder_total(), 2);
+                                        } else
+                                            $dailyAmount = number_format(SeggieDB::getInstance()->get_CamperOrder_total(), 2);
+                                        ?><?php echo $dailyAmount ?></td></tr>
+
+<!--                                <tr><td></td><tab></tab>
+                                <td></td>
+                                <td colspan="3"></td>
+                                <td></td>
+                                <td></td></tr>-->
+                                <?php
+                            } else
+                                echo "<tr bgColor='#FFFFFF'><td>There are no items in your shopping cart!</td>";
                             ?>
-
-                            <tr><td style="font-weight: 700;">Today's Spendings:
-                                    $<?php
-                                    if (strcmp($type, "Staff") == 0) {
-                                        $dailyAmount = number_format(SeggieDB::getInstance()->get_StaffOrder_total(), 2);
-                                    } else
-                                        $dailyAmount = number_format(SeggieDB::getInstance()->get_CamperOrder_total(), 2);
-                                    ?><?php echo $dailyAmount ?></td></tr>
-
-                            <tr><td><input type="button" value="Clear Cart" onclick="clear_cart()" class="button"></td><tab></tab>
-                            <td><input type="button" value="Update Cart" onclick="update_cart()" class="button"></td>
-                            <td></td>
-                            <td></td>
-                            <td><input type="button" value="Checkout" onclick="place_order(<?php echo $personID ?>, <?php echo $dailyAmount ?>)" class="button"></td></tr>
                         </table>
-                        <?php
-                    } else
-                        echo "<tr bgColor='#FFFFFF'><td>There are no items in your shopping cart!</td>";
-                    ?>
-                </form>
+                        <input type="button" value="Clear Cart" onclick="clear_cart()" class="button">
+                        <input type="button" value="Update Cart" onclick="update_cart()" class="button">
+                        <input type="button" value="Checkout" onclick="place_order(<?php echo $personID ?>, <?php echo $dailyAmount ?>)" class="button">
+                    </form>
+                </div>
             </div>
 
         </div>
